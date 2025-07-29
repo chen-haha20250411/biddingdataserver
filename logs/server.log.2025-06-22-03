@@ -1,0 +1,238 @@
+[INFO] 2025-06-22 03:00:28.715  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:00:28.723  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:00:58.825  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:00:58.828  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:01:28.911  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:01:28.915  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:01:59.012  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:01:59.014  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:02:29.111  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:02:29.115  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:02:59.210  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:02:59.213  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:03:29.316  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:03:29.320  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:03:59.410  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:03:59.412  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:04:29.515  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:04:29.517  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:04:59.615  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:04:59.617  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:05:29.710  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:05:29.714  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:05:59.811  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:05:59.813  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:06:29.910  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:06:29.912  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:07:00.013  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:07:00.015  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:07:30.125  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:07:30.129  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:08:00.210  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:08:00.212  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:08:30.313  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:08:30.316  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:09:00.410  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:09:00.412  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:09:30.510  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:09:30.513  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:10:00.623  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:10:00.625  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:10:30.713  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:10:30.715  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:11:00.812  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:11:00.816  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:11:30.923  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:11:30.926  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:12:01.010  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:12:01.013  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:12:31.111  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:12:31.113  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:13:01.213  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:13:01.217  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:13:31.311  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:13:31.313  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:14:01.412  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:14:01.415  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:14:31.510  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:14:31.513  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:15:01.623  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:15:01.626  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:15:31.720  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:15:31.723  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:16:01.809  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:16:01.813  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:16:31.922  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:16:31.925  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:17:02.010  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:17:02.012  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:17:32.110  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:17:32.113  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:18:02.210  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:18:02.213  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:18:32.317  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:18:32.320  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:19:02.414  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:19:02.418  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:19:32.511  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:19:32.513  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:20:02.610  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:20:02.613  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:20:32.715  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:20:32.718  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:21:02.813  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:21:02.816  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:21:32.910  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:21:32.912  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:22:03.012  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:22:03.016  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:22:33.111  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:22:33.113  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:23:03.216  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:23:03.219  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:23:33.325  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:23:33.329  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:24:03.410  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:24:03.412  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:24:33.525  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:24:33.528  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:25:03.610  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:25:03.612  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:25:33.711  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:25:33.713  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:26:03.823  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:26:03.828  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:26:33.910  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:26:33.914  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:27:04.015  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:27:04.020  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:27:34.110  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:27:34.114  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:28:04.215  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:28:04.218  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:28:34.310  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:28:34.313  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:29:04.411  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:29:04.413  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:29:34.510  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:29:34.512  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:30:04.620  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:30:04.622  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:30:34.713  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:30:34.716  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:31:04.814  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:31:04.817  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:31:34.913  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:31:34.915  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:32:05.011  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:32:05.013  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:32:35.110  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:32:35.112  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:33:05.211  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:33:05.213  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:33:35.311  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:33:35.313  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:34:05.414  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:34:05.417  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:34:35.522  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:34:35.527  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:35:05.610  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:35:05.612  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:35:35.713  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:35:35.717  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:36:05.811  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:36:05.813  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:36:35.910  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:36:35.912  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:37:06.017  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:37:06.020  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:37:36.113  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:37:36.115  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:38:06.222  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:38:06.224  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:38:36.313  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:38:36.316  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:39:06.416  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:39:06.418  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:39:36.510  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:39:36.512  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:40:06.611  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:40:06.612  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:40:36.713  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:40:36.715  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:41:06.812  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:41:06.814  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:41:36.925  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:41:36.927  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:42:07.013  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:42:07.017  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:42:37.112  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:42:37.115  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:43:07.213  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:43:07.217  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:43:37.312  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:43:37.314  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:44:07.410  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:44:07.414  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:44:37.512  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:44:37.515  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:45:07.614  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:45:07.618  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:45:37.723  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:45:37.725  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:46:07.824  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:46:07.827  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:46:37.910  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:46:37.913  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:47:08.015  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:47:08.017  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:47:38.116  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:47:38.118  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:48:08.210  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:48:08.212  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:48:38.311  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:48:38.315  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:49:08.410  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:49:08.413  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:49:38.511  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:49:38.514  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:50:08.616  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:50:08.619  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:50:38.724  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:50:38.728  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:51:08.812  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:51:08.816  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:51:38.913  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:51:38.915  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:52:09.024  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:52:09.027  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:52:39.116  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:52:39.118  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:53:09.211  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:53:09.213  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:53:39.325  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:53:39.328  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:54:09.409  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:54:09.411  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:54:39.525  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:54:39.528  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:55:09.611  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:55:09.614  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:55:39.712  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:55:39.715  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:56:09.810  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:56:09.812  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:56:39.923  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:56:39.925  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:57:10.010  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:57:10.013  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:57:40.111  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:57:40.113  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:58:10.215  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:58:10.217  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:58:40.311  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:58:40.314  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:59:10.411  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:59:10.416  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379
+[INFO] 2025-06-22 03:59:40.511  io.lettuce.core.protocol.ConnectionWatchdog.java - Reconnecting, last destination was 127.0.0.1:6379
+[WARN] 2025-06-22 03:59:40.515  io.lettuce.core.protocol.ConnectionWatchdog.java - Cannot reconnect to [127.0.0.1:6379]: Connection refused: no further information: /127.0.0.1:6379

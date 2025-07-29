@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.biddingInfo.mapper.BiddingInfoMapper">
+<resultMap id="biddingInfo" type="com.xiao.core.biddingInfo.domain.BiddingInfo">
+   	<result column="id" property="id"/>
+   	<result column="project_number" property="projectNumber"/>
+   	<result column="project_name" property="projectName"/>
+   	<result column="publish_date" property="publishDate"/>
+   	<result column="content" property="content"/>
+   	<result column="project_id" property="projectId"/>
+   	<result column="total_content" property="totalContent"/>
+   	<result column="data_source" property="dataSource"/>
+   	<result column="html_url" property="htmlUrl"/>
+</resultMap>
+
+<!-- 查询列表带分页 -->
+<select id="queryByMap" resultMap="biddingInfo">
+	 select 
+		id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url
+	  from bidding_info 
+	<where>
+	    is_del=0
+ 		<if test="projectNumber != null and projectNumber != ''">
+			 AND project_Number LIKE CONCAT('%', #{projectNumber}, '%')
+		</if>
+ 		<if test="projectName != null and projectName != ''">
+			 AND project_Name LIKE CONCAT('%', #{projectName}, '%')
+		</if>
+ 		<if test="publishDate != null and publishDate != ''">
+			 AND publish_date = #{publishDate}
+		</if>
+ 		<if test="content != null and content != ''">
+			 AND content = #{content}
+		</if>
+ 		<if test="projectId != null and projectId != ''">
+			 AND project_id = #{projectId}
+		</if>
+ 		<if test="totalContent != null and totalContent != ''">
+			 AND total_content = #{totalContent}
+		</if>
+ 		<if test="dataSource != null and dataSource != ''">
+			 AND data_source = #{dataSource}
+		</if>
+ 		<if test="htmlUrl != null and htmlUrl != ''">
+			 AND html_url = #{htmlUrl}
+		</if>
+	 </where>
+	order by publish_date desc
+	 <if test="rowIndex != null and rowNum != null">
+	 	LIMIT  #{rowIndex}, #{rowNum}
+	 </if>
+
+</select>
+
+<!-- 查询总的条数 用于分页 -->
+<select id="queryByCount" resultType="int">
+	 SELECT COUNT(1) FROM bidding_info
+	 <where>
+		 is_del=0
+		 <if test="projectNumber != null and projectNumber != ''">
+			 AND project_Number LIKE CONCAT('%', #{projectNumber}, '%')
+		 </if>
+		 <if test="projectName != null and projectName != ''">
+			 AND project_Name LIKE CONCAT('%', #{projectName}, '%')
+		 </if>
+ 		 <if test="publishDate != null and publishDate != ''">
+			 AND publish_date = #{publishDate}
+		 </if>
+ 		<if test="content != null and content != ''">
+			 AND content = #{content}
+		</if>
+ 		<if test="projectId != null and projectId != ''">
+			 AND project_id = #{projectId}
+		</if>
+ 		<if test="totalContent != null and totalContent != ''">
+			 AND total_content = #{totalContent}
+		</if>
+ 		<if test="dataSource != null and dataSource != ''">
+			 AND data_source = #{dataSource}
+		</if>
+ 		<if test="htmlUrl != null and htmlUrl != ''">
+			 AND html_url = #{htmlUrl}
+		</if>
+	 </where>
+</select>
+
+<!-- 添加biddingInfo数据-->
+<insert id="insert" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
+	 INSERT INTO bidding_info(
+		project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url,is_del
+	) VALUES(
+ 		#{projectNumber},
+ 		#{projectName},
+ 		#{publishDate},
+ 		#{content},
+ 		#{projectId},
+ 		#{totalContent},
+ 		#{dataSource},
+ 		#{htmlUrl},0
+	)
+</insert>
+
+<!-- 批量添加biddingInfo数据-->
+<insert id="insertList" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
+	 INSERT INTO bidding_info(
+		project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url,is_del
+	) VALUES 
+	<foreach collection="list" item="i" separator=",">
+	(
+ 		#{i.projectNumber},
+ 		#{i.projectName},
+ 		#{i.publishDate},
+ 		#{i.content},
+ 		#{i.projectId},
+ 		#{i.totalContent},
+ 		#{i.dataSource},
+ 		#{i.htmlUrl},0
+	)
+	</foreach>
+</insert>
+
+<!-- 更新biddingInfo数据 -->
+<update id="update" parameterType="Object">
+	 UPDATE bidding_info SET 
+	 <trim  suffixOverrides=",">
+		 <if test="projectNumber != null and projectNumber != ''">
+			 project_number = #{projectNumber},
+		 </if>
+		 <if test="projectName != null and projectName != ''">
+			 project_name = #{projectName},
+		 </if>
+		 <if test="publishDate != null and publishDate != ''">
+			 publish_date = #{publishDate},
+		 </if>
+		 <if test="content != null and content != ''">
+			 content = #{content},
+		 </if>
+		 <if test="projectId != null and projectId != ''">
+			 project_id = #{projectId},
+		 </if>
+		 <if test="totalContent != null and totalContent != ''">
+			 total_content = #{totalContent},
+		 </if>
+		 <if test="dataSource != null and dataSource != ''">
+			 data_source = #{dataSource},
+		 </if>
+		 <if test="htmlUrl != null and htmlUrl != ''">
+			 html_url = #{htmlUrl},
+		 </if>
+	 </trim>
+	 WHERE id = #{id}
+</update>
+
+<!-- 批量更新biddingInfo数据 -->
+<update id="updateList" parameterType="Object">
+	<foreach collection="list" item="i" open="" close="" separator=";">
+	 UPDATE bidding_info SET 
+	 <trim  suffixOverrides=",">
+		 <if test="i.projectNumber != null and i.projectNumber != ''">
+			 project_number = #{i.projectNumber},
+		 </if>
+		 <if test="i.projectName != null and i.projectName != ''">
+			 project_name = #{i.projectName},
+		 </if>
+		 <if test="i.publishDate != null and i.publishDate != ''">
+			 publish_date = #{i.publishDate},
+		 </if>
+		 <if test="i.content != null and i.content != ''">
+			 content = #{i.content},
+		 </if>
+		 <if test="i.projectId != null and i.projectId != ''">
+			 project_id = #{i.projectId},
+		 </if>
+		 <if test="i.totalContent != null and i.totalContent != ''">
+			 total_content = #{i.totalContent},
+		 </if>
+		 <if test="i.dataSource != null and i.dataSource != ''">
+			 data_source = #{i.dataSource},
+		 </if>
+		 <if test="i.htmlUrl != null and i.htmlUrl != ''">
+			 html_url = #{i.htmlUrl},
+		 </if>
+	 </trim>
+	 WHERE id = #{i.id}
+	</foreach>
+</update>
+
+<!-- 删除biddingInfo数据 -->
+<delete id="deleteById" parameterType="String">
+	 update  bidding_info set is_del=1  WHERE id=#{id}
+</delete>
+
+<!-- 根据biddingInfo主键查询数据 -->
+<select id="queryById" resultMap="biddingInfo" parameterType="Object">
+	 SELECT 
+		id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url
+	 FROM bidding_info
+	 WHERE id = #{id} and is_del=0
+</select>
+
+<!-- 批量删除用户信息 -->
+<delete id="deleteByMap" parameterType="Object">
+	update  bidding_info set is_del=1 WHERE id in
+	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+	   #{item}  
+	</foreach>
+</delete>
+
+<!-- 根据biddingInfo多个主键查询数据 -->
+<select id="queryByIds" resultMap="biddingInfo" parameterType="Object">
+	SELECT 
+		id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url
+	 FROM bidding_info WHERE  is_del=0 and id in
+	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+	   #{item}  
+	</foreach>
+</select>
+</mapper>

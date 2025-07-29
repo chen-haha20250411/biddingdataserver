@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="roleInfo" type="com.xiao.core.basic.admin_roleinfo.domain.AdminRoleinfo">
+		<id column="roleInfo_Id" property="roleInfoId" />
+		<result column="role_Name" property="roleName" />
+		<result column="role_level" property="roleLevel" />
+		<result column="operator_id" property="operatorId" />
+		<result column="login_name" property="loginName"/>
+		<result column="add_time" property="addTime" />
+		<result column="edit_time" property="editTime" />
+		<result column="remark" property="remark" />
+	</resultMap>
+	<!-- Result Map -->
+	<resultMap id="roleMenu"
+		type="com.xiao.core.basic.admin_rolemenu.domain.AdminRolemenu">
+		<result column="roleInfo_Id" property="roleInfoId" />
+		<result column="menu_Id" property="menuId" />
+	</resultMap>
+	<!-- Result Map -->
+	<resultMap id="roleBtnMap"
+		type="com.xiao.core.basic.admin_rolebtn.domain.AdminRolebtn">
+		<result column="btn_id" property="btnId" />
+		<result column="roleInfo_Id" property="roleInfoId" />
+	</resultMap>
+	<!-- 获取角色 -->
+	<select id="queryByMap" resultMap="roleInfo">
+		SELECT r.*,o.login_name  FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id
+		<where>
+			<!-- <if test="roleName != null and roleName != '' ">
+				and role_Name like '%${roleName}%'
+			</if> -->
+			<if test="roleName != null and roleName != '' ">
+				and role_Name like concat('%',#{roleName},'%')
+			</if>
+		</where>
+		order by roleInfo_Id
+		LIMIT #{rowIndex},#{rowNum}
+	</select>
+
+	<!-- 获取所有权限 -->
+	<select id="queryallRoleInfo" resultMap="roleInfo">
+		SELECT *  FROM admin_roleinfo
+		order by roleInfo_Id
+	</select>
+
+	<select id="queryByCount" resultType="int">
+	 select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id
+	 	<where>
+			<!-- <if test="roleName != null and roleName != '' ">
+				and role_Name like '%${roleName}%'
+			</if> -->
+			<if test="roleName != null and roleName != '' ">
+				and role_Name like concat('%',#{roleName},'%')
+			</if>
+		</where>
+	 order by roleInfo_Id
+	</select>
+
+	<select id="queryByCount1" resultType="int">
+	 select count(1) FROM admin_roleinfo r
+	 	<where>
+			<if test="roleName != null and roleName != '' ">
+				r.role_Name = #{roleName}
+			</if>
+		</where>
+	 order by roleInfo_Id
+	</select>
+
+	<!-- 获取角色菜单 -->
+	<select id="queryById" resultMap="roleInfo">
+		select * from  admin_roleinfo where roleInfo_Id  = #{value}
+	</select>
+	<!-- 添加角色  -->
+	<insert id="insert" parameterType="Object">
+		<selectKey resultType="java.lang.Integer" keyProperty="roleInfoId" order="AFTER" >
+	    	SELECT @@IDENTITY
+	  	</selectKey>
+	       INSERT INTO admin_roleinfo(
+	       		role_Name,operator_id,remark,add_time
+	       ) VALUES(
+	       		#{roleName},#{operatorId},#{remark},now()
+	       )
+	</insert>
+	<!-- 添加角色菜单 -->
+	<insert id="addRoleAuthInfo" parameterType="Object">
+	    insert into admin_rolemenu(menu_Id,roleInfo_Id) values
+	    	<foreach collection="list" separator="," item="item" index="index">
+	    		(#{item.menuId},#{item.roleInfoId})
+	    	</foreach>
+	</insert>
+	<!-- 添加角色的按钮-->
+	<insert id="addRoleBtn" parameterType="Object">
+	    insert into admin_rolebtn(btn_id,roleInfo_Id) values
+	    <foreach collection="list" separator="," item="item" index="index">
+	    	(#{item.btnId},#{item.roleInfoId})
+	    </foreach>
+	</insert>
+	<!-- 得到角色原来的权限 -->
+	<select id="queryRoleAuthInfo" parameterType="java.lang.String" resultMap="roleMenu">
+	       select * from admin_rolemenu where roleInfo_Id = #{value}
+	</select>
+
+	<!-- 得到角色按钮权限 -->
+	<select id="queryRoleAuthBtn" parameterType="String" resultMap="roleBtnMap">
+	       select * from admin_rolebtn where roleInfo_Id = #{value,jdbcType=INTEGER}
+	</select>
+
+	<!-- 修改角色信息 -->
+	<update id="update" parameterType="Object">
+	     UPDATE admin_roleinfo
+	     SET role_Name=#{roleName,jdbcType=VARCHAR} ,
+		     remark= #{remark,jdbcType=VARCHAR},
+		     edit_time = now()
+	     WHERE roleInfo_Id = #{roleInfoId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 删除角色的所有权限 -->
+	<delete id="delJRoleAuthInfo" parameterType="int">
+	     delete from  admin_rolemenu where roleInfo_Id = #{value}
+	</delete>
+	<!-- 删除角色的所有权限 -->
+	<delete id="delJRoleAuthBtn" parameterType="int">
+	     delete from  admin_rolebtn where roleInfo_Id = #{value}
+	</delete>
+
+	<!-- 删除角色 -->
+	<delete id="deleteById" parameterType="String">
+	  	DELETE FROM admin_roleinfo where roleInfo_Id = #{value}
+	</delete>
+
+
+
+</mapper>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.si_zone.mapper.Si_zoneMapper">
+<resultMap id="si_zone" type="com.xiao.core.basic.si_zone.domain.Si_zone">
+   	<result column="zone_id" property="zone_id"/>
+   	<result column="zone_no" property="zone_no"/>
+   	<result column="zone_name" property="zone_name"/>
+   	<result column="parent_id" property="parent_id"/>
+   	<result column="parent_code" property="parent_code"/>
+   	<result column="parent_name" property="parent_name"/>
+   	<result column="zone_level" property="zone_level"/>
+   	<result column="zone_stat" property="zone_stat"/>
+   	<result column="remark" property="remark"/>
+</resultMap>
+
+<!-- 查询列表带分页 -->
+<select id="queryByMap" resultMap="si_zone">
+	 select 
+		zone_id,zone_no,zone_name,parent_id,parent_name,zone_level,zone_stat,remark
+	  from si_zone 
+	<where>
+		<if test="zone_id != null and zone_id != ''">
+			 AND zone_id = #{zone_id}
+		</if>
+ 		<if test="zone_no != null and zone_no != ''">
+			 AND zone_no = #{zone_no}
+		</if>
+ 		<if test="zone_name != null and zone_name != ''">
+			 AND zone_name = #{zone_name}
+		</if>
+ 		<if test="parent_id != null and parent_id != ''">
+			 AND parent_id = #{parent_id}
+		</if>
+ 		<if test="parent_name != null and parent_name != ''">
+			 AND parent_name = #{parent_name}
+		</if>
+ 		<if test="zone_level != null and zone_level != ''">
+			 AND zone_level = #{zone_level}
+		</if>
+ 		<if test="zone_stat != null and zone_stat != ''">
+			 AND zone_stat = #{zone_stat}
+		</if>
+		<if test="code != null and code != ''">
+			 AND zone_no like  CONCAT(#{code},'%') 
+		</if>
+ 		<if test="remark != null and remark != ''">
+			 AND remark = #{remark}
+		</if>
+	 </where>
+	 <if test="rowIndex != null and rowNum != null">
+	 	LIMIT  #{rowIndex}, #{rowNum}
+	 </if>
+</select>
+
+<!-- 查询总的条数 用于分页 -->
+<select id="queryByCount" resultType="int">
+	 SELECT COUNT(1) FROM si_zone
+	 <where>
+	 	<if test="zone_id != null and zone_id != ''">
+			 AND zone_id = #{zone_id}
+		</if>
+ 		<if test="zone_no != null and zone_no != ''">
+			 AND zone_no = #{zone_no}
+		</if>
+ 		<if test="zone_name != null and zone_name != ''">
+			 AND zone_name = #{zone_name}
+		</if>
+ 		<if test="parent_id != null and parent_id != ''">
+			 AND parent_id = #{parent_id}
+		</if>
+ 		<if test="parent_name != null and parent_name != ''">
+			 AND parent_name = #{parent_name}
+		</if>
+ 		<if test="zone_level != null and zone_level != ''">
+			 AND zone_level = #{zone_level}
+		</if>
+ 		<if test="zone_stat != null and zone_stat != ''">
+			 AND zone_stat = #{zone_stat}
+		</if>
+ 		<if test="remark != null and remark != ''">
+			 AND remark = #{remark}
+		</if>
+	 </where>
+</select>
+
+<!-- 添加si_zone数据-->
+<insert id="insert" parameterType="Object" useGeneratedKeys="true" keyProperty="zone_id">
+	<selectKey resultType="java.lang.String" keyProperty="zone_id" order="AFTER" >
+	    SELECT @@IDENTITY
+	 </selectKey>
+	 INSERT INTO si_zone(
+		zone_no,zone_name,parent_id,parent_name,zone_level,zone_stat,remark
+	) VALUES(
+ 		#{zone_no},
+ 		#{zone_name},
+ 		#{parent_id},
+ 		#{parent_name},
+ 		#{zone_level},
+ 		#{zone_stat},
+ 		#{remark}
+	)
+</insert>
+
+<!-- 更新si_zone数据 -->
+<update id="update" parameterType="Object">
+	 UPDATE si_zone SET 
+	 <trim  suffixOverrides=",">
+		 <if test="zone_no != null and zone_no != ''">
+			 zone_no = #{zone_no},
+		 </if>
+		 <if test="zone_name != null and zone_name != ''">
+			 zone_name = #{zone_name},
+		 </if>
+		 <if test="parent_id != null and parent_id != ''">
+			 parent_id = #{parent_id},
+		 </if>
+		 <if test="parent_name != null and parent_name != ''">
+			 parent_name = #{parent_name},
+		 </if>
+		 <if test="zone_level != null and zone_level != ''">
+			 zone_level = #{zone_level},
+		 </if>
+		 <if test="zone_stat != null and zone_stat != ''">
+			 zone_stat = #{zone_stat},
+		 </if>
+		 <if test="remark != null and remark != ''">
+			 remark = #{remark},
+		 </if>
+	 </trim>
+	 WHERE zone_id=#{zone_id}
+</update>
+
+<!-- 删除si_zone数据 -->
+<delete id="deleteById" parameterType="String">
+	 delete from si_zone WHERE zone_id=#{zone_id}
+</delete>
+
+<delete id="deleteByParentId" parameterType="String">
+	 delete from si_zone WHERE parent_id=#{parent_id}
+</delete>
+
+<!-- 根据si_zone主键查询数据 -->
+<select id="queryById" resultMap="si_zone" parameterType="Object">
+	 SELECT 
+		zone_id,zone_no,zone_name,parent_id,parent_name,zone_level,zone_stat,remark
+	 FROM si_zone
+	 WHERE zone_id=#{zone_id}
+</select>
+
+<!-- 根据si_zone主键查询数据 -->
+<select id="queryByName" resultMap="si_zone" parameterType="Object">
+	 SELECT 
+		zone_id,zone_no,zone_name,parent_id,parent_name,zone_level,zone_stat,remark
+	 FROM si_zone
+	 WHERE zone_name=#{zone_name}
+	 <if test="parent_id != null and  parent_id != ''">
+	 	and parent_id = #{parent_id}
+	 </if>
+</select>
+
+
+<!-- 批量删除用户信息 -->
+<delete id="deleteByMap" parameterType="String">
+	DELETE FROM si_zone WHERE zone_id in 
+	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+	   #{item}  
+	</foreach>
+</delete>
+
+<!-- 根据si_zone多个主键查询数据 -->
+<select id="queryByIds" resultMap="si_zone" parameterType="Object">
+	SELECT 
+		zone_id,zone_no,zone_name,parent_id,parent_name,zone_level,zone_stat,remark
+	 FROM si_zone WHERE  zone_id in 
+	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+	   #{item}  
+	</foreach>
+</select>
+
+<!--  -->
+<insert id="addBatch" parameterType="java.util.List">
+    insert into si_zone(zone_no,zone_name,parent_id,parent_code,parent_name,zone_level,zone_stat,remark) values
+	<foreach collection="list" index="index" item="item" separator=",">
+	  (
+	     #{item.zone_no,jdbcType=VARCHAR},
+	     #{item.zone_name,jdbcType=VARCHAR},
+	     #{item.parent_id,jdbcType=VARCHAR},
+	     #{item.parent_code,jdbcType=VARCHAR},
+	     #{item.parent_name,jdbcType=VARCHAR},
+	     #{item.zone_level,jdbcType=VARCHAR},
+	     #{item.zone_stat,jdbcType=VARCHAR},
+	     #{item.remark,jdbcType=VARCHAR}
+	  )
+	</foreach>
+</insert>
+
+
+<update id="updBatch" parameterType="java.util.List">
+	<foreach collection="list" item="item" index="index" open="" close="" separator=";" >
+	  	 update si_zone 
+	  	  <set>
+	  	   zone_name = #{item.zone_name,jdbcType=VARCHAR}, 
+	  	   parent_code = #{item.parent_code,jdbcType=VARCHAR},
+	  	   parent_name = #{item.parent_name,jdbcType=VARCHAR},
+	  	   zone_level = #{item.zone_level,jdbcType=VARCHAR},
+	  	   zone_stat = #{item.zone_stat,jdbcType=VARCHAR},
+	  	   remark = #{item.remark,jdbcType=VARCHAR}
+	  	  </set>
+	  	   where zone_no = #{item.zone_no,jdbcType=VARCHAR}
+	</foreach>
+</update>
+
+
+<!-- 更新si_zone数据 -->
+<update id="updateParentId" parameterType="Object">
+  UPDATE si_zone t1,(SELECT * FROM si_zone) t2 SET t1.parent_id = t2.zone_id,t1.parent_name = t2.zone_name WHERE t1.parent_code = t2.zone_no 
+  and t1.zone_no in 
+   <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+       #{item,jdbcType=VARCHAR}
+   </foreach>
+</update>
+
+</mapper>
