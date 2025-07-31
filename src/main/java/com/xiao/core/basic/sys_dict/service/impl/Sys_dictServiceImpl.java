@@ -11,6 +11,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,7 @@ public class Sys_dictServiceImpl extends BaseServiceImpl<Sys_dict> implements Sy
 	public List<Sys_dict> queryByMap(Map<String, Object> columnMap){
 		return sys_dictMapper.queryByMap(columnMap);
 	}
-	
+
 	@Cacheable(value="dictList",key="'idlist_'+#idList")
 	@Override
 	public List<Sys_dict> queryByIds(List<String> idList){

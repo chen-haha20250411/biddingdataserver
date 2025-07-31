@@ -1,5 +1,8 @@
 package com.xiao.core.zhongbiao.controller;
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.xiao.base.BaseController;
 import com.xiao.base.Page;
@@ -37,7 +40,8 @@ public class ZhongbiaoController extends BaseController{
 	@RequestMapping(value = "/toList",method={RequestMethod.POST,RequestMethod.GET})
 	//@ApiOperation(value = "查询列表操作")
 	public ResultModel toList(@CurrentUser Operator oper,String projectNo,String customer,String noticeType
-			,String title,String winnerPrincipal, Integer limit, Integer currPageNo) {
+			,String title,String winnerPrincipal, String startDate, String endDate,
+							  Integer limit, Integer currPageNo) {
 		Page<Zhongbiao> page=new Page<Zhongbiao>(currPageNo,limit);
 		//查询位置
 		//page.putQueryParam("loginName", loginName);
@@ -46,13 +50,39 @@ public class ZhongbiaoController extends BaseController{
 		page.putQueryParam("noticeType", noticeType);
 		page.putQueryParam("title", title);
 		page.putQueryParam("winnerPrincipal", winnerPrincipal);
+		page.putQueryParam("startDate", startDate);
+		page.putQueryParam("endDate", endDate);
+//		List<Zhongbiao> list = zhongbiaoService.queryPageWithTotal(page.getQueryParams());
+//		Zhongbiao first = list.isEmpty() ? null : list.get(0);
+//
+//		Map<String,Object> data = new HashMap<>();
+//		data.put("list",   list);
+//		data.put("total",  first == null ? 0 : first.getExtra().get("total"));
+//		data.put("totalAmount", first == null ? BigDecimal.ZERO : first.getExtra().get("totalAmount"));
+//		data.put("totalAmountInRange", first == null ? BigDecimal.ZERO : first.getExtra().get("totalAmountInRange"));
+//		return new ResultModel(true, "返回list数据").setData(data);
 		//查询总数
 		int rowCount = zhongbiaoService.queryByCount(page.getQueryParams());
 		page.setTotal(rowCount);
 		List<Zhongbiao> zhongbiaoList = zhongbiaoService.queryByMap(page.getQueryParams());
 		//查询结果
 		page.setList(zhongbiaoList);
-		return new ResultModel(true,"返回list数据").setData(page);
+
+		// 查询总金额
+		BigDecimal totalAmount = zhongbiaoService.queryTotalAmount(page.getQueryParams());
+
+		//查询某个时间内的总金额
+		BigDecimal totalAmountDate=zhongbiaoService.queryTotalAmonutByDate(page.getQueryParams());
+
+		// 封装返回数据
+		Map<String, Object> data = new HashMap<>();
+		data.put("list", page.getList());
+		data.put("total", page.getTotal());
+		data.put("totalAmount", totalAmount);
+		data.put("totalAmountInRange",totalAmountDate);
+
+		return new ResultModel(true, "返回list数据").setData(data);
+
 	}
 
 	/**
@@ -105,5 +135,6 @@ public class ZhongbiaoController extends BaseController{
 		Zhongbiao zhongbiao = zhongbiaoService.queryById(id);
 		return sendSuccessMessage("成功").setData(zhongbiao);
 	}
-	
+
+
 }
