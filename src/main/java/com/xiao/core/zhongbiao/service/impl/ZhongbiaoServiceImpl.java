@@ -4,7 +4,10 @@ import org.springframework.stereotype.Service;
 import com.xiao.base.BaseMapper;
 import com.xiao.base.BaseServiceImpl;
 import com.xiao.util.StringUtil;
+
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import com.xiao.core.zhongbiao.domain.Zhongbiao;
 import com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper;
@@ -54,5 +57,24 @@ public class ZhongbiaoServiceImpl extends BaseServiceImpl<Zhongbiao> implements 
 			flag=false;
 		}
 		return flag;
+	}
+
+	@Override
+	public BigDecimal queryTotalAmount(Map<String, Object> params) {
+		// 调用 MyBatis Mapper 的 queryTotalAmount 方法
+		BigDecimal totalAmount = zhongbiaoMapper.queryTotalAmount(params);
+		// 防止为 null
+		return totalAmount == null ? BigDecimal.ZERO : totalAmount;
+	}
+
+	@Override
+	public BigDecimal queryTotalAmonutByDate(Map<String, Object> params) {
+		BigDecimal totalAmountDate =zhongbiaoMapper.queryTotalAmountBydate(params);
+		return totalAmountDate==null?BigDecimal.ZERO:totalAmountDate;
+	}
+
+	public  List  queryPageWithTotal(Map<String,Object> params){
+          List ZbList=zhongbiaoMapper.queryPageWithTotal(params);
+		  return ZbList;
 	}
 }

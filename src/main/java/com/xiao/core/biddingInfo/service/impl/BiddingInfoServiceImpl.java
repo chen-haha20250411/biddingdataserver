@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import com.xiao.base.BaseMapper;
 import com.xiao.base.BaseServiceImpl;
 import com.xiao.util.StringUtil;
+
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import com.xiao.core.biddingInfo.domain.BiddingInfo;
 import com.xiao.core.biddingInfo.mapper.BiddingInfoMapper;
@@ -56,4 +59,5 @@ public class BiddingInfoServiceImpl extends BaseServiceImpl<BiddingInfo> impleme
 		}
 		return flag;
 	}
+
 }

@@ -1,0 +1,268 @@
+[DEBUG] 2025-07-30 11:01:45.533  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2025-07-30 11:01:45.566  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: systemadmin(String)
+[DEBUG] 2025-07-30 11:01:45.570  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:45.582  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2025-07-30 11:01:45.583  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: systemadmin(String), b6c381111658160aa7fe7f440f173c68(String)
+[DEBUG] 2025-07-30 11:01:45.596  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:45.629  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2025-07-30 11:01:45.631  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: systemadmin(String), systemadmin(String), b6c381111658160aa7fe7f440f173c68(String), 13725836914(String), 1(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 2(Integer)
+[DEBUG] 2025-07-30 11:01:45.635  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:01:45.641  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:01:45.642  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:01:45.644  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:01:45.687  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:01:45.688  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:01:45.699  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:45.704  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:01:45.706  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:01:45.712  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[WARN] 2025-07-30 11:01:45.828  org.springframework.web.servlet.PageNotFound.java - No mapping for OPTIONS /admin/homePage/getStatisticAdmin
+[DEBUG] 2025-07-30 11:01:45.847  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:01:45.848  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:01:45.858  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:48.503  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:01:48.505  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:01:48.510  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:48.515  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:01:48.517  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:01:48.520  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:01:48.545  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2025-07-30 11:01:48.546  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:01:48.550  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:48.565  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:01:48.565  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:01:48.693  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:01:54.087  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:01:54.088  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:01:54.091  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:01:54.100  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:01:54.100  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:01:54.103  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:02:10.931  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:02:10.932  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:02:10.935  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:02:10.942  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:02:10.942  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:02:10.945  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:02:15.774  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:02:15.775  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:02:15.778  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:02:15.782  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:02:15.782  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:02:15.785  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:02:15.797  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:02:15.798  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:02:15.810  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:02:15.816  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:02:15.816  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:02:15.884  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:02:15.893  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:02:15.893  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:02:15.908  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:02:19.365  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:02:19.365  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:02:19.369  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:02:19.379  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:02:19.380  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:02:19.383  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:02:19.399  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2025-07-30 11:02:19.399  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:02:19.403  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:02:19.411  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:02:19.411  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:02:19.533  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:03:14.751  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:03:14.751  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:03:14.757  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:14.762  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:03:14.762  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:03:14.765  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:03:14.776  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:03:14.776  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:03:14.790  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:14.795  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:03:14.796  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:03:14.862  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:03:14.867  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:03:14.867  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:03:14.881  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:15.522  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:03:15.523  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:03:15.525  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:15.530  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:03:15.530  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:03:15.532  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:03:15.544  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2025-07-30 11:03:15.544  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:03:15.547  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:15.553  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:03:15.558  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:03:15.682  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:03:18.053  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:03:18.053  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:03:18.057  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:18.062  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:03:18.063  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:03:18.065  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:03:30.430  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:03:30.431  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:03:30.433  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:30.440  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:03:30.440  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:03:30.443  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:03:42.517  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:03:42.518  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:03:42.522  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:03:42.527  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:03:42.528  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:03:42.530  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:05:52.592  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:05:52.592  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:05:52.595  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:05:52.599  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:05:52.600  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:05:52.604  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:05:52.613  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:05:52.613  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:05:52.626  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:05:52.631  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:05:52.632  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:05:52.696  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:05:52.704  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:05:52.705  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:05:52.723  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:05:53.351  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:05:53.351  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:05:53.355  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:05:53.362  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:05:53.362  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:05:53.365  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:05:53.381  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2025-07-30 11:05:53.381  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:05:53.384  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:05:53.393  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:05:53.393  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:05:53.543  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:06:27.128  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:06:27.129  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:06:27.131  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:06:27.135  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:06:27.139  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:06:27.142  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:06:27.151  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:06:27.152  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:06:27.164  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:06:27.173  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:06:27.174  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:06:27.239  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:06:27.245  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:06:27.245  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:06:27.260  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:06:53.855  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:06:53.856  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:06:53.859  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:06:53.863  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:06:53.863  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:06:53.866  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:06:53.876  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2025-07-30 11:06:53.876  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:06:53.879  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:06:53.883  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:06:53.884  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:06:54.007  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:08:18.687  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:08:18.687  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:08:18.690  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:08:18.696  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:08:18.696  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:08:18.699  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:08:18.717  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:08:18.717  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:08:18.730  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:08:18.740  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:08:18.741  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:08:18.807  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:08:18.813  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:08:18.813  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:08:18.827  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:09:12.445  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:09:12.445  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:09:12.448  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:09:12.454  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:09:12.454  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:09:12.457  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:09:12.467  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 AND publishDate BETWEEN ? AND ? 
+[DEBUG] 2025-07-30 11:09:12.467  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 2025-07-01(String), 2025-07-30(String)
+[DEBUG] 2025-07-30 11:09:12.484  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:09:12.494  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 AND publishDate BETWEEN ? AND ? order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:09:12.494  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 2025-07-01(String), 2025-07-30(String), 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:09:12.561  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:09:12.566  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 AND publishDate BETWEEN ? AND ? 
+[DEBUG] 2025-07-30 11:09:12.566  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 2025-07-01(String), 2025-07-30(String)
+[DEBUG] 2025-07-30 11:09:12.584  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:09:25.905  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:09:25.905  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:09:25.909  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:09:25.914  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:09:25.915  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:09:25.918  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:09:25.932  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 AND publishDate BETWEEN ? AND ? AND winnerPrincipal LIKE CONCAT('%', ?, '%') 
+[DEBUG] 2025-07-30 11:09:25.933  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 2025-07-01(String), 2025-07-30(String), 胜达(String)
+[DEBUG] 2025-07-30 11:09:25.955  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:09:25.962  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 AND publishDate BETWEEN ? AND ? AND winnerPrincipal LIKE CONCAT('%', ?, '%') order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:09:25.963  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 2025-07-01(String), 2025-07-30(String), 胜达(String), 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:09:26.013  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 9
+[DEBUG] 2025-07-30 11:09:26.029  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 AND publishDate BETWEEN ? AND ? AND winnerPrincipal LIKE CONCAT('%', ?, '%') 
+[DEBUG] 2025-07-30 11:09:26.029  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 2025-07-01(String), 2025-07-30(String), 胜达(String)
+[DEBUG] 2025-07-30 11:09:26.049  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:43.499  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:23:43.499  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:23:43.506  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:43.519  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:23:43.520  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:23:43.527  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:23:43.541  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:23:43.541  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:23:43.555  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:43.569  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:23:43.570  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:23:43.636  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:23:43.641  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:23:43.642  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:23:43.656  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:52.091  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:23:52.092  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:23:52.094  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:52.098  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:23:52.099  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:23:52.102  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:23:52.109  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2025-07-30 11:23:52.109  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:23:52.113  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:52.119  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:23:52.120  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:23:52.240  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:23:54.281  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:23:54.281  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:23:54.286  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:54.290  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2025-07-30 11:23:54.290  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2025-07-30 11:23:54.294  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2025-07-30 11:23:54.306  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:23:54.306  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:23:54.318  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:23:54.324  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2025-07-30 11:23:54.324  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2025-07-30 11:23:54.403  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2025-07-30 11:23:54.410  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==>  Preparing: SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2025-07-30 11:23:54.410  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:23:54.425  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryTotalAmount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:28:34.899  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2025-07-30 11:28:34.899  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2025-07-30 11:28:34.902  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:28:34.913  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.queryByCount.java - ==>  Preparing: select count(1) FROM operator_log order by operatorLogId 
+[DEBUG] 2025-07-30 11:28:34.913  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2025-07-30 11:28:34.919  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2025-07-30 11:28:34.922  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.queryByMap.java - ==>  Preparing: SELECT a.operatorLogId,a.remark,a.loginName,a.userName,a.createTime,b.role_Name from operator_log a left join admin_roleinfo b on a.roleId=b.roleInfo_Id order by operatorLogId desc LIMIT ?,? 
+[DEBUG] 2025-07-30 11:28:34.922  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.queryByMap.java - ==> Parameters: 0(Integer), 10(Integer)
+[DEBUG] 2025-07-30 11:28:34.967  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.queryByMap.java - <==      Total: 10

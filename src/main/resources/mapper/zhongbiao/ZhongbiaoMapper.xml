@@ -1,242 +1,435 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper">
-<resultMap id="zhongbiao" type="com.xiao.core.zhongbiao.domain.Zhongbiao">
-	<result column="id" property="id"/>
-   	<result column="publishDate" property="publishDate"/>
-   	<result column="projectNo" property="projectNo"/>
-   	<result column="customer" property="customer"/>
-   	<result column="noticeType" property="noticeType"/>
-   	<result column="title" property="title"/>
-   	<result column="productLabels" property="productLabels"/>
-   	<result column="winnerAmount" property="winnerAmount"/>
-   	<result column="remark" property="remark"/>
-   	<result column="winnerPrincipal" property="winnerPrincipal"/>
-	<result column="is_del" property="is_del"/>
-	<result column="html_url" property="html_url"/>
-	<result column="html_content" property="html_content"/>
-</resultMap>
+	<resultMap id="zhongbiao" type="com.xiao.core.zhongbiao.domain.Zhongbiao">
+		<result column="id" property="id"/>
+		<result column="publishDate" property="publishDate"/>
+		<result column="projectNo" property="projectNo"/>
+		<result column="customer" property="customer"/>
+		<result column="noticeType" property="noticeType"/>
+		<result column="title" property="title"/>
+		<result column="productLabels" property="productLabels"/>
+		<result column="winnerAmount" property="winnerAmount"/>
+		<result column="remark" property="remark"/>
+		<result column="winnerPrincipal" property="winnerPrincipal"/>
+		<result column="is_del" property="is_del"/>
+		<result column="html_url" property="html_url"/>
+		<result column="html_content" property="html_content"/>
+	</resultMap>
+	<resultMap id="pageResultMap" type="com.xiao.core.zhongbiao.domain.Zhongbiao">
+		<result column="id" property="id"/>
+		<result column="publishDate" property="publishDate"/>
+		<result column="projectNo" property="projectNo"/>
+		<result column="customer" property="customer"/>
+		<result column="noticeType" property="noticeType"/>
+		<result column="title" property="title"/>
+		<result column="productLabels" property="productLabels"/>
+		<result column="winnerAmount" property="winnerAmount"/>
+		<result column="remark" property="remark"/>
+		<result column="winnerPrincipal" property="winnerPrincipal"/>
+		<result column="is_del" property="is_del"/>
+		<result column="html_url" property="html_url"/>
+		<result column="html_content" property="html_content"/>
+		<!-- 额外汇总字段 -->
+		<result column="totalCnt"          property="extra.total"/>
+		<result column="totalAmount"       property="extra.totalAmount"/>
+		<result column="totalAmountInRange" property="extra.totalAmountInRange"/>
+	</resultMap>
+	<!-- 一次性返回 列表、总条数、全部金额、区间内金额 -->
+	<select id="queryPageWithTotal" parameterType="map" resultMap="pageResultMap">
+		SELECT
+		z.id,z.publishDate,z.projectNo,z.customer,z.noticeType,z.title,
+		z.productLabels,z.winnerAmount,z.remark,z.winnerPrincipal,
+		total.totalCnt,total.totalAmount,total.totalAmountInRange
+		FROM zhongbiao z
+		CROSS JOIN (
+			SELECT
+			COUNT(1) AS totalCnt,
+		    IFNULL(SUM(winnerAmount), 0) AS totalAmount,
+		    IFNULL(SUM(winnerAmount), 0) AS totalAmountInRange  FROM zhongbiao
+				<where>
+				is_del=0
+				<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+					AND publishDate BETWEEN #{startDate} AND #{endDate}
+				</if>
+				<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+					AND publishDate >= #{startDate}
+				</if>
+				<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+					AND publishDate &lt;= #{endDate}
+				</if> </where> ) total
+		<where>
+			is_del=0
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				AND publishDate BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+				AND publishDate >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+				AND publishDate &lt;= #{endDate}
+			</if>
+			<if test="projectNo != null and projectNo != ''">
+				AND projectNo = #{projectNo}
+			</if>
+			<if test="customer != null and customer != ''">
+				AND customer  LIKE CONCAT('%', #{customer}, '%')
+			</if>
+			<if test="noticeType != null and noticeType != ''">
+				AND noticeType = #{noticeType}
+			</if>
+			<if test="title != null and title != ''">
+				AND title = #{title}
+			</if>
+			<if test="productLabels != null and productLabels != ''">
+				AND productLabels = #{productLabels}
+			</if>
+			<if test="winnerAmount != null and winnerAmount != ''">
+				AND winnerAmount = #{winnerAmount}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+			<if test="winnerPrincipal != null and winnerPrincipal != ''">
+				AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
+			</if>
+		</where>
+		order by  publishDate desc
+		<if test="rowIndex != null and rowNum != null">
+			LIMIT  #{rowIndex}, #{rowNum}
+		</if>
+	</select>
 
-<!-- 查询列表带分页 -->
-<select id="queryByMap" resultMap="zhongbiao">
-	 select
-	id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
-	  from zhongbiao 
-	<where>
-	    is_del=0
- 		<if test="publishDate != null and publishDate != ''">
-			 AND publishDate = #{publishDate}
-		</if>
- 		<if test="projectNo != null and projectNo != ''">
-			 AND projectNo = #{projectNo}
-		</if>
- 		<if test="customer != null and customer != ''">
-			 AND customer  LIKE CONCAT('%', #{customer}, '%')
-		</if>
- 		<if test="noticeType != null and noticeType != ''">
-			 AND noticeType = #{noticeType}
-		</if>
- 		<if test="title != null and title != ''">
-			 AND title = #{title}
-		</if>
- 		<if test="productLabels != null and productLabels != ''">
-			 AND productLabels = #{productLabels}
-		</if>
- 		<if test="winnerAmount != null and winnerAmount != ''">
-			 AND winnerAmount = #{winnerAmount}
-		</if>
- 		<if test="remark != null and remark != ''">
-			 AND remark = #{remark}
-		</if>
- 		<if test="winnerPrincipal != null and winnerPrincipal != ''">
-			AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
-		</if>
-	 </where>
-	     order by  publishDate desc
-	 <if test="rowIndex != null and rowNum != null">
-	 	LIMIT  #{rowIndex}, #{rowNum}
-	 </if>
-</select>
+	<!-- 公共 where 片段 -->
+	<sql id="queryWhere">
+		<where>
+			is_del=0
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				AND publishDate BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+				AND publishDate >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+				AND publishDate &lt;= #{endDate}
+			</if>
+			<if test="projectNo != null and projectNo != ''">
+				AND projectNo = #{projectNo}
+			</if>
+			<if test="customer != null and customer != ''">
+				AND customer  LIKE CONCAT('%', #{customer}, '%')
+			</if>
+			<if test="noticeType != null and noticeType != ''">
+				AND noticeType = #{noticeType}
+			</if>
+			<if test="title != null and title != ''">
+				AND title = #{title}
+			</if>
+			<if test="productLabels != null and productLabels != ''">
+				AND productLabels = #{productLabels}
+			</if>
+			<if test="winnerAmount != null and winnerAmount != ''">
+				AND winnerAmount = #{winnerAmount}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+			<if test="winnerPrincipal != null and winnerPrincipal != ''">
+				AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
+			</if>
+		</where>
+	</sql>
+<!--	查询某个时间内的总金额-->
+	<select id="queryTotalAmountBydate" resultType="java.math.BigDecimal">
+		SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao
+		<where>
+			is_del=0
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				AND publishDate BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+				AND publishDate >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+				AND publishDate &lt;= #{endDate}
+			</if>
 
-<!-- 查询总的条数 用于分页 -->
-<select id="queryByCount" resultType="int">
-	 SELECT COUNT(1) FROM zhongbiao
-	 <where>
-	    is_del=0
- 		<if test="publishDate != null and publishDate != ''">
-			 AND publishDate = #{publishDate}
-		</if>
- 		<if test="projectNo != null and projectNo != ''">
-			 AND projectNo = #{projectNo}
-		</if>
- 		<if test="customer != null and customer != ''">
-			 AND customer  LIKE CONCAT('%', #{customer}, '%')
-		</if>
- 		<if test="noticeType != null and noticeType != ''">
-			 AND noticeType = #{noticeType}
-		</if>
- 		<if test="title != null and title != ''">
-			 AND title = #{title}
-		</if>
- 		<if test="productLabels != null and productLabels != ''">
-			 AND productLabels = #{productLabels}
-		</if>
- 		<if test="winnerAmount != null and winnerAmount != ''">
-			 AND winnerAmount = #{winnerAmount}
-		</if>
- 		<if test="remark != null and remark != ''">
-			 AND remark = #{remark}
-		</if>
- 		<if test="winnerPrincipal != null and winnerPrincipal != ''">
-			 AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
-		</if>
-	 </where>
-</select>
 
-<!-- 添加zhongbiao数据-->
-<insert id="insert" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
-	 INSERT INTO zhongbiao(
-		publishDateprojectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,is_del,html_url,html_content
-	) VALUES(
- 		#{publishDate},
- 		#{projectNo},
- 		#{customer},
- 		#{noticeType},
- 		#{title},
- 		#{productLabels},
- 		#{winnerAmount},
- 		#{remark},
- 		#{winnerPrincipal},
-	    0,
-		#{html_url},
-		#{html_content}
-	)
-</insert>
+		</where>
+	</select>
+	<!-- 查询所有数据的合计总金额 -->
+	<select id="queryTotalAmount" resultType="java.math.BigDecimal">
+		SELECT IFNULL(SUM(winnerAmount),0) FROM zhongbiao
+		<where>
+			is_del=0
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				AND publishDate BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+				AND publishDate >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+				AND publishDate &lt;= #{endDate}
+			</if>
+			<if test="projectNo != null and projectNo != ''">
+				AND projectNo = #{projectNo}
+			</if>
+			<if test="customer != null and customer != ''">
+				AND customer  LIKE CONCAT('%', #{customer}, '%')
+			</if>
+			<if test="noticeType != null and noticeType != ''">
+				AND noticeType = #{noticeType}
+			</if>
+			<if test="title != null and title != ''">
+				AND title = #{title}
+			</if>
+			<if test="productLabels != null and productLabels != ''">
+				AND productLabels = #{productLabels}
+			</if>
+			<if test="winnerAmount != null and winnerAmount != ''">
+				AND winnerAmount = #{winnerAmount}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+			<if test="winnerPrincipal != null and winnerPrincipal != ''">
+				AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
+			</if>
+		</where>
+	</select>
+	<!-- 查询列表带分页 -->
+	<select id="queryByMap" resultMap="zhongbiao">
+		select
+		id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
+		from zhongbiao
+		<where>
+			is_del=0
+			<!-- 修改为日期区间查询 -->
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				AND publishDate BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+				AND publishDate >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+				AND publishDate &lt;= #{endDate}
+			</if>
+			<if test="projectNo != null and projectNo != ''">
+				AND projectNo = #{projectNo}
+			</if>
+			<if test="customer != null and customer != ''">
+				AND customer  LIKE CONCAT('%', #{customer}, '%')
+			</if>
+			<if test="noticeType != null and noticeType != ''">
+				AND noticeType = #{noticeType}
+			</if>
+			<if test="title != null and title != ''">
+				AND title = #{title}
+			</if>
+			<if test="productLabels != null and productLabels != ''">
+				AND productLabels = #{productLabels}
+			</if>
+			<if test="winnerAmount != null and winnerAmount != ''">
+				AND winnerAmount = #{winnerAmount}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+			<if test="winnerPrincipal != null and winnerPrincipal != ''">
+				AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
+			</if>
+		</where>
+		order by  publishDate desc
+		<if test="rowIndex != null and rowNum != null">
+			LIMIT  #{rowIndex}, #{rowNum}
+		</if>
+	</select>
 
-<!-- 批量添加zhongbiao数据-->
-<insert id="insertList" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
-	 INSERT INTO zhongbiao(
-		publishDateprojectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,is_del,html_url,html_content
-	) VALUES 
-	<foreach collection="list" item="i" separator=",">
-	(
- 		#{i.publishDate},
- 		#{i.projectNo},
- 		#{i.customer},
- 		#{i.noticeType},
- 		#{i.title},
- 		#{i.productLabels},
- 		#{i.winnerAmount},
- 		#{i.remark},
- 		#{i.winnerPrincipal},
-	    0,
-		#{i.html_url},
-		#{i.html_content}
+	<!-- 查询总的条数 用于分页 -->
+	<select id="queryByCount" resultType="int">
+		SELECT COUNT(1) FROM zhongbiao
+		<where>
+			is_del=0
+			<!-- 修改为日期区间查询 -->
+			<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+				AND publishDate BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="startDate != null and startDate != '' and (endDate == null or endDate == '')">
+				AND publishDate >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != '' and (startDate == null or startDate == '')">
+				AND publishDate &lt;= #{endDate}
+			</if>
+			<if test="projectNo != null and projectNo != ''">
+				AND projectNo = #{projectNo}
+			</if>
+			<if test="customer != null and customer != ''">
+				AND customer  LIKE CONCAT('%', #{customer}, '%')
+			</if>
+			<if test="noticeType != null and noticeType != ''">
+				AND noticeType = #{noticeType}
+			</if>
+			<if test="title != null and title != ''">
+				AND title = #{title}
+			</if>
+			<if test="productLabels != null and productLabels != ''">
+				AND productLabels = #{productLabels}
+			</if>
+			<if test="winnerAmount != null and winnerAmount != ''">
+				AND winnerAmount = #{winnerAmount}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+			<if test="winnerPrincipal != null and winnerPrincipal != ''">
+				AND winnerPrincipal LIKE CONCAT('%', #{winnerPrincipal}, '%')
+			</if>
+		</where>
+	</select>
 
-	)
-	</foreach>
-</insert>
+	<!-- 添加zhongbiao数据-->
+	<insert id="insert" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO zhongbiao(
+			publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,is_del,html_url,html_content
+		) VALUES(
+					#{publishDate},
+					#{projectNo},
+					#{customer},
+					#{noticeType},
+					#{title},
+					#{productLabels},
+					#{winnerAmount},
+					#{remark},
+					#{winnerPrincipal},
+					0,
+					#{html_url},
+					#{html_content}
+				)
+	</insert>
 
-<!-- 更新zhongbiao数据 -->
-<update id="update" parameterType="Object">
-	 UPDATE zhongbiao SET 
-	 <trim  suffixOverrides=",">
-		 <if test="publishDate != null and publishDate != ''">
-			 publishDate = #{publishDate},
-		 </if>
-		 <if test="projectNo != null and projectNo != ''">
-			 projectNo = #{projectNo},
-		 </if>
-		 <if test="customer != null and customer != ''">
-			 customer = #{customer},
-		 </if>
-		 <if test="noticeType != null and noticeType != ''">
-			 noticeType = #{noticeType},
-		 </if>
-		 <if test="title != null and title != ''">
-			 title = #{title},
-		 </if>
-		 <if test="productLabels != null and productLabels != ''">
-			 productLabels = #{productLabels},
-		 </if>
-		 <if test="winnerAmount != null and winnerAmount != ''">
-			 winnerAmount = #{winnerAmount},
-		 </if>
-		 <if test="remark != null and remark != ''">
-			 remark = #{remark},
-		 </if>
-		 <if test="winnerPrincipal != null and winnerPrincipal != ''">
-			 winnerPrincipal = #{winnerPrincipal},
-		 </if>
-	 </trim>
-	 WHERE id = #{id}
-</update>
+	<!-- 批量添加zhongbiao数据-->
+	<insert id="insertList" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO zhongbiao(
+		publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,is_del,html_url,html_content
+		) VALUES
+		<foreach collection="list" item="i" separator=",">
+			(
+			#{i.publishDate},
+			#{i.projectNo},
+			#{i.customer},
+			#{i.noticeType},
+			#{i.title},
+			#{i.productLabels},
+			#{i.winnerAmount},
+			#{i.remark},
+			#{i.winnerPrincipal},
+			0,
+			#{i.html_url},
+			#{i.html_content}
+			)
+		</foreach>
+	</insert>
 
-<!-- 批量更新zhongbiao数据 -->
-<update id="updateList" parameterType="Object">
-	<foreach collection="list" item="i" open="" close="" separator=";">
-	 UPDATE zhongbiao SET 
-	 <trim  suffixOverrides=",">
-		 <if test="i.publishDate != null and i.publishDate != ''">
-			 publishDate = #{i.publishDate},
-		 </if>
-		 <if test="i.projectNo != null and i.projectNo != ''">
-			 projectNo = #{i.projectNo},
-		 </if>
-		 <if test="i.customer != null and i.customer != ''">
-			 customer = #{i.customer},
-		 </if>
-		 <if test="i.noticeType != null and i.noticeType != ''">
-			 noticeType = #{i.noticeType},
-		 </if>
-		 <if test="i.title != null and i.title != ''">
-			 title = #{i.title},
-		 </if>
-		 <if test="i.productLabels != null and i.productLabels != ''">
-			 productLabels = #{i.productLabels},
-		 </if>
-		 <if test="i.winnerAmount != null and i.winnerAmount != ''">
-			 winnerAmount = #{i.winnerAmount},
-		 </if>
-		 <if test="i.remark != null and i.remark != ''">
-			 remark = #{i.remark},
-		 </if>
-		 <if test="i.winnerPrincipal != null and i.winnerPrincipal != ''">
-			 winnerPrincipal = #{i.winnerPrincipal},
-		 </if>
-	 </trim>
-	 WHERE id = #{i.id}
-	</foreach>
-</update>
+	<!-- 更新zhongbiao数据 -->
+	<update id="update" parameterType="Object">
+		UPDATE zhongbiao SET
+		<trim  suffixOverrides=",">
+			<if test="publishDate != null and publishDate != ''">
+				publishDate = #{publishDate},
+			</if>
+			<if test="projectNo != null and projectNo != ''">
+				projectNo = #{projectNo},
+			</if>
+			<if test="customer != null and customer != ''">
+				customer = #{customer},
+			</if>
+			<if test="noticeType != null and noticeType != ''">
+				noticeType = #{noticeType},
+			</if>
+			<if test="title != null and title != ''">
+				title = #{title},
+			</if>
+			<if test="productLabels != null and productLabels != ''">
+				productLabels = #{productLabels},
+			</if>
+			<if test="winnerAmount != null and winnerAmount != ''">
+				winnerAmount = #{winnerAmount},
+			</if>
+			<if test="remark != null and remark != ''">
+				remark = #{remark},
+			</if>
+			<if test="winnerPrincipal != null and winnerPrincipal != ''">
+				winnerPrincipal = #{winnerPrincipal},
+			</if>
+		</trim>
+		WHERE id = #{id}
+	</update>
 
-<!-- 删除zhongbiao数据 -->
-<delete id="deleteById" parameterType="String">
-	 update zhongbiao set is_del=1 WHERE id=#{id}
-</delete>
+	<!-- 批量更新zhongbiao数据 -->
+	<update id="updateList" parameterType="Object">
+		<foreach collection="list" item="i" open="" close="" separator=";">
+			UPDATE zhongbiao SET
+			<trim  suffixOverrides=",">
+				<if test="i.publishDate != null and i.publishDate != ''">
+					publishDate = #{i.publishDate},
+				</if>
+				<if test="i.projectNo != null and i.projectNo != ''">
+					projectNo = #{i.projectNo},
+				</if>
+				<if test="i.customer != null and i.customer != ''">
+					customer = #{i.customer},
+				</if>
+				<if test="i.noticeType != null and i.noticeType != ''">
+					noticeType = #{i.noticeType},
+				</if>
+				<if test="i.title != null and i.title != ''">
+					title = #{i.title},
+				</if>
+				<if test="i.productLabels != null and i.productLabels != ''">
+					productLabels = #{i.productLabels},
+				</if>
+				<if test="i.winnerAmount != null and i.winnerAmount != ''">
+					winnerAmount = #{i.winnerAmount},
+				</if>
+				<if test="i.remark != null and i.remark != ''">
+					remark = #{i.remark},
+				</if>
+				<if test="i.winnerPrincipal != null and i.winnerPrincipal != ''">
+					winnerPrincipal = #{i.winnerPrincipal},
+				</if>
+			</trim>
+			WHERE id = #{i.id}
+		</foreach>
+	</update>
 
-<!-- 根据zhongbiao主键查询数据 -->
-<select id="queryById" resultMap="zhongbiao" parameterType="Object">
-	 SELECT
-		 id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
-	 FROM zhongbiao
-	 WHERE id = #{id} and is_del=0
-</select>
+	<!-- 删除zhongbiao数据 -->
+	<delete id="deleteById" parameterType="String">
+		update zhongbiao set is_del=1 WHERE id=#{id}
+	</delete>
 
-<!-- 批量删除用户信息 -->
-<delete id="deleteByMap" parameterType="Object">
-	update zhongbiao set is_del=1 WHERE id in
-	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
-	   #{item}  
-	</foreach>
-</delete>
+	<!-- 根据zhongbiao主键查询数据 -->
+	<select id="queryById" resultMap="zhongbiao" parameterType="Object">
+		SELECT
+			id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
+		FROM zhongbiao
+		WHERE id = #{id} and is_del=0
+	</select>
 
-<!-- 根据zhongbiao多个主键查询数据 -->
-<select id="queryByIds" resultMap="zhongbiao" parameterType="Object">
-	SELECT
-	id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
-	 FROM zhongbiao WHERE  is_del=0 and id in
-	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
-	   #{item}  
-	</foreach>
-</select>
+	<!-- 批量删除用户信息 -->
+	<delete id="deleteByMap" parameterType="Object">
+		update zhongbiao set is_del=1 WHERE id in
+		<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 根据zhongbiao多个主键查询数据 -->
+	<select id="queryByIds" resultMap="zhongbiao" parameterType="Object">
+		SELECT
+		id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
+		FROM zhongbiao WHERE  is_del=0 and id in
+		<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
 </mapper>

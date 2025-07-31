@@ -1,8 +1,16 @@
 package com.xiao.core.zhongbiao.domain;
 
 import com.xiao.base.BaseDomain;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Zhongbiao extends BaseDomain{
-	
+
+	private Map<String, Object> extra = new HashMap<>();
+	// Getter & Setter
+	public Map<String, Object> getExtra() { return extra; }
+	public void setExtra(Map<String, Object> extra) { this.extra = extra; }
 	private static final long serialVersionUID = 1L;
 	private String id;
     //@ApiModelProperty(value = "中标日期")
