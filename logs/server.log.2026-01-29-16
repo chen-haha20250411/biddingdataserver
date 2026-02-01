@@ -1,0 +1,219 @@
+[INFO] 2026-01-29 16:47:34.106  org.springframework.boot.SpringApplication.java - Starting application on DESKTOP-QQUQJ86 with PID 23400 (started by user in F:\GitHub\biddingdataserver)
+[INFO] 2026-01-29 16:47:34.166  org.springframework.boot.SpringApplication.java - No active profile set, falling back to default profiles: default
+[INFO] 2026-01-29 16:47:36.874  org.springframework.data.repository.config.RepositoryConfigurationDelegate.java - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO] 2026-01-29 16:47:36.880  org.springframework.data.repository.config.RepositoryConfigurationDelegate.java - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO] 2026-01-29 16:47:37.104  org.springframework.data.repository.config.RepositoryConfigurationDelegate.java - Finished Spring Data repository scanning in 183ms. Found 0 Redis repository interfaces.
+[INFO] 2026-01-29 16:47:38.330  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.332  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.414  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.703  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.713  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration' of type [org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.727  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'spring.transaction-org.springframework.boot.autoconfigure.transaction.TransactionProperties' of type [org.springframework.boot.autoconfigure.transaction.TransactionProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.742  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'platformTransactionManagerCustomizers' of type [org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.772  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'transactionManager' of type [org.springframework.jdbc.datasource.DataSourceTransactionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:38.774  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'transactionAdviceConfig' of type [com.xiao.config.TransactionAdviceConfig$$EnhancerBySpringCGLIB$$c8403168] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:39.502  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'redisConfig' of type [com.xiao.config.RedisConfig$$EnhancerBySpringCGLIB$$b0e85a4d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-29 16:47:41.709  org.springframework.boot.web.embedded.tomcat.TomcatWebServer.java - Tomcat initialized with port(s): 8090 (http)
+[INFO] 2026-01-29 16:47:41.749  org.apache.coyote.http11.Http11NioProtocol.java - Initializing ProtocolHandler ["http-nio-8090"]
+[INFO] 2026-01-29 16:47:41.750  org.apache.catalina.core.StandardService.java - Starting service [Tomcat]
+[INFO] 2026-01-29 16:47:41.750  org.apache.catalina.core.StandardEngine.java - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO] 2026-01-29 16:47:42.003  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].java - Initializing Spring embedded WebApplicationContext
+[INFO] 2026-01-29 16:47:42.004  org.springframework.web.context.ContextLoader.java - Root WebApplicationContext: initialization completed in 7649 ms
+[DEBUG] 2026-01-29 16:47:45.543  com.xiao.config.RedisConfig$$EnhancerBySpringCGLIB$$b0e85a4d.java - 自定义RedisCacheManager加载完成
+[WARN] 2026-01-29 16:47:47.552  org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration.java - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+[INFO] 2026-01-29 16:47:47.637  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler.java - Initializing ExecutorService 'taskScheduler'
+[INFO] 2026-01-29 16:47:47.768  org.apache.coyote.http11.Http11NioProtocol.java - Starting ProtocolHandler ["http-nio-8090"]
+[INFO] 2026-01-29 16:47:47.977  org.springframework.boot.web.embedded.tomcat.TomcatWebServer.java - Tomcat started on port(s): 8090 (http) with context path ''
+[INFO] 2026-01-29 16:47:47.988  org.springframework.boot.SpringApplication.java - Started application in 16.634 seconds (JVM running for 21.595)
+[INFO] 2026-01-29 16:48:34.706  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].java - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] 2026-01-29 16:48:35.824  org.springframework.web.servlet.DispatcherServlet.java - Initializing Servlet 'dispatcherServlet'
+[INFO] 2026-01-29 16:48:35.840  org.springframework.web.servlet.DispatcherServlet.java - Completed initialization in 16 ms
+[INFO] 2026-01-29 16:48:37.834  io.lettuce.core.EpollProvider.java - Starting without optional epoll library
+[INFO] 2026-01-29 16:48:37.836  io.lettuce.core.KqueueProvider.java - Starting without optional kqueue library
+[INFO] 2026-01-29 16:48:51.499  com.xiao.exception.RunTimeException.java - org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1199)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1178)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:942)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:353)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:134)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:97)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:84)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:215)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:188)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:96)
+	at org.springframework.data.redis.core.DefaultValueOperations.get(DefaultValueOperations.java:53)
+	at com.xiao.util.RedisUtils.get(RedisUtils.java:75)
+	at com.xiao.core.basic.sys.LoginController.login(LoginController.java:93)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:234)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:207)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1197)
+	... 54 more
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: /127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:702)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+[INFO] 2026-01-29 16:49:07.423  com.xiao.exception.RunTimeException.java - org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1199)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1178)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:942)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:353)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:134)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:97)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:84)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:215)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:188)
+	at org.springframework.data.redis.core.RedisTemplate.delete(RedisTemplate.java:713)
+	at com.xiao.util.RedisUtils.del(RedisUtils.java:62)
+	at com.xiao.tokenmagnager.RedisTokenUtils.deleteToken(RedisTokenUtils.java:64)
+	at com.xiao.core.basic.sys.LoginController.logout(LoginController.java:285)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 127.0.0.1:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:234)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:207)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:369)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1197)
+	... 54 more
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: /127.0.0.1:6379
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.SocketChannelImpl.checkConnect(Native Method)
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:777)
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:330)
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:702)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:576)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:493)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+[INFO] 2026-01-29 16:51:20.755  com.alibaba.druid.pool.DruidDataSource.java - {dataSource-1} inited
+[DEBUG] 2026-01-29 16:51:39.173  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-01-29 16:51:41.168  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: chenyw(String)
+[DEBUG] 2026-01-29 16:51:42.372  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-01-29 16:51:42.437  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-01-29 16:51:42.437  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: chenyw(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-01-29 16:51:42.442  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-01-29 16:51:49.235  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-01-29 16:51:49.236  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: 陈用威(String), chenyw(String), e10adc3949ba59abbe56e057f20f883e(String), 18858484349(String), 4(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 3(Integer)
+[DEBUG] 2026-01-29 16:51:49.256  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-01-29 16:51:49.282  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-29 16:51:49.285  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-29 16:51:49.289  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-29 16:53:16.528  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-01-29 16:53:16.528  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: chenyw(String)
+[DEBUG] 2026-01-29 16:53:16.534  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-01-29 16:53:16.544  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-01-29 16:53:16.544  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: chenyw(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-01-29 16:53:16.550  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-01-29 16:53:16.562  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-01-29 16:53:16.564  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: 陈用威(String), chenyw(String), e10adc3949ba59abbe56e057f20f883e(String), 18858484349(String), 4(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 3(Integer)
+[DEBUG] 2026-01-29 16:53:16.591  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-01-29 16:53:16.598  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-29 16:53:16.598  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-29 16:53:16.601  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fe127984-c6e4-4f37-9fdd-04166334a7ce" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/base/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/base/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/base/Page.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/base/Page.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/base/ResultModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/base/ResultModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/admin_btn/domain/AdminBtn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/admin_btn/domain/AdminBtn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/admin_menu/domain/AdminMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/admin_menu/domain/AdminMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/admin_roleinfo/controller/AdminRoleinfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/admin_roleinfo/controller/AdminRoleinfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/operator/controller/OperatorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/operator/controller/OperatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/operator_log/controller/OperatorLogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/operator_log/controller/OperatorLogController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/sys/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/sys/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/sys_dict/controller/Sys_dictController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/basic/sys_dict/controller/Sys_dictController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/biddingInfo/controller/BiddingInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/biddingInfo/controller/BiddingInfoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/core/zhongbiao/controller/ZhongbiaoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/core/zhongbiao/controller/ZhongbiaoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/exception/RunTimeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/exception/RunTimeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xiao/interceptor/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xiao/interceptor/TokenInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/zhongbiao/ZhongbiaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/zhongbiao/ZhongbiaoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/base/BaseController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/base/BaseController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/base/Page.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/base/Page.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/base/ResultModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/base/ResultModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/config/WebConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/admin_btn/domain/AdminBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/admin_btn/domain/AdminBtn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/admin_menu/domain/AdminMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/admin_menu/domain/AdminMenu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/admin_roleinfo/controller/AdminRoleinfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/admin_roleinfo/controller/AdminRoleinfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/operator/controller/OperatorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/operator/controller/OperatorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/operator_log/controller/OperatorLogController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/operator_log/controller/OperatorLogController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/sys/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/sys/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/sys_dict/controller/Sys_dictController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/basic/sys_dict/controller/Sys_dictController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/biddingInfo/controller/BiddingInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/biddingInfo/controller/BiddingInfoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/core/zhongbiao/controller/ZhongbiaoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/core/zhongbiao/controller/ZhongbiaoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/exception/RunTimeException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/exception/RunTimeException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/xiao/interceptor/TokenInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/xiao/interceptor/TokenInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mapper/zhongbiao/ZhongbiaoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/zhongbiao/ZhongbiaoMapper.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="3934Xo9TJe43CjNY41ED0dZsJFj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "691a76727c28156026dee0ba7b41e11c",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="AppMainServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="biddingdataserver" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.xiao.AppMainServer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="fe127984-c6e4-4f37-9fdd-04166334a7ce" name="更改" comment="" />
+      <created>1769911472415</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1769911472415</updated>
+      <workItem from="1769911474846" duration="758000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

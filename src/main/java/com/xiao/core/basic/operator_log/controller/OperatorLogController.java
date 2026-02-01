@@ -9,6 +9,7 @@ import com.xiao.core.basic.operator_log.domain.OperatorLog;
 import com.xiao.core.basic.operator_log.service.OperatorLogService;
 import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
+import com.xiao.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,7 +69,7 @@ public class OperatorLogController extends BaseController{
 		page.setTotal(rowCount);
 		//角色列表
 		page.setList(logService.queryByMap(page.getQueryParams()));
-		return new ResultModel(true,"返回list数据").setData(page);
+		return PageUtils.pageSuccess(page);
 	}
 
 

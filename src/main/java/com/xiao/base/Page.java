@@ -41,7 +41,7 @@ public class Page<T> extends RowBounds implements Serializable {
 	 */
 	public Page(Integer pageNow, Integer pageSize) {
 		super(offsetCurrent(current(pageNow), limit(pageSize)), limit(pageSize));
-		this.setCurrent(current(current));
+		this.setCurrent(current(pageNow));
 		if (this.queryParams == null) {
 			this.queryParams = new HashMap<>();
 		}

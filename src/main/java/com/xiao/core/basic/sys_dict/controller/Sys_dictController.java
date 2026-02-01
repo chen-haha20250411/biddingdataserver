@@ -11,6 +11,7 @@ import com.xiao.core.basic.sys_dict.domain.Sys_dict;
 import com.xiao.core.basic.sys_dict.service.Sys_dictService;
 import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
+import com.xiao.util.PageUtils;
 import com.xiao.util.PatternUtil;
 import com.xiao.util.StringUtil;
 import com.xiao.util.ZipFiles;
@@ -59,7 +60,7 @@ public class Sys_dictController extends BaseController{
 		List<Sys_dict> sys_dictList = sys_dictService.queryByMap(page.getQueryParams());
 		//查询结果
 		page.setList(sys_dictList);
-		return new ResultModel(true,"返回list数据").setData(page);
+		return PageUtils.pageSuccess(page);
 	}
 
 
@@ -168,7 +169,7 @@ public class Sys_dictController extends BaseController{
 		//查询结果
 		page.setList(sys_dictList);
 		page.putQueryParam("dictMap", dictMap);
-		return new ResultModel(true,"返回list数据").setData(page);
+		return PageUtils.pageSuccess(page);
 	}
 
 	/**

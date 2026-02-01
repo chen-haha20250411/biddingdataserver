@@ -95,7 +95,15 @@ public class AdminBtn extends BaseDomain{
 		return menuURL;
 	}
 
-	public void setMenuURL(String menuURL) {
-		this.menuURL = menuURL;
-	}
+    public void setMenuURL(String menuURL) {
+        this.menuURL = menuURL;
+    }
+
+    public String getMenuUrl() {
+        return getMenuURL();
+    }
+
+    public void setMenuUrl(String menuUrl) {
+        setMenuURL(menuUrl);
+    }
 }

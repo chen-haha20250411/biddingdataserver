@@ -27,8 +27,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
 		registry.addMapping("/**")
 				.allowedOrigins(corsOriginsDomain)
 				//.allowedOrigins("http://218.108.205.49:7171","http://112.35.1.155:1992","http://zjyz.zjzwfw.gov.cn:9999","https://zjyz.zjzwfw.gov.cn:9999","https://112.35.10.201:28888","https://www.5050plan.com", "https://hhtz.5050plan.com","http://yz.hangzhou.gov.cn","https://yz.hangzhou.gov.cn","http://39.170.67.167")
-				.allowedMethods("GET", "POST")
-				.allowedHeaders("key", "method", "timestamp", "sign", "token", "Content-Type","x-requested-with")
+				.allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD")
+				.allowedHeaders("key", "method", "timestamp", "sign", "token", "Content-Type","x-requested-with", "Authorization", "X-Requested-With", "X-CSRF-Token", "Accept", "Origin", "Cache-Control", "Pragma")
+				.exposedHeaders("Content-Disposition", "Authorization", "X-Total-Count")
 				.allowCredentials(true)
 				.maxAge(3600);
 	}

@@ -9,6 +9,7 @@ import com.xiao.core.basic.operator.domain.Operator;
 import com.xiao.core.biddingInfo.service.BiddingInfoService;
 import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
+import com.xiao.util.PageUtils;
 import javax.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +46,7 @@ public class BiddingInfoController extends BaseController{
 		List<BiddingInfo> biddingInfoList = biddingInfoService.queryByMap(page.getQueryParams());
 		//查询结果
 		page.setList(biddingInfoList);
-		return new ResultModel(true,"返回list数据").setData(page);
+		return PageUtils.pageSuccess(page);
 	}
 
 	/**
@@ -61,7 +62,7 @@ public class BiddingInfoController extends BaseController{
 		}catch (Exception e) {
 			e.printStackTrace();
 			log.error("删除异常:"+e.getMessage());
-			return new ResultModel(false,"网络异常，操作失败");
+			return sendFailureMessage("网络异常，操作失败");
 		}
 	}
 
@@ -79,12 +80,12 @@ public class BiddingInfoController extends BaseController{
 			if(flag){
 				return new ResultModel(true,"保存成功");
 			}else{
-				return new ResultModel(false,"保存失败，请重试");
+				return sendFailureMessage("保存失败，请重试");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("删除异常:"+e.getMessage());
-			return new ResultModel(false,"网络异常，操作失败");
+			return sendFailureMessage("网络异常，操作失败");
 		}
 	}
 	/**

@@ -1,0 +1,775 @@
+[DEBUG] 2026-02-01 01:00:22.732  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:22.736  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:22.741  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:22.754  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:22.755  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:22.778  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:22.942  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:00:22.942  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:22.951  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:22.999  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:00:23.000  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:00:23.004  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:00:26.184  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:26.185  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:26.187  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:26.193  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:26.194  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:26.196  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:26.202  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:00:26.202  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:26.217  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:26.227  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:00:26.228  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:00:26.232  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:00:32.352  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:32.366  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:32.375  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:32.436  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:32.437  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:32.456  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:32.489  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:00:32.494  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:32.514  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:00:32.755  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:32.758  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:32.761  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:32.769  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:32.769  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:32.777  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:32.789  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:00:32.792  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:32.805  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:32.826  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:00:32.826  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:00:32.845  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[WARN] 2026-02-01 01:00:35.869  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /vue-element-admin/data-permissions
+[DEBUG] 2026-02-01 01:00:35.871  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:35.871  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:35.881  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:35.918  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:35.918  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:35.921  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:35.966  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:00:35.966  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:35.969  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:35.988  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:00:35.988  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:00:35.997  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:00:45.874  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:45.875  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:45.881  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:45.893  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:45.893  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:45.895  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:45.903  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:00:45.904  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:45.923  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:00:46.216  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:46.218  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:46.234  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:46.280  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:46.281  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:46.327  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:46.368  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:00:46.368  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:46.370  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:46.416  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:00:46.417  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:00:46.439  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[DEBUG] 2026-02-01 01:00:53.165  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:00:53.166  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:00:53.182  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:53.216  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:00:53.216  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:00:53.222  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:00:53.251  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:00:53.251  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:00:53.256  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:00:53.275  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:00:53.276  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:00:53.282  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[INFO] 2026-02-01 01:01:09.135  com.xiao.core.basic.sys.LoginController.java - Logout request - accessToken from header: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwiaWF0IjoxNzY5ODc4MzQyLCJzdWIiOiItIiwiaXNzIjoiLSIsImV4cCI6MTc3MDQ4MzE0Mn0.kMvD5XGC8YqCo3gcpt_CwylVpdyVpxepM2hGVRLejrM
+[INFO] 2026-02-01 01:01:09.137  com.xiao.core.basic.sys.LoginController.java - Logout processing - member_id: 2, token valid: true
+[INFO] 2026-02-01 01:01:09.401  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 2229, length: 4
+[INFO] 2026-02-01 01:01:09.426  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: dfd52aa9-51aa-4e6a-a49f-b5e321a65e02, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:01:23.831  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 4028, length: 4
+[INFO] 2026-02-01 01:01:23.848  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: f6119d98-4c36-4863-95be-33262e8b5425, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:01:39.692  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: c3lzdGVtYWRtaW4=, password length: 8, verifyCode: 4028, uucode: f6119d98-4c36-4863-95be-33262e8b5425, yzm: undefined, oldyzmuuid: undefined
+[INFO] 2026-02-01 01:01:39.694  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: systemadmin, verifyCode: 4028, uucode: f6119d98-4c36-4863-95be-33262e8b5425, yzm: undefined, oldyzmuuid: undefined
+[INFO] 2026-02-01 01:01:39.694  com.xiao.core.basic.sys.LoginController.java - Process login - userName: systemadmin, password length: 6, verifyCode: 4028, uucode: f6119d98-4c36-4863-95be-33262e8b5425, yzm: undefined, oldyzmuuid: undefined
+[DEBUG] 2026-02-01 01:01:39.700  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:01:39.701  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: systemadmin(String)
+[DEBUG] 2026-02-01 01:01:39.718  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:39.727  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-02-01 01:01:39.727  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: systemadmin(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-02-01 01:01:39.730  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:39.737  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-02-01 01:01:39.738  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: systemadmin(String), systemadmin(String), e10adc3949ba59abbe56e057f20f883e(String), 13725836914(String), 1(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 2(Integer)
+[DEBUG] 2026-02-01 01:01:39.761  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:01:39.766  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:39.766  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:39.769  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:01:39.801  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 3950, length: 4
+[INFO] 2026-02-01 01:01:39.824  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: d2217e9a-2812-4e9b-9438-ba006b55c12e, stored in Redis with 5min TTL
+[DEBUG] 2026-02-01 01:01:40.126  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:01:40.127  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:01:40.130  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:40.137  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:40.137  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:40.145  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:01:40.150  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:01:40.154  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==>  Preparing: select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url, m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time, m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth as smenu_auth FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id where m.parent_no is null AND ar.roleInfo_Id = ? ) a LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id where rm.parent_no is NOT null AND ar.roleInfo_Id = ? ) b on a.smenu_id = b.parent_no order by a.ssort_order,b.sort_order 
+[DEBUG] 2026-02-01 01:01:40.155  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==> Parameters: 1(Integer), 1(Integer)
+[DEBUG] 2026-02-01 01:01:40.163  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - <==      Total: 6
+[DEBUG] 2026-02-01 01:01:40.170  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==>  Preparing: SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id WHERE r.roleInfo_Id =? 
+[DEBUG] 2026-02-01 01:01:40.171  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:01:40.175  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - <==      Total: 19
+[DEBUG] 2026-02-01 01:01:44.173  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:01:44.173  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:01:44.177  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:44.187  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:44.187  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:44.190  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:01:44.198  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:01:44.200  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:01:44.201  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:44.206  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:01:44.207  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:01:44.212  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:01:47.785  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:01:47.785  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:01:47.809  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:47.813  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:47.813  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:47.826  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:01:47.833  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:01:47.834  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:01:47.836  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:01:48.083  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:01:48.083  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:01:48.085  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:48.091  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:48.091  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:48.097  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:01:48.153  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:01:48.153  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:01:48.158  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:48.170  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:01:48.170  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:01:48.177  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[DEBUG] 2026-02-01 01:01:51.960  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:01:51.961  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:01:51.963  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:51.968  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:51.968  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:51.971  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:01:51.980  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:01:51.980  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:01:51.983  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:51.988  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:01:51.988  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:01:51.993  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:01:55.160  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:01:55.161  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:01:55.165  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:55.170  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:01:55.170  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:01:55.175  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:01:55.195  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:01:55.195  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:01:55.198  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:01:55.205  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:01:55.205  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:01:55.208  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:02:08.168  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:02:08.170  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:02:08.173  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:08.181  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:02:08.181  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:02:08.190  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:02:08.217  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:02:08.217  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:02:08.219  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:08.260  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:02:08.261  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:02:08.278  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:02:14.365  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:02:14.366  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:02:14.369  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:14.386  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:02:14.386  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:02:14.386  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:02:14.387  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:02:14.389  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:02:14.392  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:14.398  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:02:14.398  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:02:14.399  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:02:14.399  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:02:14.400  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:14.401  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:02:14.426  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:02:14.427  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:02:14.427  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:02:14.427  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:02:14.429  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:02:14.443  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[DEBUG] 2026-02-01 01:02:23.870  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:02:23.871  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:02:23.878  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:23.902  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:02:23.902  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:02:23.906  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:02:23.915  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:02:23.915  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:02:23.917  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:02:23.926  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:02:23.927  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:02:23.944  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:03:06.680  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:03:06.680  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:03:06.686  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:03:06.694  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:03:06.695  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:03:06.698  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:03:06.709  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:03:06.710  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:03:06.712  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:03:06.723  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:03:06.723  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:03:06.728  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:08:29.941  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:08:29.941  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:08:29.944  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:08:29.949  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:08:29.950  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:08:29.954  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:08:29.962  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:08:29.963  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:08:29.965  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:08:29.971  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:08:29.971  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:08:29.974  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[INFO] 2026-02-01 01:08:49.014  com.xiao.core.basic.sys.LoginController.java - Logout request - accessToken from header: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwiaWF0IjoxNzY5ODc4ODk5LCJzdWIiOiItIiwiaXNzIjoiLSIsImV4cCI6MTc3MDQ4MzY5OX0.Uj2eTbcTQgOdTZg4RnhB5fAo9tR6PkM5Wy5-c7bBc3E
+[INFO] 2026-02-01 01:08:49.017  com.xiao.core.basic.sys.LoginController.java - Logout processing - member_id: 2, token valid: true
+[INFO] 2026-02-01 01:08:49.434  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 8066, length: 4
+[INFO] 2026-02-01 01:08:49.451  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 9ca73792-f42b-4161-9c41-e5c17159874d, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:09:03.806  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 7015, length: 4
+[INFO] 2026-02-01 01:09:03.840  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 750fe000-0cdb-4948-9a51-b35ce8b89696, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:09:15.629  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 9385, length: 4
+[INFO] 2026-02-01 01:09:15.646  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: e0bafbcf-c668-4225-8306-07f1ccc79bed, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:09:27.982  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: c3lzdGVtYWRtaW4=, password length: 8, verifyCode: 9385, uucode: e0bafbcf-c668-4225-8306-07f1ccc79bed, yzm: undefined, oldyzmuuid: undefined
+[INFO] 2026-02-01 01:09:27.983  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: systemadmin, verifyCode: 9385, uucode: e0bafbcf-c668-4225-8306-07f1ccc79bed, yzm: undefined, oldyzmuuid: undefined
+[INFO] 2026-02-01 01:09:27.983  com.xiao.core.basic.sys.LoginController.java - Process login - userName: systemadmin, password length: 6, verifyCode: 9385, uucode: e0bafbcf-c668-4225-8306-07f1ccc79bed, yzm: undefined, oldyzmuuid: undefined
+[DEBUG] 2026-02-01 01:09:27.987  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:09:27.988  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: systemadmin(String)
+[DEBUG] 2026-02-01 01:09:27.994  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:28.000  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-02-01 01:09:28.001  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: systemadmin(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-02-01 01:09:28.005  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:28.016  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-02-01 01:09:28.016  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: systemadmin(String), systemadmin(String), e10adc3949ba59abbe56e057f20f883e(String), 13725836914(String), 1(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 2(Integer)
+[DEBUG] 2026-02-01 01:09:28.022  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:09:28.030  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:28.030  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:28.033  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:09:28.364  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 1576, length: 4
+[DEBUG] 2026-02-01 01:09:28.368  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:09:28.368  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:09:28.373  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[INFO] 2026-02-01 01:09:28.383  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: b284ad19-beea-420b-95fc-e70b6ad5a407, stored in Redis with 5min TTL
+[DEBUG] 2026-02-01 01:09:28.385  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:28.385  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:28.391  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:09:28.399  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:09:28.409  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==>  Preparing: select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url, m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time, m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth as smenu_auth FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id where m.parent_no is null AND ar.roleInfo_Id = ? ) a LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id where rm.parent_no is NOT null AND ar.roleInfo_Id = ? ) b on a.smenu_id = b.parent_no order by a.ssort_order,b.sort_order 
+[DEBUG] 2026-02-01 01:09:28.410  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==> Parameters: 1(Integer), 1(Integer)
+[DEBUG] 2026-02-01 01:09:28.417  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - <==      Total: 6
+[DEBUG] 2026-02-01 01:09:28.424  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==>  Preparing: SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id WHERE r.roleInfo_Id =? 
+[DEBUG] 2026-02-01 01:09:28.424  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:09:28.430  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - <==      Total: 19
+[DEBUG] 2026-02-01 01:09:31.459  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:09:31.460  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:09:31.462  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:31.468  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:31.468  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:31.472  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:09:31.479  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:09:31.479  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:09:31.483  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:31.488  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:09:31.488  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:09:31.491  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:09:34.581  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:09:34.581  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:09:34.583  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:34.591  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:34.591  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:34.595  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:09:34.598  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:09:34.598  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:09:34.602  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:34.605  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:09:34.606  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:09:34.608  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:34.611  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:34.612  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:34.614  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:09:34.616  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:09:34.616  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:09:34.633  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:09:34.634  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:09:34.635  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[DEBUG] 2026-02-01 01:09:34.639  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:09:36.764  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:09:36.765  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:09:36.768  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:36.773  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:36.773  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:36.776  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:09:36.793  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:09:36.794  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:09:36.798  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:36.808  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:09:36.808  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:09:36.811  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:09:42.714  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:09:42.715  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:09:42.717  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:09:42.727  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:09:42.728  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色菜单树(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:09:42.731  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:09:42.819  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - ==>  Preparing: SELECT * FROM admin_menu r WHERE parent_no is null 
+[DEBUG] 2026-02-01 01:09:42.819  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:09:42.822  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - <==      Total: 2
+[DEBUG] 2026-02-01 01:09:42.952  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==>  Preparing: SELECT * FROM admin_menu m WHERE m.parent_no = ? 
+[DEBUG] 2026-02-01 01:09:42.952  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:09:42.957  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - <==      Total: 4
+[DEBUG] 2026-02-01 01:09:42.964  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==>  Preparing: SELECT * FROM admin_menu m WHERE m.parent_no = ? 
+[DEBUG] 2026-02-01 01:09:42.964  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==> Parameters: 186(String)
+[DEBUG] 2026-02-01 01:09:42.966  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - <==      Total: 2
+[DEBUG] 2026-02-01 01:09:42.975  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - ==>  Preparing: select * from admin_btn b 
+[DEBUG] 2026-02-01 01:09:42.975  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:09:43.006  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - <==      Total: 348
+[DEBUG] 2026-02-01 01:09:43.065  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - ==>  Preparing: select * from admin_rolemenu where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:09:43.065  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:09:43.074  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - <==      Total: 39
+[DEBUG] 2026-02-01 01:09:43.080  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - ==>  Preparing: select * from admin_rolebtn where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:09:43.081  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:09:43.091  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - <==      Total: 116
+[DEBUG] 2026-02-01 01:09:43.106  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - ==>  Preparing: select * from admin_roleinfo where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:09:43.107  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:09:43.110  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:00.058  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:10:00.058  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:10:00.061  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:00.066  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:10:00.067  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-修改权限(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:10:00.070  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:10:05.216  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:10:05.216  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:10:05.220  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:05.239  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:10:05.239  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色菜单树(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:10:05.242  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:10:05.248  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - ==>  Preparing: SELECT * FROM admin_menu r WHERE parent_no is null 
+[DEBUG] 2026-02-01 01:10:05.249  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:10:05.251  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - <==      Total: 2
+[DEBUG] 2026-02-01 01:10:05.255  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==>  Preparing: SELECT * FROM admin_menu m WHERE m.parent_no = ? 
+[DEBUG] 2026-02-01 01:10:05.256  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:10:05.258  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - <==      Total: 4
+[DEBUG] 2026-02-01 01:10:05.263  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==>  Preparing: SELECT * FROM admin_menu m WHERE m.parent_no = ? 
+[DEBUG] 2026-02-01 01:10:05.263  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==> Parameters: 186(String)
+[DEBUG] 2026-02-01 01:10:05.265  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - <==      Total: 2
+[DEBUG] 2026-02-01 01:10:05.268  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - ==>  Preparing: select * from admin_btn b 
+[DEBUG] 2026-02-01 01:10:05.268  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:10:05.290  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - <==      Total: 348
+[DEBUG] 2026-02-01 01:10:05.298  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - ==>  Preparing: select * from admin_rolemenu where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:10:05.298  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - ==> Parameters: 4(String)
+[DEBUG] 2026-02-01 01:10:05.301  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - <==      Total: 5
+[DEBUG] 2026-02-01 01:10:05.306  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - ==>  Preparing: select * from admin_rolebtn where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:10:05.307  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - ==> Parameters: 4(String)
+[DEBUG] 2026-02-01 01:10:05.311  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:10:05.320  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - ==>  Preparing: select * from admin_roleinfo where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:10:05.321  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - ==> Parameters: 4(String)
+[DEBUG] 2026-02-01 01:10:05.324  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:15.446  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:10:15.446  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:10:15.448  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:15.455  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:10:15.455  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-修改权限(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:10:15.458  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:10:22.462  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:10:22.462  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:10:22.465  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:22.470  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:10:22.471  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:10:22.473  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:10:22.484  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:10:22.485  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:10:22.486  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:22.491  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:10:22.491  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:10:22.493  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:10:30.897  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:10:30.897  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:10:30.901  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:30.918  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:10:30.918  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:10:30.923  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:10:30.930  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:10:30.930  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:10:30.932  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:30.941  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:10:30.942  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:10:30.944  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:10:33.749  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:10:33.751  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:10:33.754  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:33.759  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:10:33.759  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:10:33.762  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:10:33.770  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:10:33.771  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:10:33.773  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:10:33.779  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:10:33.779  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:10:33.782  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:13:11.976  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:13:11.977  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:13:11.980  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:13:11.988  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:13:11.988  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:13:11.991  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:13:12.010  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:13:13.130  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:13:13.130  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:13:13.137  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:13:13.143  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:13:13.143  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:13:13.146  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:13:13.153  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:16:20.798  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:16:20.799  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:16:20.817  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:16:20.823  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:16:20.824  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:16:20.829  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:16:20.838  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:16:20.856  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:16:20.856  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:16:20.860  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:16:20.870  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:16:20.871  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:16:20.874  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:16:20.889  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:16:21.436  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:16:21.437  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:16:21.449  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:16:21.456  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:16:21.458  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:16:21.462  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:16:21.469  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:16:21.470  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:16:21.472  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:16:21.487  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:16:21.487  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:16:21.493  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[WARN] 2026-02-01 01:17:38.071  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[DEBUG] 2026-02-01 01:17:38.087  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:17:38.088  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:17:38.092  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:17:38.097  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:17:38.098  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:17:38.105  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:17:38.112  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:17:38.112  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:17:38.115  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:17:38.122  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:17:38.123  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:17:38.136  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[WARN] 2026-02-01 01:17:49.246  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[DEBUG] 2026-02-01 01:17:49.277  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:17:49.278  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:17:49.281  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:17:49.296  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:17:49.296  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:17:49.301  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:17:49.310  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:17:49.311  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:17:49.314  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:17:49.338  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:17:49.338  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:17:49.342  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:18:15.989  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:18:15.990  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:18:15.992  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:18:15.997  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:18:15.997  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:18:16.004  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:18:16.015  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:18:16.015  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:18:16.017  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:18:16.022  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:18:16.023  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:18:16.025  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[WARN] 2026-02-01 01:18:16.303  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[WARN] 2026-02-01 01:21:07.688  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[DEBUG] 2026-02-01 01:21:08.014  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:21:08.014  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:21:08.019  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:08.023  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:21:08.024  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:21:08.028  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:21:08.036  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:21:08.036  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:21:08.038  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:08.043  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:21:08.043  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:21:08.046  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:21:14.246  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:21:14.247  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:21:14.251  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:14.255  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:21:14.256  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:21:14.258  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:21:14.270  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:21:14.270  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:21:14.272  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:14.276  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:21:14.276  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:21:14.279  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:21:16.581  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:21:16.581  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:21:16.586  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:16.592  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:21:16.592  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:21:16.594  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:21:16.600  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:21:16.600  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:21:16.602  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:16.607  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:21:16.608  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:21:16.610  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[WARN] 2026-02-01 01:21:16.884  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[DEBUG] 2026-02-01 01:21:30.863  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:21:30.863  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:21:30.867  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:30.874  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:21:30.875  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:21:30.878  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:21:30.887  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:21:30.887  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:21:30.889  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:30.902  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:21:30.903  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:21:30.907  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:21:37.114  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:21:37.114  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:21:37.122  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:37.128  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:21:37.128  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:21:37.160  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:21:37.172  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:21:37.172  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:21:37.174  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:21:37.180  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:21:37.181  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:21:37.185  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[WARN] 2026-02-01 01:21:37.433  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[INFO] 2026-02-01 01:21:43.763  com.xiao.core.basic.sys.LoginController.java - Logout request - accessToken from header: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyIiwiaWF0IjoxNzY5ODc5MzY4LCJzdWIiOiItIiwiaXNzIjoiLSIsImV4cCI6MTc3MDQ4NDE2OH0.wLOSpI11Tt-hIlKzHNe86UylwGBGxqeK_kFgDx0xYhc
+[INFO] 2026-02-01 01:21:43.765  com.xiao.core.basic.sys.LoginController.java - Logout processing - member_id: 2, token valid: true
+[INFO] 2026-02-01 01:21:44.023  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 8171, length: 4
+[INFO] 2026-02-01 01:21:44.043  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 22e7d5a3-521b-4015-bf52-c498b78922e5, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:21:56.268  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 0167, length: 4
+[INFO] 2026-02-01 01:21:56.283  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 1a443471-f521-4759-a1d3-574c89920c30, stored in Redis with 5min TTL
+[INFO] 2026-02-01 01:22:06.446  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: c3lzdGVtYWRtaW4=, password length: 8, verifyCode: 0167, uucode: 1a443471-f521-4759-a1d3-574c89920c30, yzm: undefined, oldyzmuuid: undefined
+[INFO] 2026-02-01 01:22:06.447  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: systemadmin, verifyCode: 0167, uucode: 1a443471-f521-4759-a1d3-574c89920c30, yzm: undefined, oldyzmuuid: undefined
+[INFO] 2026-02-01 01:22:06.447  com.xiao.core.basic.sys.LoginController.java - Process login - userName: systemadmin, password length: 6, verifyCode: 0167, uucode: 1a443471-f521-4759-a1d3-574c89920c30, yzm: undefined, oldyzmuuid: undefined
+[DEBUG] 2026-02-01 01:22:06.453  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:22:06.453  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: systemadmin(String)
+[DEBUG] 2026-02-01 01:22:06.458  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:06.465  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-02-01 01:22:06.466  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: systemadmin(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-02-01 01:22:06.469  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:06.477  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-02-01 01:22:06.479  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: systemadmin(String), systemadmin(String), e10adc3949ba59abbe56e057f20f883e(String), 13725836914(String), 1(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 2(Integer)
+[DEBUG] 2026-02-01 01:22:06.483  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:06.489  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:06.489  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:06.492  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:22:06.826  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 0292, length: 4
+[DEBUG] 2026-02-01 01:22:06.829  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:06.829  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:06.832  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:06.838  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[INFO] 2026-02-01 01:22:06.840  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: bef481d2-f62c-4b73-af6f-e0497136b710, stored in Redis with 5min TTL
+[DEBUG] 2026-02-01 01:22:06.840  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:06.843  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-02-01 01:22:06.847  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 2, loginName: systemadmin, roleinfoId: 1
+[DEBUG] 2026-02-01 01:22:06.852  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==>  Preparing: select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url, m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time, m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth as smenu_auth FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id where m.parent_no is null AND ar.roleInfo_Id = ? ) a LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id where rm.parent_no is NOT null AND ar.roleInfo_Id = ? ) b on a.smenu_id = b.parent_no order by a.ssort_order,b.sort_order 
+[DEBUG] 2026-02-01 01:22:06.852  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==> Parameters: 1(Integer), 1(Integer)
+[DEBUG] 2026-02-01 01:22:06.862  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - <==      Total: 6
+[DEBUG] 2026-02-01 01:22:06.870  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==>  Preparing: SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id WHERE r.roleInfo_Id =? 
+[DEBUG] 2026-02-01 01:22:06.871  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:22:06.876  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - <==      Total: 19
+[WARN] 2026-02-01 01:22:14.183  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[DEBUG] 2026-02-01 01:22:14.184  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:14.185  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:14.189  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:14.196  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:14.196  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:14.201  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:14.210  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:22:14.210  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:14.213  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:14.221  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:22:14.221  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:22:14.224  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:22:18.462  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:18.463  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:18.467  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:18.476  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:18.476  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:18.480  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:18.486  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:22:18.486  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:18.488  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:22:18.765  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:18.766  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:18.770  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:18.777  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:18.779  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:18.782  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:18.793  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:22:18.793  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:18.794  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:18.802  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:22:18.803  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:22:18.815  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[DEBUG] 2026-02-01 01:22:21.326  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:21.327  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:21.330  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:21.344  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:21.346  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:21.351  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:21.401  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:22:21.401  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:21.403  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:21.411  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:22:21.411  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:22:21.413  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:22:23.213  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:23.213  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:23.216  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:23.230  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:23.231  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:23.235  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:23.245  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:22:23.245  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:23.247  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:23.252  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:22:23.253  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:22:23.265  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[WARN] 2026-02-01 01:22:23.517  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /vue-element-admin/data-permissions
+[DEBUG] 2026-02-01 01:22:29.311  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:29.311  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:29.313  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:29.320  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:29.320  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:29.323  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:29.329  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-02-01 01:22:29.329  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:29.345  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:29.353  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:22:29.353  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-02-01 01:22:29.445  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-02-01 01:22:31.738  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:31.738  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:31.740  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:31.746  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:31.747  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:31.750  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:31.757  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2026-02-01 01:22:31.757  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:31.761  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:31.769  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:22:31.769  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-02-01 01:22:31.897  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[WARN] 2026-02-01 01:22:47.985  org.springframework.web.servlet.PageNotFound.java - No mapping for GET /admin/routes
+[DEBUG] 2026-02-01 01:22:47.988  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:47.988  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:47.991  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:47.996  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:47.996  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:47.999  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:48.005  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:22:48.005  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:48.006  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:48.010  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:22:48.010  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 15(Integer)
+[DEBUG] 2026-02-01 01:22:48.012  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:22:53.911  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:53.912  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:53.913  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:53.918  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:53.919  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户角色操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:53.933  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:53.943  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==>  Preparing: SELECT roleInfo_Id , role_Name FROM admin_roleinfo 
+[DEBUG] 2026-02-01 01:22:53.943  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:53.946  com.xiao.core.basic.operator.mapper.OperatorMapper.queryAllRole.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:22:54.217  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:54.218  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:54.221  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:54.236  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:54.236  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询用户列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:54.240  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:54.252  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id 
+[DEBUG] 2026-02-01 01:22:54.253  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:54.256  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:54.268  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id ORDER BY o.operator_id LIMIT ?, ? 
+[DEBUG] 2026-02-01 01:22:54.268  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:22:54.275  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 20
+[DEBUG] 2026-02-01 01:22:56.342  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:22:56.342  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:22:56.344  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:56.348  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:22:56.348  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色列表操作(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:22:56.351  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:22:56.356  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==>  Preparing: select count(1) FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id 
+[DEBUG] 2026-02-01 01:22:56.356  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:22:56.357  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:22:56.362  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==>  Preparing: SELECT r.*,o.login_name FROM admin_roleinfo r LEFT JOIN operator o ON r.operator_id = o.operator_id order by roleInfo_Id LIMIT ?,? 
+[DEBUG] 2026-02-01 01:22:56.364  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 20(Integer)
+[DEBUG] 2026-02-01 01:22:56.367  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryByMap.java - <==      Total: 3
+[DEBUG] 2026-02-01 01:23:03.748  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-02-01 01:23:03.749  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 2(String)
+[DEBUG] 2026-02-01 01:23:03.751  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-02-01 01:23:03.757  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-02-01 01:23:03.758  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 角色-查询角色菜单树(String), systemadmin(String), systemadmin(String), 1(Integer)
+[DEBUG] 2026-02-01 01:23:03.760  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-02-01 01:23:03.768  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - ==>  Preparing: SELECT * FROM admin_menu r WHERE parent_no is null 
+[DEBUG] 2026-02-01 01:23:03.768  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:23:03.771  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuList.java - <==      Total: 2
+[DEBUG] 2026-02-01 01:23:03.792  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==>  Preparing: SELECT * FROM admin_menu m WHERE m.parent_no = ? 
+[DEBUG] 2026-02-01 01:23:03.792  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:23:03.794  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - <==      Total: 4
+[DEBUG] 2026-02-01 01:23:03.802  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==>  Preparing: SELECT * FROM admin_menu m WHERE m.parent_no = ? 
+[DEBUG] 2026-02-01 01:23:03.803  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - ==> Parameters: 186(String)
+[DEBUG] 2026-02-01 01:23:03.806  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenu.java - <==      Total: 2
+[DEBUG] 2026-02-01 01:23:03.812  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - ==>  Preparing: select * from admin_btn b 
+[DEBUG] 2026-02-01 01:23:03.812  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - ==> Parameters: 
+[DEBUG] 2026-02-01 01:23:03.825  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryAllAuthinfoBtn.java - <==      Total: 348
+[DEBUG] 2026-02-01 01:23:03.834  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - ==>  Preparing: select * from admin_rolemenu where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:23:03.835  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:23:03.838  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthInfo.java - <==      Total: 39
+[DEBUG] 2026-02-01 01:23:03.846  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - ==>  Preparing: select * from admin_rolebtn where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:23:03.846  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:23:03.852  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryRoleAuthBtn.java - <==      Total: 116
+[DEBUG] 2026-02-01 01:23:03.858  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - ==>  Preparing: select * from admin_roleinfo where roleInfo_Id = ? 
+[DEBUG] 2026-02-01 01:23:03.859  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - ==> Parameters: 1(String)
+[DEBUG] 2026-02-01 01:23:03.861  com.xiao.core.basic.admin_roleinfo.mapper.AdminRoleinfoMapper.queryById.java - <==      Total: 1
+[INFO] 2026-02-01 01:23:52.427  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler.java - Shutting down ExecutorService 'taskScheduler'
+[INFO] 2026-02-01 01:23:53.146  com.alibaba.druid.pool.DruidDataSource.java - {dataSource-1} closing ...
+[INFO] 2026-02-01 01:23:53.218  com.alibaba.druid.pool.DruidDataSource.java - {dataSource-1} closed

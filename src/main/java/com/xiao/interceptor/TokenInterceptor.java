@@ -252,13 +252,29 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
         response.setHeader("Content-Type", "application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
         try {
-            ResultModel rm = new ResultModel();
-            rm.setMsg(msg);
-            rm.setErrcode(code);
-            rm.setSuccess(Boolean.FALSE);
+            // 转换为 vue-element-admin 错误码
+            int vueCode = translateErrorCode(code);
+            ResultModel rm = ResultModel.error(vueCode, msg);
+            rm.setErrcode(code); // 保留原错误码
             response.getWriter().write(JSON.toJSONString(rm));
         } catch (IOException e) {
             log.error("response error", e);
+        }
+    }
+    
+    /**
+     * 转换错误码为 vue-element-admin 标准
+     */
+    private int translateErrorCode(String code) {
+        // E.ECODE1: 无token, E.ECODE2: token失效, E.ECODE3: 用户不存在/无权限
+        if (E.ECODE1.equals(code)) {
+            return ResultModel.CODE_TOKEN_INVALID; // 50008: 非法token
+        } else if (E.ECODE2.equals(code)) {
+            return ResultModel.CODE_TOKEN_EXPIRED; // 50014: token过期
+        } else if (E.ECODE3.equals(code)) {
+            return 50012; // 其他用户错误
+        } else {
+            return ResultModel.CODE_ERROR; // 50000: 默认错误
         }
     }
 }

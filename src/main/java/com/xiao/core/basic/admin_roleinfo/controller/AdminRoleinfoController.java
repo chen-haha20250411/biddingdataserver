@@ -17,6 +17,7 @@ import com.xiao.core.basic.operator.domain.Operator;
 import com.xiao.core.basic.operator.service.OperatorService;
 import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
+import com.xiao.util.PageUtils;
 import com.xiao.util.RedisUtils;
 import com.xiao.util.SessionUtils;
 import com.xiao.util.StringUtil;
@@ -68,7 +69,7 @@ public class AdminRoleinfoController extends BaseController{
 		page.setTotal(rowCount);
 		//角色列表
 		page.setList(roleInfoService.queryByMap(page.getQueryParams()));
-		return new ResultModel(true,"返回list数据").setData(page);
+		return PageUtils.pageSuccess(page);
 	}
 
 	/** 去添加页�? */

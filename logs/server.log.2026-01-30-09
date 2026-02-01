@@ -1,0 +1,351 @@
+[INFO] 2026-01-30 09:24:04.738  com.xiao.AppMainServer.java - Starting AppMainServer on DESKTOP-QQUQJ86 with PID 1964 (F:\GitHub\biddingdataserver\target\classes started by user in F:\GitHub\biddingdataserver)
+[DEBUG] 2026-01-30 09:24:04.742  com.xiao.AppMainServer.java - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.4.RELEASE
+[INFO] 2026-01-30 09:24:04.743  com.xiao.AppMainServer.java - No active profile set, falling back to default profiles: default
+[INFO] 2026-01-30 09:24:05.976  org.springframework.data.repository.config.RepositoryConfigurationDelegate.java - Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO] 2026-01-30 09:24:05.982  org.springframework.data.repository.config.RepositoryConfigurationDelegate.java - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+[INFO] 2026-01-30 09:24:06.105  org.springframework.data.repository.config.RepositoryConfigurationDelegate.java - Finished Spring Data repository scanning in 99ms. Found 0 Redis repository interfaces.
+[INFO] 2026-01-30 09:24:06.574  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration$DataSourceTransactionManagerConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.575  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceConfiguration$Generic] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.608  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties' of type [org.springframework.boot.autoconfigure.jdbc.DataSourceProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.699  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'dataSource' of type [com.alibaba.druid.pool.DruidDataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.707  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration' of type [org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.712  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'spring.transaction-org.springframework.boot.autoconfigure.transaction.TransactionProperties' of type [org.springframework.boot.autoconfigure.transaction.TransactionProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.714  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'platformTransactionManagerCustomizers' of type [org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.721  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'transactionManager' of type [org.springframework.jdbc.datasource.DataSourceTransactionManager] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.722  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'transactionAdviceConfig' of type [com.xiao.config.TransactionAdviceConfig$$EnhancerBySpringCGLIB$$80fb1c8f] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:06.900  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker.java - Bean 'redisConfig' of type [com.xiao.config.RedisConfig$$EnhancerBySpringCGLIB$$69a34574] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO] 2026-01-30 09:24:07.416  org.springframework.boot.web.embedded.tomcat.TomcatWebServer.java - Tomcat initialized with port(s): 8090 (http)
+[INFO] 2026-01-30 09:24:07.431  org.apache.coyote.http11.Http11NioProtocol.java - Initializing ProtocolHandler ["http-nio-8090"]
+[INFO] 2026-01-30 09:24:07.432  org.apache.catalina.core.StandardService.java - Starting service [Tomcat]
+[INFO] 2026-01-30 09:24:07.432  org.apache.catalina.core.StandardEngine.java - Starting Servlet engine: [Apache Tomcat/9.0.31]
+[INFO] 2026-01-30 09:24:07.685  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].java - Initializing Spring embedded WebApplicationContext
+[INFO] 2026-01-30 09:24:07.685  org.springframework.web.context.ContextLoader.java - Root WebApplicationContext: initialization completed in 2862 ms
+[DEBUG] 2026-01-30 09:24:09.018  com.xiao.config.RedisConfig$$EnhancerBySpringCGLIB$$69a34574.java - 自定义RedisCacheManager加载完成
+[WARN] 2026-01-30 09:24:09.701  org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration.java - Cannot find template location(s): [classpath:/templates/] (please add some templates, check your FreeMarker configuration, or set spring.freemarker.checkTemplateLocation=false)
+[INFO] 2026-01-30 09:24:09.744  org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler.java - Initializing ExecutorService 'taskScheduler'
+[INFO] 2026-01-30 09:24:09.808  org.apache.coyote.http11.Http11NioProtocol.java - Starting ProtocolHandler ["http-nio-8090"]
+[INFO] 2026-01-30 09:24:09.845  org.springframework.boot.web.embedded.tomcat.TomcatWebServer.java - Tomcat started on port(s): 8090 (http) with context path ''
+[INFO] 2026-01-30 09:24:09.850  com.xiao.AppMainServer.java - Started AppMainServer in 5.627 seconds (JVM running for 7.918)
+[INFO] 2026-01-30 09:28:12.756  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].java - Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO] 2026-01-30 09:28:12.757  org.springframework.web.servlet.DispatcherServlet.java - Initializing Servlet 'dispatcherServlet'
+[INFO] 2026-01-30 09:28:12.768  org.springframework.web.servlet.DispatcherServlet.java - Completed initialization in 10 ms
+[INFO] 2026-01-30 09:28:45.969  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 4842, length: 4
+[INFO] 2026-01-30 09:28:46.778  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 92beead2-ab6f-4925-b403-c2b415e8bf80, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:28:47.006  io.lettuce.core.EpollProvider.java - Starting without optional epoll library
+[INFO] 2026-01-30 09:28:47.007  io.lettuce.core.KqueueProvider.java - Starting without optional kqueue library
+[INFO] 2026-01-30 09:34:34.938  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 9509, length: 4
+[INFO] 2026-01-30 09:34:34.971  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 3885037e-620e-4166-b48d-ea3c4b87898d, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:34:48.999  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 7138, length: 4
+[INFO] 2026-01-30 09:34:49.037  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 7d408305-bab7-4d99-9d58-ef907398358b, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:34:55.391  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 4020, length: 4
+[INFO] 2026-01-30 09:34:55.417  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 2cf737e8-3d31-42a7-b74a-7f603ac9e57e, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:35:05.617  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 9426, length: 4
+[INFO] 2026-01-30 09:35:05.864  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 2cbd805c-c4f5-4425-aaa4-12e5246d7faf, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:35:06.564  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 0777, length: 4
+[INFO] 2026-01-30 09:35:06.593  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: da868d41-3994-46e7-924d-eb2a9a7966a0, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:35:06.760  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 8440, length: 4
+[INFO] 2026-01-30 09:35:06.775  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 373799d4-d5f4-42ca-bd77-3d51ac19c228, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:35:20.867  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 8562, length: 4
+[INFO] 2026-01-30 09:35:20.947  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 98cb3a75-4f8e-4833-91f8-98cde483884e, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:35:28.744  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 3872, length: 4
+[INFO] 2026-01-30 09:35:28.756  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: cf0c9d01-688c-48af-bc7c-b4d7a5fa5a2a, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:36:25.096  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 6479, length: 4
+[INFO] 2026-01-30 09:36:25.114  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 1c1dcf43-2df9-4d39-ada9-59037f860728, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:39:16.423  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 2125, length: 4
+[INFO] 2026-01-30 09:39:16.447  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 12632a2f-9930-46a2-8288-339304d0542d, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:39:26.566  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: Y2hlbnl3, password length: 8, verifyCode: 2125, uucode: 12632a2f-9930-46a2-8288-339304d0542d, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:39:26.570  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: chenyw, verifyCode: 2125, uucode: 12632a2f-9930-46a2-8288-339304d0542d, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:39:26.570  com.xiao.core.basic.sys.LoginController.java - Process login - userName: chenyw, password length: 6, verifyCode: 2125, uucode: 12632a2f-9930-46a2-8288-339304d0542d, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:39:26.686  com.alibaba.druid.pool.DruidDataSource.java - {dataSource-1} inited
+[DEBUG] 2026-01-30 09:39:27.397  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-01-30 09:39:27.445  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: chenyw(String)
+[DEBUG] 2026-01-30 09:39:27.490  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:27.508  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-01-30 09:39:27.509  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: chenyw(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-01-30 09:39:27.513  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:28.011  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-01-30 09:39:28.013  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: 陈用威(String), chenyw(String), e10adc3949ba59abbe56e057f20f883e(String), 18858484349(String), 4(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 3(Integer)
+[DEBUG] 2026-01-30 09:39:28.026  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:39:28.042  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:39:28.043  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:39:28.048  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:39:28.079  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 9008, length: 4
+[INFO] 2026-01-30 09:39:28.088  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: c0c32cc8-5711-4449-9bef-299c5656cd53, stored in Redis with 5min TTL
+[DEBUG] 2026-01-30 09:39:28.099  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:39:28.099  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:39:28.106  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:28.112  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:39:28.112  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:39:28.116  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:39:28.126  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 3, loginName: chenyw, roleinfoId: 4
+[DEBUG] 2026-01-30 09:39:28.133  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==>  Preparing: select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url, m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time, m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth as smenu_auth FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id where m.parent_no is null AND ar.roleInfo_Id = ? ) a LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id where rm.parent_no is NOT null AND ar.roleInfo_Id = ? ) b on a.smenu_id = b.parent_no order by a.ssort_order,b.sort_order 
+[DEBUG] 2026-01-30 09:39:28.135  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==> Parameters: 4(Integer), 4(Integer)
+[DEBUG] 2026-01-30 09:39:28.155  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - <==      Total: 3
+[DEBUG] 2026-01-30 09:39:28.160  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==>  Preparing: SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id WHERE r.roleInfo_Id =? 
+[DEBUG] 2026-01-30 09:39:28.160  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==> Parameters: 4(String)
+[DEBUG] 2026-01-30 09:39:28.175  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - <==      Total: 3
+[DEBUG] 2026-01-30 09:39:43.522  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:39:43.524  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:39:43.527  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:43.534  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:39:43.535  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:39:43.538  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:39:43.573  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:39:43.573  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:39:43.588  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:43.594  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:39:43.595  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:39:43.713  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:39:45.610  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:39:45.610  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:39:45.613  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:45.621  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:39:45.621  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:39:45.624  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:39:45.643  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2026-01-30 09:39:45.643  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:39:45.648  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:39:45.657  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:39:45.658  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:39:45.797  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:40:24.612  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:40:24.613  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:40:24.619  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:40:24.624  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:40:24.624  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:40:24.627  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:40:24.638  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:40:24.638  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:40:24.652  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:40:24.659  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:40:24.660  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:40:24.764  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:40:59.255  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:40:59.256  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:40:59.260  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:40:59.272  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:40:59.273  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:40:59.278  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:40:59.285  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 3, loginName: chenyw, roleinfoId: 4
+[DEBUG] 2026-01-30 09:41:19.044  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:41:19.045  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:41:19.048  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:41:19.061  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:41:19.061  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:41:19.064  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:41:19.071  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 3, loginName: chenyw, roleinfoId: 4
+[INFO] 2026-01-30 09:41:19.822  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 2239, length: 4
+[INFO] 2026-01-30 09:41:19.831  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 43749afb-1cf2-465a-bbfd-c58178533d31, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:41:22.471  com.xiao.core.basic.sys.LoginController.java - Logout request - accessToken from header: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIzIiwiaWF0IjoxNzY5NzM3MTY3LCJzdWIiOiItIiwiaXNzIjoiLSIsImV4cCI6MTc3MDM0MTk2N30.569dv3kxAIf0vjnKetqNdN2j8DDgEVQRdxT-Fd3hd14
+[INFO] 2026-01-30 09:41:22.473  com.xiao.core.basic.sys.LoginController.java - Logout processing - member_id: 3, token valid: true
+[INFO] 2026-01-30 09:41:22.538  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 9804, length: 4
+[INFO] 2026-01-30 09:41:22.556  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: ba6f8645-f5ce-415c-8f56-2b038fc2144a, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:41:34.411  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: emhhbmd5, password length: 8, verifyCode: 9804, uucode: ba6f8645-f5ce-415c-8f56-2b038fc2144a, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:41:34.411  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: zhangy, verifyCode: 9804, uucode: ba6f8645-f5ce-415c-8f56-2b038fc2144a, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:41:34.411  com.xiao.core.basic.sys.LoginController.java - Process login - userName: zhangy, password length: 6, verifyCode: 9804, uucode: ba6f8645-f5ce-415c-8f56-2b038fc2144a, yzm: , oldyzmuuid: 
+[DEBUG] 2026-01-30 09:41:34.418  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-01-30 09:41:34.419  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: zhangy(String)
+[DEBUG] 2026-01-30 09:41:34.424  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:41:34.430  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-01-30 09:41:34.430  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: zhangy(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-01-30 09:41:34.438  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:41:34.445  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-01-30 09:41:34.446  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: 张艳(String), zhangy(String), e10adc3949ba59abbe56e057f20f883e(String), 13505742150(String), 4(Integer), 0(String), 99(Integer)
+[DEBUG] 2026-01-30 09:41:34.471  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:41:34.475  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:41:34.475  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:41:34.477  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:41:34.811  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 0063, length: 4
+[DEBUG] 2026-01-30 09:41:34.816  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:41:34.817  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:41:34.820  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[INFO] 2026-01-30 09:41:34.821  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 97090dc1-60a4-4d82-8900-2ae7b7d84d61, stored in Redis with 5min TTL
+[DEBUG] 2026-01-30 09:41:34.825  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:41:34.826  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:41:34.831  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:41:34.839  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 99, loginName: zhangy, roleinfoId: 4
+[DEBUG] 2026-01-30 09:41:34.842  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==>  Preparing: select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url, m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time, m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth as smenu_auth FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id where m.parent_no is null AND ar.roleInfo_Id = ? ) a LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id where rm.parent_no is NOT null AND ar.roleInfo_Id = ? ) b on a.smenu_id = b.parent_no order by a.ssort_order,b.sort_order 
+[DEBUG] 2026-01-30 09:41:34.843  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==> Parameters: 4(Integer), 4(Integer)
+[DEBUG] 2026-01-30 09:41:34.854  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - <==      Total: 3
+[DEBUG] 2026-01-30 09:41:34.859  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==>  Preparing: SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id WHERE r.roleInfo_Id =? 
+[DEBUG] 2026-01-30 09:41:34.859  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==> Parameters: 4(String)
+[DEBUG] 2026-01-30 09:41:34.862  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - <==      Total: 3
+[DEBUG] 2026-01-30 09:42:03.589  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:42:03.590  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:42:03.592  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:42:03.596  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:42:03.596  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:42:03.601  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:42:03.608  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:42:03.608  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:42:03.622  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:42:03.629  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:42:03.629  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:42:03.730  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:42:44.992  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:42:44.993  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:42:44.996  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:42:45.004  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:42:45.005  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:42:45.008  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:42:45.014  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 99, loginName: zhangy, roleinfoId: 4
+[DEBUG] 2026-01-30 09:42:45.256  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:42:45.256  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:42:45.259  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:42:45.264  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:42:45.264  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:42:45.268  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:42:45.275  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:42:45.275  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:42:45.289  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:42:45.295  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:42:45.295  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:42:45.397  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:43:12.114  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:43:12.114  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:43:12.119  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:43:12.124  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:43:12.124  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:43:12.127  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:43:12.135  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 99, loginName: zhangy, roleinfoId: 4
+[DEBUG] 2026-01-30 09:43:12.339  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:43:12.339  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:43:12.345  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:43:12.351  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:43:12.352  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:43:12.355  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:43:12.363  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:43:12.363  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:43:12.378  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:43:12.388  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:43:12.388  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:43:12.491  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[INFO] 2026-01-30 09:43:29.818  com.xiao.core.basic.sys.LoginController.java - Login JSON request received - params: {password=***(8 chars), verifyCode=1234, oldyzmuuid=, uucode=43749afb-1cf2-465a-bbfd-c58178533d31, userName=YWRtaW4=, yzm=}
+[INFO] 2026-01-30 09:43:29.819  com.xiao.core.basic.sys.LoginController.java - Login JSON parameters after decoding - userName: null, verifyCode: null, uucode: 43749afb-1cf2-465a-bbfd-c58178533d31, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:43:29.819  com.xiao.core.basic.sys.LoginController.java - Process login - userName: null, password length: 5, verifyCode: null, uucode: 43749afb-1cf2-465a-bbfd-c58178533d31, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:44:03.919  com.xiao.core.basic.sys.LoginController.java - Login JSON request received - params: {password=***(5 chars), verifyCode=1234, oldyzmuuid=, uucode=43749afb-1cf2-465a-bbfd-c58178533d31, userName=admin, yzm=}
+[INFO] 2026-01-30 09:44:03.919  com.xiao.core.basic.sys.LoginController.java - Login JSON parameters after decoding - userName: null, verifyCode: null, uucode: 43749afb-1cf2-465a-bbfd-c58178533d31, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:44:03.919  com.xiao.core.basic.sys.LoginController.java - Process login - userName: null, password length: 2, verifyCode: null, uucode: 43749afb-1cf2-465a-bbfd-c58178533d31, yzm: , oldyzmuuid: 
+[DEBUG] 2026-01-30 09:44:30.427  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:44:30.427  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:44:30.430  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:44:30.443  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:44:30.443  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:44:30.450  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:44:30.456  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 99, loginName: zhangy, roleinfoId: 4
+[DEBUG] 2026-01-30 09:44:30.630  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:44:30.630  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:44:30.636  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:44:30.655  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:44:30.657  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:44:30.660  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:44:30.685  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:44:30.685  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:44:30.700  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:44:30.723  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:44:30.723  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:44:30.828  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[INFO] 2026-01-30 09:44:52.402  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 3078, length: 4
+[INFO] 2026-01-30 09:44:52.408  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: e8d3f3d1-3da4-4023-9b8c-cdc819ee3ea6, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:45:03.383  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: admin, password length: 5, verifyCode: 1234, uucode: e8d3f3d1-3da4-4023-9b8c-cdc819ee3ea6, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:45:03.383  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: i٢, verifyCode: 1234, uucode: e8d3f3d1-3da4-4023-9b8c-cdc819ee3ea6, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:45:03.383  com.xiao.core.basic.sys.LoginController.java - Process login - userName: i٢, password length: 2, verifyCode: 1234, uucode: e8d3f3d1-3da4-4023-9b8c-cdc819ee3ea6, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:45:24.580  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 3109, length: 4
+[INFO] 2026-01-30 09:45:24.587  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 3e308b18-cd84-41a0-a970-970aebab8c7c, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:45:37.904  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: YWRtaW4=, password length: 8, verifyCode: 1234, uucode: 3e308b18-cd84-41a0-a970-970aebab8c7c, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:45:37.904  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: admin, verifyCode: 1234, uucode: 3e308b18-cd84-41a0-a970-970aebab8c7c, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:45:37.904  com.xiao.core.basic.sys.LoginController.java - Process login - userName: admin, password length: 5, verifyCode: 1234, uucode: 3e308b18-cd84-41a0-a970-970aebab8c7c, yzm: , oldyzmuuid: 
+[DEBUG] 2026-01-30 09:46:11.692  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:46:11.692  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:46:11.695  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:46:11.706  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:46:11.706  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:46:11.710  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:46:11.716  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 99, loginName: zhangy, roleinfoId: 4
+[DEBUG] 2026-01-30 09:46:11.893  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:46:11.894  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:46:11.896  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:46:11.903  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:46:11.904  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:46:11.907  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:46:11.921  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:46:11.921  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:46:11.935  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:46:11.941  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:46:11.941  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:46:12.045  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:46:25.690  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:46:25.690  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:46:25.692  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:46:25.698  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:46:25.698  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:46:25.700  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:46:25.711  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:46:25.711  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:46:25.725  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:46:25.731  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:46:25.731  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:46:25.834  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25
+[DEBUG] 2026-01-30 09:47:09.145  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:47:09.145  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 99(String)
+[DEBUG] 2026-01-30 09:47:09.149  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:47:09.157  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:47:09.159  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), zhangy(String), 张艳(String), 4(Integer)
+[DEBUG] 2026-01-30 09:47:09.162  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:47:09.174  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM bidding_info WHERE is_del=0 
+[DEBUG] 2026-01-30 09:47:09.174  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:47:09.179  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:47:09.188  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==>  Preparing: select id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url from bidding_info WHERE is_del=0 order by publish_date desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:47:09.188  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:47:09.309  com.xiao.core.biddingInfo.mapper.BiddingInfoMapper.queryByMap.java - <==      Total: 25
+[INFO] 2026-01-30 09:47:14.661  com.xiao.core.basic.sys.LoginController.java - Logout request - accessToken from header: eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OSIsImlhdCI6MTc2OTczNzI5NCwic3ViIjoiLSIsImlzcyI6Ii0iLCJleHAiOjE3NzAzNDIwOTR9.-fJfPjNGweLSX-79giWIm75HGsyJxWDmcaZz2zD9FWE
+[INFO] 2026-01-30 09:47:14.665  com.xiao.core.basic.sys.LoginController.java - Logout processing - member_id: 99, token valid: true
+[INFO] 2026-01-30 09:47:14.916  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 4308, length: 4
+[INFO] 2026-01-30 09:47:14.924  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: 6f1d6aad-d953-4f90-a7b9-a659fef4617f, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:59:09.220  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: Y2hlbnl3, password length: 8, verifyCode: 4308, uucode: 6f1d6aad-d953-4f90-a7b9-a659fef4617f, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:59:09.220  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: chenyw, verifyCode: 4308, uucode: 6f1d6aad-d953-4f90-a7b9-a659fef4617f, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:59:09.220  com.xiao.core.basic.sys.LoginController.java - Process login - userName: chenyw, password length: 6, verifyCode: 4308, uucode: 6f1d6aad-d953-4f90-a7b9-a659fef4617f, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:59:09.478  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 8066, length: 4
+[INFO] 2026-01-30 09:59:09.486  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: d4df32de-f397-48f2-9482-c8f2a8dd5149, stored in Redis with 5min TTL
+[INFO] 2026-01-30 09:59:14.381  com.xiao.core.basic.sys.LoginController.java - Login attempt - userName: Y2hlbnl3, password length: 8, verifyCode: 8066, uucode: d4df32de-f397-48f2-9482-c8f2a8dd5149, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:59:14.382  com.xiao.core.basic.sys.LoginController.java - Login parameters after decoding - userName: chenyw, verifyCode: 8066, uucode: d4df32de-f397-48f2-9482-c8f2a8dd5149, yzm: , oldyzmuuid: 
+[INFO] 2026-01-30 09:59:14.382  com.xiao.core.basic.sys.LoginController.java - Process login - userName: chenyw, password length: 6, verifyCode: 8066, uucode: d4df32de-f397-48f2-9482-c8f2a8dd5149, yzm: , oldyzmuuid: 
+[DEBUG] 2026-01-30 09:59:14.394  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==>  Preparing: SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes, o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id WHERE login_name = ? and oper_code is null ORDER BY o.operator_id 
+[DEBUG] 2026-01-30 09:59:14.395  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - ==> Parameters: chenyw(String)
+[DEBUG] 2026-01-30 09:59:14.399  com.xiao.core.basic.operator.mapper.OperatorMapper.queryByMap.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:59:14.406  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==>  Preparing: SELECT * FROM operator where login_name = ? and login_pwd = ? 
+[DEBUG] 2026-01-30 09:59:14.407  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - ==> Parameters: chenyw(String), e10adc3949ba59abbe56e057f20f883e(String)
+[DEBUG] 2026-01-30 09:59:14.411  com.xiao.core.basic.operator.mapper.OperatorMapper.queryLogin.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:59:14.418  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==>  Preparing: UPDATE operator SET real_Name = ? , login_name=?, login_pwd=? , phone_tel=?, roleinfoId=?, failTimes = ?, lastTime = null, companyName=?, unifiedCode=?, corporate=?, phoneNo=?, jbrxm=?, jbrphone=?, edit_time = now() WHERE operator_id = ? 
+[DEBUG] 2026-01-30 09:59:14.419  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - ==> Parameters: 陈用威(String), chenyw(String), e10adc3949ba59abbe56e057f20f883e(String), 18858484349(String), 4(Integer), 0(String), 胜达高科信息工程有限公司(String), 123(String), 徐杰(String), 123(String), 陈用威(String), 18858484349(String), 3(Integer)
+[DEBUG] 2026-01-30 09:59:14.423  com.xiao.core.basic.operator.mapper.OperatorMapper.update.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:59:14.427  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:59:14.428  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 用户登录(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:59:14.431  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:59:14.637  com.xiao.core.basic.sys.LoginController.java - Captcha generated - text: 6860, length: 4
+[INFO] 2026-01-30 09:59:14.647  com.xiao.core.basic.sys.LoginController.java - Captcha UUID generated: ee21f760-8182-4c47-8942-1d7b2b181f5e, stored in Redis with 5min TTL
+[DEBUG] 2026-01-30 09:59:14.766  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:59:14.766  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:59:14.768  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:59:14.772  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:59:14.772  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 获取用户信息操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:59:14.777  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[INFO] 2026-01-30 09:59:14.781  com.xiao.core.basic.sys.LoginController.java - Get user info request - operatorId: 3, loginName: chenyw, roleinfoId: 4
+[DEBUG] 2026-01-30 09:59:14.786  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==>  Preparing: select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url, m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time, m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth as smenu_auth FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id where m.parent_no is null AND ar.roleInfo_Id = ? ) a LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id where rm.parent_no is NOT null AND ar.roleInfo_Id = ? ) b on a.smenu_id = b.parent_no order by a.ssort_order,b.sort_order 
+[DEBUG] 2026-01-30 09:59:14.786  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - ==> Parameters: 4(Integer), 4(Integer)
+[DEBUG] 2026-01-30 09:59:14.795  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryChildMenuByUserSub.java - <==      Total: 3
+[DEBUG] 2026-01-30 09:59:14.799  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==>  Preparing: SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id WHERE r.roleInfo_Id =? 
+[DEBUG] 2026-01-30 09:59:14.799  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - ==> Parameters: 4(String)
+[DEBUG] 2026-01-30 09:59:14.802  com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper.queryMenuBtn.java - <==      Total: 3
+[DEBUG] 2026-01-30 09:59:17.211  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==>  Preparing: SELECT * FROM operator where operator_id = ? 
+[DEBUG] 2026-01-30 09:59:17.212  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - ==> Parameters: 3(String)
+[DEBUG] 2026-01-30 09:59:17.216  com.xiao.core.basic.operator.mapper.OperatorMapper.queryById.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:59:17.220  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==>  Preparing: INSERT INTO operator_log( remark,loginName,userName,roleId,createTime ) VALUES( ?, ?, ?, ?, now() ) 
+[DEBUG] 2026-01-30 09:59:17.221  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - ==> Parameters: 查询列表操作(String), chenyw(String), 陈用威(String), 4(Integer)
+[DEBUG] 2026-01-30 09:59:17.224  com.xiao.core.basic.operator_log.mapper.OperatorLogMapper.insert.java - <==    Updates: 1
+[DEBUG] 2026-01-30 09:59:17.234  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==>  Preparing: SELECT COUNT(1) FROM zhongbiao WHERE is_del=0 
+[DEBUG] 2026-01-30 09:59:17.234  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - ==> Parameters: 
+[DEBUG] 2026-01-30 09:59:17.248  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByCount.java - <==      Total: 1
+[DEBUG] 2026-01-30 09:59:17.254  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==>  Preparing: select id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content from zhongbiao WHERE is_del=0 order by publishDate desc LIMIT ?, ? 
+[DEBUG] 2026-01-30 09:59:17.254  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - ==> Parameters: 0(Integer), 25(Integer)
+[DEBUG] 2026-01-30 09:59:17.384  com.xiao.core.zhongbiao.mapper.ZhongbiaoMapper.queryByMap.java - <==      Total: 25

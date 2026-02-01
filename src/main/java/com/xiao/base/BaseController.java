@@ -39,7 +39,7 @@ public class BaseController {
 	 *
 	 */
 	public static ResultModel sendFailureMessage(String message) {
-		return new ResultModel(false,message);
+		return ResultModel.error(message);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class BaseController {
 	 *
 	 */
 	public static ResultModel sendSuccessMessage(String message) {
-		return new ResultModel(true,message);
+		return ResultModel.success(message);
 	}
 
 }

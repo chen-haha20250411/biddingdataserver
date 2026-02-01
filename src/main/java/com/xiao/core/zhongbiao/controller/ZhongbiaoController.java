@@ -8,6 +8,7 @@ import com.xiao.constans.E;
 import com.xiao.core.basic.operator.domain.Operator;
 import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
+import com.xiao.util.PageUtils;
 import com.xiao.util.StringUtil;
 import javax.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +53,7 @@ public class ZhongbiaoController extends BaseController{
 		List<Zhongbiao> zhongbiaoList = zhongbiaoService.queryByMap(page.getQueryParams());
 		//查询结果
 		page.setList(zhongbiaoList);
-		return new ResultModel(true,"返回list数据").setData(page);
+		return PageUtils.pageSuccess(page);
 	}
 
 	/**
@@ -68,7 +69,7 @@ public class ZhongbiaoController extends BaseController{
 		}catch (Exception e) {
 			e.printStackTrace();
 			log.error("删除异常:"+e.getMessage());
-			return new ResultModel(false,"网络异常，操作失败");
+			return sendFailureMessage("网络异常，操作失败");
 		}
 	}
 
@@ -86,12 +87,12 @@ public class ZhongbiaoController extends BaseController{
 			if(flag){
 				return new ResultModel(true,"保存成功");
 			}else{
-				return new ResultModel(false,"保存失败，请重试");
+				return sendFailureMessage("保存失败，请重试");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("删除异常:"+e.getMessage());
-			return new ResultModel(false,"网络异常，操作失败");
+			return sendFailureMessage("网络异常，操作失败");
 		}
 	}
 	/**

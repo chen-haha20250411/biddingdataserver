@@ -19,9 +19,9 @@
 
 <!-- 查询列表带分页 -->
 <select id="queryByMap" resultMap="zhongbiao">
-	 select
+ select
 	id,publishDate,projectNo,customer,noticeType,title,productLabels,winnerAmount,remark,winnerPrincipal,html_url,html_content
-	  from zhongbiao 
+	  from zhongbiao
 	<where>
 	    is_del=0
  		<if test="publishDate != null and publishDate != ''">
