@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.admin_menu.mapper.AdminMenuMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="menu" type="com.xiao.core.basic.admin_menu.domain.AdminMenu">
+		<id column="menu_id" property="menuId" />
+		<result column="menu_name" property="menuName" />
+		<result column="menu_url" property="menuURL" />
+		<result column="state" property="state" />
+		<result column="parent_no" property="parentNo" />
+		<result column="operato_no" property="operatoNo" />
+		<result column="add_Time" property="addTime" />
+		<result column="edit_Time" property="editTime" />
+		<result column="sort_order" property="sortOrder" />
+		<result column="imageurl" property="imageurl" />
+		<result column="menu_auth" property="menu_auth" />
+	</resultMap>
+
+	<resultMap id="subMenuList" type="com.xiao.core.basic.admin_menu.domain.AdminMenu">
+		<id column="smenu_id" property="menuId" />
+		<result column="smenu_name" property="menuName" />
+		<result column="smenu_url" property="menuURL" />
+		<result column="sstate" property="state" />
+		<result column="sparent_no" property="parentNo" />
+		<result column="soperato_no" property="operatoNo" />
+		<result column="sadd_Time" property="addTime" />
+		<result column="sedit_Time" property="editTime" />
+		<result column="ssort_order" property="sortOrder" />
+		<result column="simageurl" property="imageurl" />
+		<result column="smenu_auth" property="menu_auth" />
+		<collection resultMap="menu" property="subMenuList"  />
+	</resultMap>
+
+
+	<resultMap type="com.xiao.core.basic.admin_btn.domain.AdminBtn" id="menuBtn">
+		<id column="btn_id" property="btnId" />
+		<result column="menu_Id" property="menuId" />
+		<result column="btnName" property="btnName" />
+		<result column="btnType" property="btnType" />
+		<result column="menu_url" property="menuURL" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+	<select id="queryChildMenuByUserSub" resultMap="subMenuList" parameterType="java.lang.String">
+		select * from ( SELECT m.menu_id as smenu_id,m.menu_name as smenu_name,m.menu_url as smenu_url,
+		m.state as sstate,m.parent_no as sparent_no,m.add_Time as sadd_Time,
+		m.edit_Time as sedit_Time,m.sort_order as ssort_order,m.imageurl as simageurl,m.menu_auth  as smenu_auth
+		FROM admin_menu m LEFT JOIN admin_rolemenu ar on m.menu_Id = ar.menu_Id
+		where m.parent_no is null
+		<if test="roleInfoId != null and roleInfoId != '' ">
+			AND ar.roleInfo_Id = #{roleInfoId}
+		</if>
+		) a  LEFT JOIN ( select rm.* from admin_menu rm LEFT JOIN admin_rolemenu ar on rm.menu_Id = ar.menu_Id
+			where rm.parent_no is NOT null
+			<if test="roleInfoId != null and roleInfoId != '' ">
+				AND ar.roleInfo_Id = #{roleInfoId}
+			</if>
+		)  b  on a.smenu_id = b.parent_no
+		order by a.ssort_order,b.sort_order
+	</select>
+
+	<select id="queryMenuByUser" resultMap="menu">
+		SELECT * FROM admin_menu m
+		LEFT JOIN admin_rolemenu rm on m.menu_Id = rm.menu_Id
+		<where>
+			<if test="roleInfoId != null and roleInfoId != '' ">
+				AND rm.roleInfo_Id = #{roleInfoId}
+			</if>
+			<choose>
+				<when test="parentNo != null and parentNo != '' ">
+					AND m.parent_no = #{parentNo}
+				</when>
+				<otherwise>
+					AND m.parent_no is null
+				</otherwise>
+			</choose>
+			order by m.sort_order
+		</where>
+	</select>
+
+	<select id="queryMenuBtn" resultMap="menuBtn" parameterType="java.lang.String">
+		<!-- SELECT a.menu_url, b.btnType from admin_btn b ,admin_menu a
+		WHERE b.menu_Id = a.menu_id and b.btn_id in(
+		SELECT btn_id FROM admin_roleBtn r
+		WHERE r.roleInfo_Id =#{value,jdbcType=INTEGER}
+		) -->
+		SELECT a.menu_Id,a.menu_url, m.btnType FROM `admin_menu` a
+		LEFT JOIN admin_btn m on a.menu_Id=m.menu_Id
+		LEFT JOIN admin_rolebtn r on r.btn_id=m.btn_id
+		WHERE r.roleInfo_Id =#{value,jdbcType=INTEGER}
+	</select>
+
+	<!-- 获取子菜单 -->
+	<select id="queryChildMenu" resultMap="menu" parameterType="int">
+		SELECT * FROM admin_menu m
+		<where>
+			<if test="value != null and value != '' ">
+				AND m.parent_no = #{value}
+			</if>
+		</where>
+	</select>
+
+
+	<!-- 获取角色 -->
+	<select id="queryMenuList" resultMap="menu">
+		SELECT * FROM admin_menu r
+		<where>
+			<choose>
+				<when test="parentNo != null and parentNo != '' ">
+					parent_no = #{parentNo}
+				</when>
+				<otherwise>
+					parent_no is null
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+
+	<select id="queryById" resultMap="menu" parameterType="int">
+		select a.menu_id,a.menu_name,b.menu_name as menuName1,a.menu_auth from admin_menu a
+		,admin_menu b
+		where a.parent_no =b.menu_id and a.menu_id=#{value,jdbcType=INTEGER}
+	</select>
+
+
+	<select id="queryAllAuthinfoBtn" resultMap="menuBtn">
+		select * from
+		admin_btn b
+	</select>
+
+</mapper>

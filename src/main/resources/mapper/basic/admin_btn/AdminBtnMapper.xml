@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.admin_btn.mapper.AdminBtnMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="admin_btn" type="com.xiao.core.basic.admin_btn.domain.AdminBtn">
+		<id column="btn_id" property="btnId" />
+		<result column="menu_Id" property="menuId" />
+		<result column="btnName" property="btnName" />
+		<result column="btnType" property="btnType" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+	<!-- 查询列表带分页 -->
+
+	<select id="queryByMap" resultMap="admin_btn">
+		select btn_id,menu_Id,btnName,btnType,remark from admin_btn
+		<where>
+			<if test="menuId != null and menuId != ''">
+				AND menu_Id = #{menuId}
+			</if>
+			<if test="btnName != null and btnName != ''">
+				AND btnName = #{btnName}
+			</if>
+			<if test="btnType != null and btnType != ''">
+				AND btnType = #{btnType}
+			</if>
+			<if test="remark != null and remark != ''">
+				AND remark = #{remark}
+			</if>
+		</where>
+		limit #{startRow ,jdbcType=NUMERIC},#{endRow, jdbcType=NUMERIC}
+	</select>
+</mapper>

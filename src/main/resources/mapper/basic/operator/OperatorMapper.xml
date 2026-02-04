@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.operator.mapper.OperatorMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="operator" type="com.xiao.core.basic.operator.domain.Operator">
+		<id column="operator_id" property="operatorId" />
+		<result column="real_Name" property="realName" />
+		<result column="login_name" property="loginName" />
+		<result column="login_pwd" property="loginPwd" />
+		<result column="phone_tel" property="phoneTel" />
+		<result column="email" property="email" />
+		<result column="roleinfoId" property="roleinfoId" />
+		<result column="role_Name" property="roleName"/>
+		<result column="add_time" property="addTime" />
+		<result column="edit_time" property="editTime" />
+		<result column="oper_code" property="oper_code"/>
+		<result column="lastTime" property="lastTime"/>
+		<result column="failTimes" property="failTimes"/>
+		<result column="companyName" property="companyName"/>
+		<result column="unifiedCode" property="unifiedCode"/>
+		<result column="corporate" property="corporate"/>
+		<result column="phoneNo" property="phoneNo"/>
+		<result column="jbrxm" property="jbrxm"/>
+	 	<result column="jbrphone" property="jbrphone"/>
+	</resultMap>
+
+	<!-- Result Map -->
+	<resultMap type="com.xiao.core.basic.admin_roleinfo.domain.AdminRoleinfo" id="roleInfo">
+		<result column="roleInfo_Id" property="roleInfoId"/>
+		<result column="role_Name" property="roleName"/>
+	</resultMap>
+
+	<!-- 用户登录 -->
+	<select id="queryLogin"  resultMap="operator">
+		  SELECT * FROM operator
+		  where login_name =  #{loginName,jdbcType=VARCHAR} and
+		  login_pwd = #{loginPwd,jdbcType=VARCHAR}
+	</select>
+
+
+	<!-- 添加操作员 -->
+	<insert id="insert" parameterType="Object">
+		<selectKey resultType="java.lang.Integer" keyProperty="operatorId" order="AFTER" >
+	    	SELECT @@IDENTITY
+	  	</selectKey>
+	  INSERT INTO operator(
+	  	real_Name,login_name,login_pwd,phone_tel,email,roleinfoId,add_time,edit_time,oper_code,lastTime,failTimes,companyName,unifiedCode,corporate,phoneNo,jbrxm,jbrphone
+	  ) VALUES(
+		  #{realName},#{loginName},#{loginPwd},#{phoneTel},#{email},#{roleinfoId},now(),#{editTime},#{oper_code},#{lastTime},#{failTimes},
+		  #{companyName},#{unifiedCode},#{corporate},#{phoneNo},#{jbrxm},#{jbrphone}
+	  )
+	</insert>
+
+	<!-- 得到指定的操作员 -->
+	<select id="queryById" resultMap="operator" >
+	 	SELECT * FROM operator where operator_id = #{value}
+	</select>
+
+	<!-- 获取操作员-->
+	<select id="queryByMap" resultMap="operator" >
+		SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes,
+		o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone
+		FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id
+		<where>
+			<if test="loginName != null and loginName != '' ">
+				<!-- and login_name like '%${loginName}%' -->
+				and login_name like concat('%',#{loginName},'%')
+			</if>
+			<if test="loginNameQuery != null and loginNameQuery != '' ">
+				and login_name = #{loginNameQuery}
+				and oper_code is null
+			</if>
+			<if test="roleinfoId != null and roleinfoId != ''">
+				and o.roleinfoId = #{roleinfoId}
+			</if>
+			<if test="operator_id != null and operator_id != ''">
+				and o.operator_id = #{operator_id}
+			</if>
+			<if test="getTokenName != null and getTokenName != ''">
+				and login_name = #{getTokenName} 
+				and oper_code = 2
+			</if>
+		</where>
+		ORDER BY o.operator_id
+		<if test="rowIndex != null and rowNum != null">
+			LIMIT  #{rowIndex}, #{rowNum}
+		</if>
+	</select>
+
+	<!-- 总条数 -->
+	<select id="queryByCount" resultType="int">
+	 	SELECT COUNT(*) FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id
+	 	<where>
+			<if test="loginName != null and loginName != '' ">
+				<!-- and login_name like '%${loginName}%' -->
+				and login_name like concat('%',#{loginName},'%')
+			</if>
+			<if test="roleinfoId != null and roleinfoId != ''">
+				and o.roleinfoId = #{roleinfoId}
+			</if>
+			<if test="operator_id != null and operator_id != ''">
+				and o.operator_id = #{operator_id}
+			</if>
+		</where>
+		ORDER BY o.operator_id
+	</select>
+
+	<!-- 修改操作员信息-->
+	<update id="update" parameterType="Object">
+		  UPDATE operator
+		  SET
+		  	  <if test="realName != null and realName != '' ">
+		  		 real_Name = #{realName} ,
+		  	  </if>
+		  	  <if test="loginName != null and loginName != '' ">
+		  	  	 login_name=#{loginName},
+		  	  </if>
+		  	  <if test="loginPwd != null and loginPwd != '' ">
+		  		 login_pwd=#{loginPwd} ,
+		  	  </if>
+		  	  <if test="phoneTel != null and phoneTel != '' ">
+		  		 phone_tel=#{phoneTel},
+		  	  </if>
+		  	  <if test="email != null and email != '' ">
+		  		 email=#{email},
+		  	  </if>
+		  	  <if test="roleinfoId != null and roleinfoId != '' ">
+		  		 roleinfoId=#{roleinfoId},
+		  	  </if>
+		  	  <if test="oper_code != null and oper_code != '' ">
+		  		 oper_code=#{oper_code},
+		  	  </if>
+		  	  <if test="lastTime == 'fail'">
+				 lastTime = now(),
+			  </if>
+			  <if test="failTimes != null">
+				 failTimes = #{failTimes},
+			  </if>
+			  <if test="lastTime == 'empt'">
+				 lastTime = null,
+			  </if>
+			   <if test="companyName != null and companyName != '' ">
+		  		 companyName=#{companyName},
+		  	  </if>
+		  	   <if test="unifiedCode != null and unifiedCode != '' ">
+		  		 unifiedCode=#{unifiedCode},
+		  	  </if>
+		  	   <if test="corporate != null and corporate != '' ">
+		  		 corporate=#{corporate},
+		  	  </if>
+		  	   <if test="phoneNo != null and phoneNo != '' ">
+		  		 phoneNo=#{phoneNo},
+		  	  </if>
+		  	  <if test="jbrxm != null and jbrxm != '' ">
+		  		 jbrxm=#{jbrxm},
+		  	  </if>
+		  	  <if test="jbrphone != null and jbrphone != '' ">
+		  		 jbrphone=#{jbrphone},
+		  	  </if>
+		  	  edit_time	= now()
+		  WHERE operator_id = #{operatorId}
+	</update>
+
+	<!-- 查询用户名是否重复 -->
+	<select id="queryRepeat" parameterType="String" resultType="Integer">
+	 	SELECT COUNT(*) FROM operator where login_name = #{value} and oper_code is null
+	</select>
+
+	<!-- 删除用户信息 -->
+	<delete id="deleteById" parameterType="String">
+		DELETE FROM operator WHERE operator_id = #{value}
+	</delete>
+
+	<!-- 批量删除用户信息 -->
+	<delete id="deletes" parameterType="String">
+		DELETE FROM operator WHERE operator_id in
+		 <foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+		   #{item}
+		  </foreach>
+	</delete>
+
+	<!-- 获取已知角色 -->
+	<select id="queryAllRole" resultMap="roleInfo">
+	 	SELECT roleInfo_Id , role_Name  FROM admin_roleinfo
+	 	<where>
+			<if test="roleName != null and roleName != '' ">
+				<!-- and role_Name like '%${roleName}%' -->
+				and role_Name like concat('%',#{roleName},'%')
+			</if>
+		</where>
+	</select>
+
+	 <!-- 获取所有用户 -->
+	 <select id="queryAllUser" resultMap="operator">
+	   SELECT * FROM operator
+	 </select>
+
+	<!-- 获取所有用户 -->
+	<select id="queryByAll" resultMap="operator">
+	   SELECT * FROM operator
+	 </select>
+
+	<!-- 获取所有用户 -->
+	<select id="queryUserForSup" resultMap="operator">
+	   SELECT * FROM operator  where roleinfoId = #{value}
+	 </select>
+	 <!-- 根据realName获取供应商 -->
+	<select id="queryUserByRealName" resultMap="operator">
+	   SELECT * FROM operator  where real_Name = #{value} and roleinfoId = 4 
+	</select>
+</mapper>

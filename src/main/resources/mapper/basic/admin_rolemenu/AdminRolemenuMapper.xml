@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.admin_rolemenu.mapper.AdminRolemenuMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.xiao.core.basic.admin_rolemenu.domain.AdminRolemenu">
+		<result column="menu_Id" property="menuId" />
+		<result column="roleInfo_Id" property="roleInfoId" />
+	</resultMap>
+
+</mapper>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.sys_dict.mapper.Sys_dictMapper">
+<resultMap id="sys_dict" type="com.xiao.core.basic.sys_dict.domain.Sys_dict">
+   	<result column="dict_id" property="dict_id"/>
+	<result column="parent_id" property="parent_id"/>
+   	<result column="dict_name" property="dict_name"/>
+   	<result column="dict_type" property="dict_type"/>
+   	<result column="dict_order" property="dict_order"/>
+   	<result column="dict_stat" property="dict_stat"/>
+   	<result column="param_name" property="param_name"/>
+   	<result column="addtime" property="addtime"/>
+   	<result column="edittime" property="edittime"/>
+   	<result column="add_operid" property="add_operid"/>
+   	<result column="edit_operid" property="edit_operid"/>
+   	<result column="tax" property="tax"/>
+   	<result column="type_code" property="typeCode"/>
+</resultMap>
+
+<!-- 查询列表带分页 -->
+<select id="queryByMap" resultMap="sys_dict">
+	 select
+		dict_id,parent_id,dict_name,dict_type,dict_order,dict_stat,param_name,addtime,edittime,add_operid,edit_operid,tax,type_code
+	  from sys_dict
+	<where>
+ 		<if test="dict_name != null and dict_name != ''">
+			 AND dict_name = #{dict_name}
+		</if>
+		<if test="dict_nameQuery != null and dict_nameQuery != ''">
+			 AND dict_name like concat('%',#{dict_nameQuery},'%') 
+		</if>
+		<if test="parent_id != null and parent_id != '' ">
+			AND parent_id = #{parent_id}
+		</if>
+ 		<if test="dict_type != null and dict_type != ''">
+			 AND dict_type = #{dict_type}
+		</if>
+ 		<if test="dict_order != null and dict_order != ''">
+			 AND dict_order = #{dict_order}
+		</if>
+ 		<if test="dict_stat != null and dict_stat != ''">
+			 AND dict_stat = #{dict_stat}
+		</if>
+ 		<if test="param_name != null and param_name != ''">
+			 AND param_name = #{param_name}
+		</if>
+ 		<if test="addtime != null and addtime != ''">
+			 AND addtime = #{addtime}
+		</if>
+ 		<if test="edittime != null and edittime != ''">
+			 AND edittime = #{edittime}
+		</if>
+ 		<if test="add_operid != null and add_operid != ''">
+			 AND add_operid = #{add_operid}
+		</if>
+ 		<if test="edit_operid != null and edit_operid != ''">
+			 AND edit_operid = #{edit_operid}
+		</if>
+		<if test="tax != null and tax != ''">
+			 AND tax = #{tax}
+		</if>
+		<if test="typeCode != null and typeCode != ''">
+			 AND type_code = #{typeCode}
+		</if>
+		<if test="dict_id != null and dict_id != ''">
+			 AND dict_id = #{dict_id}
+		</if>
+		<if test="idList != null and idList >0">
+			 AND dict_id in
+			 <foreach collection="idList" item="i" open="(" close=")" separator=",">
+			 	#{i}
+			 </foreach>
+		</if>
+		<if test="list != null and list.size() >0">
+			 AND dict_type in 
+			 <foreach collection="list" item="i" open="(" close=")" separator=",">
+			 	#{i}
+			 </foreach>
+		</if>
+	 </where>
+	 order by addtime desc,dict_order asc
+	 <if test="rowIndex != null and rowNum != null">
+	 	LIMIT  #{rowIndex}, #{rowNum}
+	 </if>
+</select>
+
+<!-- 查询总的条数 用于分页 -->
+<select id="queryByCount" resultType="int">
+	 SELECT COUNT(1) FROM sys_dict
+	 <where>
+ 		<if test="dict_name != null and dict_name != ''">
+			 AND dict_name = #{dict_name}
+		</if>
+		<if test="dict_nameQuery != null and dict_nameQuery != ''">
+			 AND dict_name like concat('%',#{dict_nameQuery},'%') 
+		</if>
+		 <if test="parent_id != null and parent_id != '' ">
+			 AND parent_id = #{parent_id}
+		 </if>
+ 		<if test="dict_type != null and dict_type != ''">
+			 AND dict_type = #{dict_type}
+		</if>
+ 		<if test="dict_order != null and dict_order != ''">
+			 AND dict_order = #{dict_order}
+		</if>
+ 		<if test="dict_stat != null and dict_stat != ''">
+			 AND dict_stat = #{dict_stat}
+		</if>
+ 		<if test="param_name != null and param_name != ''">
+			 AND param_name = #{param_name}
+		</if>
+ 		<if test="addtime != null and addtime != ''">
+			 AND addtime = #{addtime}
+		</if>
+ 		<if test="edittime != null and edittime != ''">
+			 AND edittime = #{edittime}
+		</if>
+ 		<if test="add_operid != null and add_operid != ''">
+			 AND add_operid = #{add_operid}
+		</if>
+ 		<if test="edit_operid != null and edit_operid != ''">
+			 AND edit_operid = #{edit_operid}
+		</if>
+		<if test="tax != null and tax != ''">
+			 AND tax = #{tax}
+		</if>
+		<if test="typeCode != null and typeCode != ''">
+			 AND type_code = #{typeCode}
+		</if>
+	 </where>
+</select>
+
+<!-- 添加sys_dict数据-->
+<insert id="insert" parameterType="Object" useGeneratedKeys="true" keyProperty="dict_id">
+	<selectKey resultType="java.lang.String" keyProperty="dict_id" order="AFTER" >
+	    SELECT @@IDENTITY
+	 </selectKey>
+	 INSERT INTO sys_dict(
+		dict_name,parent_id,dict_type,dict_order,dict_stat,param_name,addtime,edittime,add_operid,edit_operid,tax,type_code
+	) VALUES(
+ 		#{dict_name},
+ 		#{parent_id},
+ 		#{dict_type},
+ 		#{dict_order},
+ 		#{dict_stat},
+ 		#{param_name},
+ 		#{addtime},
+ 		#{edittime},
+ 		#{add_operid},
+ 		#{edit_operid},
+ 		#{tax},
+ 		#{typeCode}
+	)
+</insert>
+
+<!-- 批量添加sys_dict数据-->
+<insert id="insertList" parameterType="Object" useGeneratedKeys="true" keyProperty="dict_id">
+	 INSERT INTO sys_dict(
+		dict_name,parent_id,dict_type,dict_order,dict_stat,param_name,addtime,edittime,add_operid,edit_operid,tax,type_code
+	) VALUES
+	<foreach collection="list" item="i" separator=",">
+	(
+ 		#{i.dict_name},
+ 		#{i.parent_id},
+ 		#{i.dict_type},
+ 		#{i.dict_order},
+ 		#{i.dict_stat},
+ 		#{i.param_name},
+ 		#{i.addtime},
+ 		#{i.edittime},
+ 		#{i.add_operid},
+ 		#{i.edit_operid},
+ 		#{i.tax},
+ 		#{i.typeCode}
+	)
+	</foreach>
+</insert>
+
+<!-- 更新sys_dict数据 -->
+<update id="update" parameterType="Object">
+	 UPDATE sys_dict SET
+	 <trim  suffixOverrides=",">
+		 <if test="parent_id != null and parent_id != ''">
+			 parent_id = #{parent_id},
+		 </if>
+		 <if test="dict_name != null and dict_name != ''">
+			 dict_name = #{dict_name},
+		 </if>
+		 <if test="dict_type != null and dict_type != ''">
+			 dict_type = #{dict_type},
+		 </if>
+		 <if test="dict_order != null and dict_order != ''">
+			 dict_order = #{dict_order},
+		 </if>
+		 <if test="dict_stat != null and dict_stat != ''">
+			 dict_stat = #{dict_stat},
+		 </if>
+		 <if test="param_name != null and param_name != ''">
+			 param_name = #{param_name},
+		 </if>
+		 <if test="addtime != null and addtime != ''">
+			 addtime = #{addtime},
+		 </if>
+		 <if test="edittime != null and edittime != ''">
+			 edittime = #{edittime},
+		 </if>
+		 <if test="add_operid != null and add_operid != ''">
+			 add_operid = #{add_operid},
+		 </if>
+		 <if test="edit_operid != null and edit_operid != ''">
+			 edit_operid = #{edit_operid},
+		 </if>
+		 <if test="tax != null and tax != ''">
+			 tax = #{tax},
+		 </if>
+		 <if test="typeCode != null and typeCode != ''">
+			 type_code = #{typeCode},
+		 </if>
+	 </trim>
+	 WHERE dict_id = #{dict_id}
+</update>
+
+<!-- 批量更新sys_dict数据 -->
+<update id="updateList" parameterType="Object">
+	<foreach collection="list" item="i" open="" close="" separator=";">
+	 UPDATE sys_dict SET
+	 <trim  suffixOverrides=",">
+		 <if test="i.parent_id != null and i.parent_id != ''">
+			 parent_id = #{i.parent_id},
+		 </if>
+		 <if test="i.dict_name != null and i.dict_name != ''">
+			 dict_name = #{i.dict_name},
+		 </if>
+		 <if test="i.dict_type != null and i.dict_type != ''">
+			 dict_type = #{i.dict_type},
+		 </if>
+		 <if test="i.dict_order != null and i.dict_order != ''">
+			 dict_order = #{i.dict_order},
+		 </if>
+		 <if test="i.dict_stat != null and i.dict_stat != ''">
+			 dict_stat = #{i.dict_stat},
+		 </if>
+		 <if test="i.param_name != null and i.param_name != ''">
+			 param_name = #{i.param_name},
+		 </if>
+		 <if test="i.addtime != null and i.addtime != ''">
+			 addtime = #{i.addtime},
+		 </if>
+		 <if test="i.edittime != null and i.edittime != ''">
+			 edittime = #{i.edittime},
+		 </if>
+		 <if test="i.add_operid != null and i.add_operid != ''">
+			 add_operid = #{i.add_operid},
+		 </if>
+		 <if test="i.edit_operid != null and i.edit_operid != ''">
+			 edit_operid = #{i.edit_operid},
+		 </if>
+		 <if test="i.tax != null and i.tax != ''">
+			 tax = #{i.tax},
+		 </if>
+		 <if test="i.typeCode != null and i.typeCode != ''">
+			 type_code = #{i.typeCode},
+		 </if>
+	 </trim>
+	 WHERE dict_id = #{i.dict_id}
+	</foreach>
+</update>
+
+<!-- 删除sys_dict数据 -->
+<delete id="deleteById" parameterType="String">
+	 delete from sys_dict WHERE dict_id=#{dict_id}
+</delete>
+
+<!-- 根据sys_dict主键查询数据 -->
+<select id="queryById" resultMap="sys_dict" parameterType="Object">
+	 SELECT
+		parent_id,dict_id,dict_name,dict_type,dict_order,dict_stat,param_name,addtime,edittime,add_operid,edit_operid,tax,type_code
+	 FROM sys_dict
+	 WHERE dict_id = #{dict_id}
+</select>
+
+<!-- 批量删除用户信息 -->
+<delete id="deleteByMap" parameterType="Object">
+	DELETE FROM sys_dict WHERE dict_id in
+	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+	   #{item}
+	</foreach>
+</delete>
+
+<!-- 根据sys_dict多个主键查询数据 -->
+<select id="queryByIds" resultMap="sys_dict" parameterType="Object">
+	SELECT
+	  parent_id,dict_id,dict_name,dict_type,dict_order,dict_stat,param_name,addtime,edittime,add_operid,edit_operid,tax,type_code
+	 FROM sys_dict WHERE  dict_type in
+	<foreach item="item" index="index" collection="list"  open="(" separator="," close=")">
+	   #{item}
+	</foreach>
+</select>
+
+	<select id="queryBytypeIdaall" resultMap="sys_dict" >
+	 SELECT
+		parent_id,dict_id,dict_name,dict_type
+	 FROM sys_dict
+	 WHERE dict_type = #{dict_type} and parent_id is null
+	 order by dict_order
+</select>
+
+	<select id="queryBytypeIdParents" resultMap="sys_dict" >
+	 SELECT
+		parent_id,dict_id,dict_name,dict_type
+	 FROM sys_dict
+	 WHERE parent_id = #{parent_id}
+	 order by dict_order
+</select>
+</mapper>

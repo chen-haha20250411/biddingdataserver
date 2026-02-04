@@ -1,0 +1,19 @@
+# IDE
+.idea/
+*.iml
+
+# 日志
+*.log
+logs/
+backend.log
+
+# 编译输出
+target/
+
+# 临时文件
+*.tmp
+*~
+*.bak
+
+# 其他
+java_files.txt

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.basic.operator_log.mapper.OperatorLogMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="log" type="com.xiao.core.basic.operator_log.domain.OperatorLog">
+		<id column="operatorLogId" property="operatorLogId" />
+		<result column="remark" property="remark" />
+		<result column="loginName" property="loginName" />
+		<result column="userName" property="userName" />
+		<result column="roleId" property="roleId" />
+		<result column="role_Name" property="roleName"/>
+		<result column="createTime" property="createTime" />
+	</resultMap>
+	<!-- 添加日志数据 -->
+	<insert id="insert" parameterType="Object">
+		INSERT INTO operator_log(
+		remark,loginName,userName,roleId,createTime
+		) VALUES(
+		#{remark,jdbcType=VARCHAR},
+		#{loginName,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{roleId,jdbcType=INTEGER},
+		now()
+		)
+	</insert>
+
+	<!-- 获取日志 -->
+	<select id="queryByMap" resultMap="log">
+		SELECT
+		a.operatorLogId,a.remark,a.loginName,a.userName,a.createTime,b.role_Name
+		from operator_log a left join admin_roleinfo b on
+		a.roleId=b.roleInfo_Id
+		<where>
+			<if test="loginName != null and loginName != '' ">
+				and loginName like CONCAT(CONCAT('%',#{loginName}),'%')
+			</if>
+			<if test="startTime != null and startTime != '' ">
+				and date_format(createTime,'%Y-%m-%d') &gt;=
+				#{startTime,jdbcType=VARCHAR}
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				and date_format(createTime,'%Y-%m-%d') &lt;=
+				#{endTime,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by operatorLogId desc
+		<if test="rowIndex != null and rowNum != null">
+			LIMIT #{rowIndex},#{rowNum}
+		</if>
+	</select>
+
+	<select id="queryByCount" resultType="int">
+		select count(1) FROM operator_log
+		<where>
+			<if test="loginName != null and loginName != '' ">
+				and loginName like CONCAT(CONCAT('%',#{loginName}),'%')
+			</if>
+			<if test="startTime != null and startTime != '' ">
+				and date_format(createTime,'%Y-%m-%d') &gt;=
+				#{startTime,jdbcType=VARCHAR}
+			</if>
+			<if test="endTime != null  and endTime != '' ">
+				and date_format(createTime,'%Y-%m-%d') &lt;=
+				#{endTime,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by operatorLogId
+	</select>
+</mapper>

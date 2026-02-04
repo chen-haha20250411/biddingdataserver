@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.sqlserver.mapper.SqlServerExampleMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiao.core.sqlserver.domain.SqlServerExample">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, description
+    </sql>
+
+    <insert id="insert" parameterType="com.xiao.core.sqlserver.domain.SqlServerExample">
+        INSERT INTO example_table (id, name, description)
+        VALUES (#{id}, #{name}, #{description})
+    </insert>
+
+    <delete id="deleteById" parameterType="java.lang.String">
+        DELETE FROM example_table WHERE id = #{id}
+    </delete>
+
+    <update id="update" parameterType="com.xiao.core.sqlserver.domain.SqlServerExample">
+        UPDATE example_table
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="description != null">description = #{description}</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT <include refid="Base_Column_List"/>
+        FROM example_table
+        WHERE id = #{id}
+    </select>
+
+    <select id="queryByMap" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM example_table
+        <where>
+            <foreach collection="columnMap" index="key" item="value" separator=" AND ">
+                ${key} = #{value}
+            </foreach>
+        </where>
+    </select>
+
+    <select id="queryByIds" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM example_table
+        WHERE id IN
+        <foreach collection="idList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="queryByCount" resultType="int">
+        SELECT COUNT(*)
+        FROM example_table
+        <where>
+            <foreach collection="columnMap" index="key" item="value" separator=" AND ">
+                ${key} = #{value}
+            </foreach>
+        </where>
+    </select>
+
+</mapper>
