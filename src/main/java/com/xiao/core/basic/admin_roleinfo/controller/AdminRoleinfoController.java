@@ -23,6 +23,8 @@ import com.xiao.util.SessionUtils;
 import com.xiao.util.StringUtil;
 import com.xiao.util.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,6 +72,20 @@ public class AdminRoleinfoController extends BaseController{
 		//角色列表
 		page.setList(roleInfoService.queryByMap(page.getQueryParams()));
 		return PageUtils.pageSuccess(page);
+	}
+
+	/**
+	 * 获取角色详情
+	 * POST /admin/role/getRoleInfo
+	 */
+	@LoginRequired(remark="获取角色详情")
+	@PostMapping("/getRoleInfo")
+	public ResultModel getRoleInfo(@RequestParam Integer roleInfoId) {
+		AdminRoleinfo roleInfo = roleInfoService.queryById(roleInfoId + "");
+		if (roleInfo != null) {
+			return ResultModel.success(roleInfo);
+		}
+		return ResultModel.failure("角色不存在");
 	}
 
 	/** 去添加页�? */
@@ -346,63 +362,105 @@ public class AdminRoleinfoController extends BaseController{
 	}
 
 	/**
-	 * 修改角色信息
+	 * 修改角色信息 - JSON Body 格式
 	 *
 	 * @throws ParseException
 	 */
 	@LoginRequired(remark="角色-修改权限")
-	@RequestMapping(value = "/updateroleinfo",method={RequestMethod.POST,RequestMethod.GET})
-	public ResultModel updateroleinfo(@RequestParam Map<String, Object> map) {
-		String authStr=(String) map.get("authStr");
+	@PostMapping(value = "/updateroleinfo", consumes = "application/json")
+	public ResultModel updateroleinfo(@RequestBody Map<String, Object> map) {
+		String authStr = (String) map.get("authStr");
 
-		String json = JSON.toJSONString(map.get("role"), true);
-		String obj=(String) JSON.parse(json);
-		AdminRoleinfo role=JSON.parseObject(obj,AdminRoleinfo.class);
-		if(role==null||StringUtil.isEmpty(role.getRoleInfoId()+"")){
-			return sendFailureMessage("网络异常，删除失败?");
+		AdminRoleinfo role = new AdminRoleinfo();
+		if (map.get("role") != null) {
+			String json = JSON.toJSONString(map.get("role"), true);
+			String obj = (String) JSON.parse(json);
+			role = JSON.parseObject(obj, AdminRoleinfo.class);
+		} else {
+			String roleName = (String) map.get("roleName");
+			String remark = (String) map.get("remark");
+			Object roleInfoIdObj = map.get("roleInfoId");
+			if (roleInfoIdObj != null) {
+				if (roleInfoIdObj instanceof Integer) {
+					role.setRoleInfoId((Integer) roleInfoIdObj);
+				} else {
+					role.setRoleInfoId(Integer.parseInt(roleInfoIdObj.toString()));
+				}
+			}
+			role.setRoleName(roleName);
+			role.setRemark(remark);
 		}
-		List<AdminRolemenu> roleauthrels = new ArrayList<AdminRolemenu>();// 角色菜单
-		List<AdminRolebtn> roleBtns = new ArrayList<AdminRolebtn>();// 角色按钮
-		// json 转换成对�?
-		getAuthinfo(roleauthrels, roleBtns, authStr, role.getRoleInfoId()+"");
+
+		if (role == null || StringUtil.isEmpty(role.getRoleInfoId() + "")) {
+			return sendFailureMessage("参数不完整，roleInfoId不能为空");
+		}
+
+		List<AdminRolemenu> roleauthrels = new ArrayList<AdminRolemenu>();
+		List<AdminRolebtn> roleBtns = new ArrayList<AdminRolebtn>();
+		getAuthinfo(roleauthrels, roleBtns, authStr, role.getRoleInfoId() + "");
 		try {
 			roleInfoService.update(role);
-			roleInfoService.addRolBtn(role.getRoleInfoId()+"", roleBtns);
-			roleInfoService.addRoleAuthInfo(role.getRoleInfoId()+"", roleauthrels);
-//			roleInfoService.updateRoleinfo(roleinfo, roleauthrels, roleBtns);
-			//根据角色id查询所有用户并删除redis
-			List<Operator> operList = operatorService.queryUserForSup(role.getRoleInfoId()+"");
-			for(Operator operator : operList){
-				redisUtils.del("permissions_"+operator.getOperatorId());
+			roleInfoService.addRolBtn(role.getRoleInfoId() + "", roleBtns);
+			roleInfoService.addRoleAuthInfo(role.getRoleInfoId() + "", roleauthrels);
+			List<Operator> operList = operatorService.queryUserForSup(role.getRoleInfoId() + "");
+			for (Operator operator : operList) {
+				redisUtils.del("permissions_" + operator.getOperatorId());
 			}
 		} catch (Exception e) {
-			log.error(e.getMessage(),e);
-			return sendFailureMessage("网络异常，删除失败?");
+			log.error(e.getMessage(), e);
+			return sendFailureMessage("网络异常，修改失败");
 		}
-		return sendSuccessMessage("成功");
-		//return this.left(req, resp, session);
+		return sendSuccessMessage("修改成功");
 	}
 
-	private void getAuthinfo(List<AdminRolemenu> roleauthrels,List<AdminRolebtn> RroleBtns, String authStr,String roleInfoId) {
-		String[] args = authStr.split("\n");
+	/**
+	 * 修改角色信息 - 表单格式兼容
+	 */
+	@LoginRequired(remark="角色-修改权限")
+	@RequestMapping(value = "/updateroleinfo", method = {RequestMethod.POST, RequestMethod.GET})
+	public ResultModel updateroleinfoForm(@RequestParam Map<String, Object> map) {
+		return updateroleinfo(new java.util.HashMap<>(map));
+	}
+
+	private void getAuthinfo(List<AdminRolemenu> roleauthrels, List<AdminRolebtn> RroleBtns, String authStr, String roleInfoId) {
+		if (authStr == null || authStr.isEmpty()) {
+			return;
+		}
+		String[] args;
+		if (authStr.contains("\n")) {
+			args = authStr.split("\n");
+		} else if (authStr.contains(",")) {
+			args = authStr.split(",");
+		} else {
+			args = new String[]{authStr};
+		}
+
 		if (args != null && args.length > 0) {
 			for (int i = 0; i < args.length; i++) {
-				String[] authindId = args[i].split("-");
-				String authid = authindId[1];
+				String item = args[i].trim();
+				if (item.isEmpty()) continue;
+
+				String authid;
+				if (item.contains("-")) {
+					String[] authindId = item.split("-");
+					authid = authindId.length > 1 ? authindId[1] : authindId[0];
+				} else {
+					authid = item;
+				}
+
 				if (authid != null && !"".equals(authid) && !"0".equals(authid)) {
 					int authi = Integer.parseInt(authid);
 					if (authi > 5000) {
-						// 默认认为大于5000则认为是按钮级权�?
 						AdminRolebtn roleBtn = new AdminRolebtn();
-						roleBtn.setBtnId(authi-5000);
-						if(roleInfoId != null){
+						roleBtn.setBtnId(authi - 5000);
+						if (roleInfoId != null) {
 							roleBtn.setRoleInfoId(Integer.parseInt(roleInfoId));
 						}
 						RroleBtns.add(roleBtn);
 					} else {
 						AdminRolemenu roleauthrel = new AdminRolemenu();
 						roleauthrel.setMenuId(authi);
-						if(roleInfoId != null){
+						if (roleInfoId != null) {
 							roleauthrel.setRoleInfoId(Integer.parseInt(roleInfoId));
 						}
 						roleauthrels.add(roleauthrel);

@@ -2,18 +2,22 @@
 .idea/
 *.iml
 
-# ÈÕÖ¾
+# ï¿½ï¿½Ö¾
 *.log
 logs/
 backend.log
 
-# ±àÒëÊä³ö
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 target/
 
-# ÁÙÊ±ÎÄ¼ş
+# ï¿½ï¿½Ê±ï¿½Ä¼ï¿½
 *.tmp
 *~
 *.bak
 
-# ÆäËû
+# ï¿½ï¿½ï¿½ï¿½
 java_files.txt
+
+# Ignore files named nul (Windows reserved name)
+nul
+NUL

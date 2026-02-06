@@ -107,7 +107,7 @@ public class SqlServerTestService {
         }
         try {
             // 使用用户指定的查询语句
-            String sql = "SELECT TOP 4  staff_name,staff_code, STAFF_SEX FROM common_staffinfo WHERE is_deleted = 0";
+            String sql = "SELECT TOP 4  staff_name,staff_id, STAFF_SEX FROM common_staffinfo WHERE is_deleted = 0 order by staff_id desc ";
             return jdbcTemplate.queryForList(sql);
         } catch (Exception e) {
             throw new RuntimeException("SQL Server 查询失败: " + e.getMessage(), e);
@@ -121,4 +121,32 @@ public class SqlServerTestService {
         try {
             return jdbcTemplate.queryForList(sql);
         } catch (Exception e) {
-            throw new RuntimeException("SQL 执行失败: " );}}}
+            throw new RuntimeException("SQL 执行失败: " );
+        }
+    }
+
+    public List<Map<String, Object>> callSalesProfitReportProcedure(String startDate, String endDate, String staffName) {
+        if (!configured || jdbcTemplate == null) {
+            throw new RuntimeException("SQL Server未配置或配置不完整");
+        }
+        try {
+            String sql = "{call saturn_p_GetSalesProfitReport18(?, ?, ?)}";
+            System.out.println("========== 销售利润报表存储过程执行 ==========");
+            System.out.println("参数 - startDate: " + startDate);
+            System.out.println("参数 - endDate: " + endDate);
+            System.out.println("参数 - staffName: " + staffName);
+            System.out.println("执行SQL: " + sql);
+            System.out.println("============================================");
+
+            List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, startDate, endDate, staffName);
+
+            System.out.println("返回记录数: " + result.size());
+            System.out.println("============================================");
+
+            return result;
+        } catch (Exception e) {
+            System.err.println("存储过程执行失败: " + e.getMessage());
+            throw new RuntimeException("存储过程执行失败: " + e.getMessage(), e);
+        }
+    }
+}

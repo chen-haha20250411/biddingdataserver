@@ -15,6 +15,7 @@ import com.xiao.util.MethodUtil;
 import com.xiao.util.SessionUtils;
 import com.xiao.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -146,6 +147,30 @@ public class OperatorController extends BaseController{
 	@LoginRequired(remark="添加用户操作")
 	@PostMapping
 	public ResultModel addOper(@RequestBody Operator oper){
+		return addOperLogic(oper);
+	}
+
+	/**
+	 * 添加用户 - POST 兼容旧版前端
+	 * POST /admin/oper/addOper
+	 */
+	@LoginRequired(remark="添加用户操作")
+	@PostMapping("/addOper")
+	public ResultModel addOperPost(HttpServletRequest request){
+		Operator oper = new Operator();
+		oper.setRealName(request.getParameter("realName"));
+		oper.setLoginName(request.getParameter("loginName"));
+		oper.setLoginPwd(request.getParameter("loginPwd"));
+		oper.setPhoneTel(request.getParameter("phoneTel"));
+		oper.setEmail(request.getParameter("email"));
+		String roleinfoId = request.getParameter("roleinfoId");
+		if(!StringUtil.isEmpty(roleinfoId)){
+			oper.setRoleinfoId(Integer.parseInt(roleinfoId));
+		}
+		return addOperLogic(oper);
+	}
+
+	private ResultModel addOperLogic(Operator oper){
 		try {
 			if(oper == null){
 				return ResultModel.failure("数据为空不允许添加");
@@ -248,6 +273,20 @@ public class OperatorController extends BaseController{
 	@LoginRequired(remark="修改用户操作")
 	@PutMapping
 	public ResultModel updateOper(@RequestBody Operator oper){
+		return updateOperLogic(oper);
+	}
+
+	/**
+	 * 修改用户 - POST 兼容旧版前端
+	 * POST /admin/oper/updateOper
+	 */
+	@LoginRequired(remark="修改用户操作")
+	@PostMapping(value = "/updateOper", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public ResultModel updateOperPost(@ModelAttribute Operator oper){
+		return updateOperLogic(oper);
+	}
+
+	private ResultModel updateOperLogic(Operator oper){
 		try {
 			if(!StringUtil.isEmpty(oper.getLoginPwd())){
 				oper.setLoginPwd(MethodUtil.MD5(oper.getLoginPwd()));
@@ -313,6 +352,27 @@ public class OperatorController extends BaseController{
 	@LoginRequired(remark="用户授权操作")
 	@PutMapping("/{operatorId}/grant")
 	public ResultModel grantOper(@PathVariable String operatorId, @RequestBody Map<String, Object> params) {
+		return grantOperLogic(operatorId, params);
+	}
+
+	/**
+	 * 用户授权 - POST 兼容旧版前端
+	 * POST /admin/oper/Grant
+	 */
+	@LoginRequired(remark="用户授权操作")
+	@PostMapping("/Grant")
+	public ResultModel grantOperPost(HttpServletRequest request) {
+		String operatorId = request.getParameter("operatorId");
+		String roleInfoId = request.getParameter("roleInfoId");
+		if (roleInfoId == null) {
+			roleInfoId = request.getParameter("roleinfoId");
+		}
+		Map<String, Object> params = new HashMap<>();
+		params.put("roleInfoId", roleInfoId);
+		return grantOperLogic(operatorId, params);
+	}
+
+	private ResultModel grantOperLogic(String operatorId, Map<String, Object> params) {
 		try {
 			String roleInfoId = params.get("roleInfoId") != null ? params.get("roleInfoId").toString() : null;
 			Operator operator = operService.queryById(operatorId);
@@ -338,6 +398,20 @@ public class OperatorController extends BaseController{
 	@LoginRequired(remark="重置密码操作")
 	@PutMapping("/{operatorId}/reset-password")
 	public ResultModel resetPassword(@PathVariable Integer operatorId) {
+		return resetPasswordLogic(operatorId);
+	}
+
+	/**
+	 * 重置密码 - POST 兼容旧版前端
+	 * POST /admin/oper/resetPassword
+	 */
+	@LoginRequired(remark="重置密码操作")
+	@PostMapping("/resetPassword")
+	public ResultModel resetPasswordPost(@RequestParam Integer operatorId) {
+		return resetPasswordLogic(operatorId);
+	}
+
+	private ResultModel resetPasswordLogic(Integer operatorId) {
 		try {
 			Operator oper = new Operator();
 			oper.setOperatorId(operatorId);

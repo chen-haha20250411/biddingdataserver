@@ -207,6 +207,6 @@
 	 </select>
 	 <!-- 根据realName获取供应商 -->
 	<select id="queryUserByRealName" resultMap="operator">
-	   SELECT * FROM operator  where real_Name = #{value} and roleinfoId = 4 
+	   SELECT * FROM operator  where real_Name = #{value} and roleinfoId = 4
 	</select>
 </mapper>

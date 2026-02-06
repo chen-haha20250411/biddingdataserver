@@ -286,4 +286,16 @@ public class VueAuthController {
         }
         return captcha.toString();
     }
+
+    /**
+     * 获取数据权限
+     * GET /vue-element-admin/data-permissions
+     */
+    @LoginRequired(remark="获取数据权限")
+    @GetMapping("/vue-element-admin/data-permissions")
+    public ResultModel getDataPermissions() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("ids", new ArrayList<>());
+        return ResultModel.success(data);
+    }
 }
