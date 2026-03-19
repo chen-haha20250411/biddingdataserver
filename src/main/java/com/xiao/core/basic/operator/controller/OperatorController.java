@@ -84,6 +84,43 @@ public class OperatorController extends BaseController{
 		return com.xiao.util.PageUtils.pageSuccess(pageObj);
 	}
 
+	/**
+	 * 查询用户列表（包含分支机构、部门、数据角色信息）- 适配 Vue3
+	 * GET/POST /admin/oper/listWithDetails?page=1&limit=10&loginName=xxx&roleinfoId=1
+	 */
+	@LoginRequired(remark="查询用户列表详情操作")
+	@RequestMapping(value = "/listWithDetails", method = {RequestMethod.GET, RequestMethod.POST})
+	public ResultModel listWithDetails(@CurrentUser Operator oper, 
+						@RequestParam(defaultValue = "1") Integer page,
+						@RequestParam(defaultValue = "10") Integer limit,
+						@RequestParam(required = false) String loginName, 
+						@RequestParam(required = false) String roleinfoId,
+						@RequestParam(value = "currPageNo", required = false) Integer currPageNo,
+						@RequestParam(required = false) Integer rowNum) {
+		if (currPageNo != null) {
+			page = currPageNo;
+		}
+		if (rowNum != null) {
+			limit = rowNum;
+		}
+		
+		Page<com.xiao.core.basic.operator.domain.OperatorListDTO> pageObj = new Page<>(page, limit);
+		pageObj.putQueryParam("loginName", loginName);
+		pageObj.putQueryParam("roleinfoId", roleinfoId);
+		if(oper.getRoleinfoId() != 1 && oper.getRoleinfoId() != 3){
+			pageObj.putQueryParam("operator_id", oper.getOperatorId());
+		}
+		
+		int rowCount = operService.queryByCount(pageObj.getQueryParams());
+		pageObj.setTotal(rowCount);
+		
+		List<com.xiao.core.basic.operator.domain.OperatorListDTO> operList = operService.getOperatorListWithDetails(pageObj.getQueryParams());
+		pageObj.setList(operList);
+		pageObj.putQueryParam("operRoleinfoId", oper.getRoleinfoId());
+		
+		return com.xiao.util.PageUtils.pageSuccess(pageObj);
+	}
+
 
 	@RequestMapping(value = "/getjguser",method={RequestMethod.GET})
 	public ResultModel getjguser() {
@@ -254,6 +291,25 @@ public class OperatorController extends BaseController{
 		return ResultModel.success("获取成功", oper);
 	}
 
+	/**
+	 * 获取用户完整详情（包含分支机构、部门、功能角色、数据权限信息）
+	 * GET /admin/oper/{operatorId}/detail
+	 */
+	@LoginRequired(remark="获取用户完整详情操作")
+	@GetMapping("/{operatorId}/detail")
+	public ResultModel getOperatorFullDetail(@PathVariable Integer operatorId) {
+		try {
+			com.xiao.core.basic.operator.domain.OperatorDetailDTO detail = operService.getOperatorDetail(operatorId);
+			if (detail == null) {
+				return ResultModel.failure("用户不存在");
+			}
+			return ResultModel.success("获取成功", detail);
+		} catch (Exception e) {
+			log.error("获取用户详情异常:" + e.getMessage(), e);
+			return ResultModel.failure("获取用户详情失败");
+		}
+	}
+
 
 	/** 去修改密码页 */
 	@RequestMapping(value = "/toUpdOperPwd")
@@ -293,6 +349,14 @@ public class OperatorController extends BaseController{
 			}
 			if(StringUtil.isEmpty(oper.getFailTimes())){
 				oper.setFailTimes(null);
+			}
+			if (oper.getDeptId() != null && oper.getDeptId() == 0) {
+				oper.setDeptId(null);
+				oper.setClearDept(true);
+			}
+			if (oper.getSugOrgId() != null && oper.getSugOrgId() == 0) {
+				oper.setSugOrgId(null);
+				oper.setClearBranch(true);
 			}
 			operService.update(oper);
 			return ResultModel.success("修改成功");

@@ -25,7 +25,9 @@ import javax.sql.DataSource;
                              "com.xiao.core.basic.admin_roleinfo.mapper",
                              "com.xiao.core.basic.admin_rolebtn.mapper",
                              "com.xiao.core.basic.admin_menu.mapper",
-                             "com.xiao.core.basic.admin_btn.mapper"},
+                             "com.xiao.core.basic.admin_btn.mapper",
+                             "com.xiao.core.basic.user_data_permission.mapper",
+                             "com.xiao.core.data_permission.mapper"},
              sqlSessionFactoryRef = "primarySqlSessionFactory")
 public class PrimaryMybatisConfig {
 

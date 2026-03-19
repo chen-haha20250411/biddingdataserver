@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.core.basic.user_data_permission.mapper.UserDataPermissionMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiao.core.basic.user_data_permission.domain.UserDataPermission">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="source_user_id" property="sourceUserId" jdbcType="INTEGER" />
+        <result column="target_user_id" property="targetUserId" jdbcType="INTEGER" />
+        <result column="permission_type" property="permissionType" jdbcType="VARCHAR" />
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, source_user_id, target_user_id, permission_type, created_at
+    </sql>
+
+    <select id="getPermissionsBySourceUserId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        user_data_permission
+        WHERE
+        source_user_id = #{sourceUserId}
+    </select>
+
+    <select id="getPermissionsByTargetUserId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        user_data_permission
+        WHERE
+        target_user_id = #{targetUserId}
+    </select>
+
+    <select id="checkPermissionExists" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM
+        user_data_permission
+        WHERE
+        source_user_id = #{sourceUserId}
+        AND target_user_id = #{targetUserId}
+        AND permission_type = #{permissionType}
+    </select>
+
+    <delete id="deletePermission" parameterType="java.lang.Integer">
+        DELETE
+        FROM
+        user_data_permission
+        WHERE
+        source_user_id = #{sourceUserId}
+        AND target_user_id = #{targetUserId}
+        AND permission_type = #{permissionType}
+    </delete>
+
+</mapper>

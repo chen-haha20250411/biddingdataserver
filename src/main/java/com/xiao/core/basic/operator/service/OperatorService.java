@@ -3,6 +3,8 @@ package com.xiao.core.basic.operator.service;
 import com.xiao.base.BaseService;
 import com.xiao.core.basic.admin_roleinfo.domain.AdminRoleinfo;
 import com.xiao.core.basic.operator.domain.Operator;
+import com.xiao.core.basic.operator.domain.OperatorDetailDTO;
+import com.xiao.core.basic.operator.domain.OperatorListDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -36,5 +38,11 @@ public interface OperatorService extends BaseService<Operator> {
 	public Operator queryUserByRealName(String realName);
 	/** 获取所有用户 */
 	public List<Operator>queryByAll();
+
+	/** 获取用户详情（包含分支机构、部门、功能角色、数据权限信息） */
+	public OperatorDetailDTO getOperatorDetail(Integer operatorId);
+
+	/** 获取用户列表（包含分支机构、部门、数据角色信息） */
+	public List<OperatorListDTO> getOperatorListWithDetails(Map<String, Object> params);
 
 }

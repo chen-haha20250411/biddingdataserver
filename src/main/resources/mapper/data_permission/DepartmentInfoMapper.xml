@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.core.data_permission.mapper.DepartmentInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiao.core.data_permission.domain.DepartmentInfo">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+        <result column="dept_code" property="deptCode" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="dept_level" property="deptLevel" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, dept_name, dept_code, parent_id, dept_level, status, created_at, updated_at
+    </sql>
+
+    <select id="queryById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        department_info
+        WHERE
+        id = #{id}
+    </select>
+
+    <select id="queryByParentId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        department_info
+        WHERE
+        parent_id = #{parentId}
+        ORDER BY id
+    </select>
+
+    <select id="queryByStatus" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        department_info
+        WHERE
+        status = #{status}
+        ORDER BY id
+    </select>
+
+    <select id="queryByDeptCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        department_info
+        WHERE
+        dept_code = #{deptCode}
+    </select>
+
+    <insert id="insert" parameterType="com.xiao.core.data_permission.domain.DepartmentInfo">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT @@IDENTITY
+        </selectKey>
+        INSERT INTO department_info(
+            dept_name, dept_code, parent_id, dept_level, status, created_at, updated_at
+        ) VALUES(
+            #{deptName}, #{deptCode}, #{parentId}, #{deptLevel}, #{status}, now(), now()
+        )
+    </insert>
+
+    <update id="update" parameterType="com.xiao.core.data_permission.domain.DepartmentInfo">
+        UPDATE department_info
+        SET
+            <if test="deptName != null and deptName != ''">
+                dept_name = #{deptName},
+            </if>
+            <if test="deptCode != null and deptCode != ''">
+                dept_code = #{deptCode},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="deptLevel != null">
+                dept_level = #{deptLevel},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            updated_at = now()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM department_info WHERE id = #{id}
+    </delete>
+
+</mapper>

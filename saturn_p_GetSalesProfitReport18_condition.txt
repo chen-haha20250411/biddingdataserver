@@ -1,0 +1,538 @@
+USE [KPM6]
+GO
+
+/****** Object:  StoredProcedure [dbo].[saturn_p_GetSalesProfitReport18_condition]    Script Date: 03/02/2026 13:20:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[saturn_p_GetSalesProfitReport18_condition]
+     @start_date DATE,
+    @end_date DATE,
+    @staff_name VARCHAR(1000) = NULL,        -- 业务员（支持逗号分隔的多个值）
+    @par_name NVARCHAR(1000) = NULL,         -- 父级部门（支持逗号分隔的多个值）
+    @organization_name NVARCHAR(1000) = NULL, -- 部门（支持逗号分隔的多个值）
+    @sgroup NVARCHAR(1000) = NULL,           -- 业务线（支持逗号分隔的多个值）
+    @sub_org_name NVARCHAR(1000) = NULL      -- 分支机构（支持逗号分隔的多个值）
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+    
+    -- 声明变量
+    DECLARE @start_date_int INT;
+    DECLARE @end_date_int INT;
+    DECLARE @year INT;
+    
+    SET @start_date_int = YEAR(@start_date) * 10000 + MONTH(@start_date) * 100 + DAY(@start_date);
+    SET @end_date_int = YEAR(@end_date) * 10000 + MONTH(@end_date) * 100 + DAY(@end_date);
+    SET @year = YEAR(@start_date);
+    
+    -- =============================================
+    -- 步骤0：创建临时表存储分割后的参数值（SQL Server 2008兼容方式）
+    -- =============================================
+    
+    CREATE TABLE #StaffNames (StaffName NVARCHAR(50) PRIMARY KEY);
+	CREATE TABLE #ParNames (ParName NVARCHAR(100) PRIMARY KEY);
+	CREATE TABLE #organizationNames (OrganizationName NVARCHAR(100) PRIMARY KEY);
+	CREATE TABLE #Sgroups (Sgroup NVARCHAR(100) PRIMARY KEY);
+	CREATE TABLE #SubOrgNames (SubOrgName NVARCHAR(100) PRIMARY KEY);
+
+	-- 分割业务员名称（修正：使用 INSERT INTO SELECT）
+	IF NULLIF(@staff_name, '') IS NOT NULL
+	BEGIN
+		INSERT INTO #StaffNames(StaffName)
+		SELECT DISTINCT ITEM FROM dbo.[COM_F_Split](@staff_name, ',');
+	END;
+
+	-- 分割父级部门
+	IF NULLIF(@par_name, '') IS NOT NULL
+	BEGIN
+		INSERT INTO #ParNames(ParName)
+		SELECT DISTINCT ITEM FROM dbo.[COM_F_Split](@par_name, ',');
+	END;
+
+	-- 分割部门
+	IF NULLIF(@organization_name, '') IS NOT NULL
+	BEGIN
+		INSERT INTO #organizationNames(OrganizationName)
+		SELECT DISTINCT ITEM FROM dbo.[COM_F_Split](@organization_name, ',');
+	END;
+
+	-- 分割业务线
+	IF NULLIF(@sgroup, '') IS NOT NULL
+	BEGIN
+		INSERT INTO #Sgroups(Sgroup)
+		SELECT DISTINCT ITEM FROM dbo.[COM_F_Split](@sgroup, ',');
+	END;
+
+	-- 分割分支机构
+	IF NULLIF(@sub_org_name, '') IS NOT NULL
+	BEGIN
+		INSERT INTO #SubOrgNames(SubOrgName)
+		SELECT DISTINCT ITEM FROM dbo.[COM_F_Split](@sub_org_name, ',');
+	END;
+    
+    -- =============================================
+    -- 步骤1：创建临时表存储基础数据
+    -- =============================================
+    
+    -- 1.1 员工基础信息表（增加查询条件过滤 - 支持IN查询）
+    CREATE TABLE #BASE_DEPT (
+        STAFF_ID INT PRIMARY KEY,
+        STAFF_NAME NVARCHAR(50),
+        POSITION_NAME NVARCHAR(100),
+        ORGANIZATION_ID INT,
+        ORGANIZATION_NAME NVARCHAR(100),
+        par_name NVARCHAR(100),
+        par_id INT,
+        SUB_ORG_ID INT,
+        SUB_ORG_NAME NVARCHAR(100),
+        Sgroup NVARCHAR(100)
+    );
+    
+    INSERT INTO #BASE_DEPT
+    SELECT sk.PersonId as STAFF_ID, sk.PersonName as STAFF_NAME, '' as POSITION_NAME,
+           sk.ORGANIZATION_ID, 
+           sk.ORGANIZATION_NAME, sk.dept_group AS par_name, 
+           sk.dept_group_id AS par_id, sk.SUB_ORG_ID, sk.SUB_ORG_NAME,sk.Sgroup
+    FROM saturn_KHDX sk  
+    WHERE  sk.Year=@year
+      AND (NOT EXISTS (SELECT 1 FROM #StaffNames) OR sk.PersonName IN (SELECT StaffName FROM #StaffNames))
+      AND (NOT EXISTS (SELECT 1 FROM #ParNames) OR sk.dept_group IN (SELECT ParName FROM #ParNames))
+      AND (NOT EXISTS (SELECT 1 FROM #organizationNames) OR sk.ORGANIZATION_NAME IN (SELECT OrganizationName FROM #organizationNames))
+      AND (NOT EXISTS (SELECT 1 FROM #SubOrgNames) OR sk.SUB_ORG_NAME IN (SELECT SubOrgName FROM #SubOrgNames))
+      AND (NOT EXISTS (SELECT 1 FROM #Sgroups) OR sk.Sgroup IN (SELECT Sgroup FROM #Sgroups));
+    
+    CREATE INDEX IX_BASE_DEPT_STAFF_NAME ON #BASE_DEPT(STAFF_NAME);
+    CREATE INDEX IX_BASE_DEPT_ORG ON #BASE_DEPT(ORGANIZATION_ID, SUB_ORG_ID);
+    CREATE INDEX IX_BASE_DEPT_PAR ON #BASE_DEPT(par_name);
+    
+    -- 1.2 获取所有相关员工ID
+    CREATE TABLE #StaffIDs (STAFF_ID INT PRIMARY KEY);
+    INSERT INTO #StaffIDs
+    SELECT DISTINCT STAFF_ID FROM #BASE_DEPT;
+    
+    -- =============================================
+    -- 步骤2：创建业务数据临时表
+    -- =============================================
+    
+    -- 2.1 基础利润数据
+    CREATE TABLE #Base_profit (
+        _year INT,
+        saleman NVARCHAR(50),
+        salemanID INT PRIMARY KEY,
+        DeptID INT,
+        suborgID INT,
+        SUM_MONEY DECIMAL(18,2),
+        PRODUCT_CESS_COST_SUM DECIMAL(18,2),
+        PRODUCT_CESS_MONEY DECIMAL(18,2),
+        PRODUCT_SUM DECIMAL(18,2),
+        PRODUCT_COST_SUM DECIMAL(18,2),
+        PRODUCT_GROSS_PROFIT_SUM DECIMAL(18,2)
+    );
+    
+    INSERT INTO #Base_profit
+    SELECT _year, saleman, salemanID, p.ORGANIZATION_ID AS DeptID, suborgID,
+           SUM(SUM_MONEY) AS SUM_MONEY, 
+           SUM(PRODUCT_CESS_COST_SUM) AS PRODUCT_CESS_COST_SUM,
+           SUM(PRODUCT_CESS_MONEY) AS PRODUCT_CESS_MONEY,
+           SUM(PRODUCT_SUM) AS PRODUCT_SUM,
+           SUM(PRODUCT_COST_SUM) AS PRODUCT_COST_SUM,
+           SUM(PRODUCT_GROSS_PROFIT_SUM) AS PRODUCT_GROSS_PROFIT_SUM
+    FROM saturn_porfit A WITH(NOLOCK)
+    INNER JOIN #BASE_DEPT p ON A.SaleManID = p.STAFF_ID
+    WHERE FormartDate >= @start_date_int 
+      AND FormartDate < @end_date_int 
+      AND IS_DELETED = 0
+    GROUP BY _year, saleman, salemanID, p.ORGANIZATION_ID, suborgID;
+    
+    CREATE INDEX IX_Base_profit_salemanID ON #Base_profit(salemanID);
+    
+    -- 2.2 成本调整数据
+    CREATE TABLE #Base_profit_Down (
+        SALESMAN INT PRIMARY KEY,
+        PROFIT_MONEY_DOWN DECIMAL(18,4)
+    );
+    
+    INSERT INTO #Base_profit_Down
+    SELECT A.SALESMAN,
+           SUM(CONVERT(FLOAT, ROUND(C.CURRENT_STORE_HOUSE_STOCK_COST * 
+               DELEGATION_FOOTED_UP_PRODUCT_AMOUNT * I.CESS / 100
+               - C.CURRENT_STORE_HOUSE_STOCK_COST * DELEGATION_FOOTED_UP_PRODUCT_AMOUNT * HS_TAX2, 4))) AS PROFIT_MONEY_DOWN
+    FROM ERP_DelegationFootedUp A WITH(NOLOCK)
+    LEFT JOIN JZ_FP_TYPE B WITH(NOLOCK) ON OPEN_INVOICE_COMPANY = FT_NAME
+    LEFT JOIN ERP_DelegationFootedUpProduct C WITH(NOLOCK) ON A.DELEGATION_FOOTED_UP_ID = C.DELEGATION_FOOTED_UP_ID
+    LEFT JOIN ERP_ProductBatchCode I WITH(NOLOCK) ON C.BATCH_ID = I.BATCH_ID AND C.PRODUCT_ID = I.PRODUCT_ID
+    WHERE DELEGATION_FOOTED_UP_STATE > 1 
+      AND A.IS_DELETED = 0 
+      AND I.CESS > FT_TAX * 100
+      AND A.DELEGATION_FOOTED_UP_DATE >= @start_date  
+      AND A.DELEGATION_FOOTED_UP_DATE < @end_date
+      AND (A.INVOICE_TYPE <> 72 OR (A.DELEGATION_FOOTED_UP_DATE < '2022-01-01' AND A.DELEGATION_FOOTED_UP_DATE <> '2017-04-30'))
+    GROUP BY A.SALESMAN;
+    
+    -- 2.3 折扣数据
+    CREATE TABLE #Base_zhekou (
+        _year INT,
+        REMOVE_CESS_MONEY DECIMAL(18,2),
+        PURCHASEMAN INT PRIMARY KEY,
+        BUSINESS_DEPARTMENT INT,
+        SUB_ORG_ID INT
+    );
+    
+    INSERT INTO #Base_zhekou
+    SELECT DOCUMENT_YEAR AS _year,
+           SUM(REMOVE_CESS_MONEY) AS REMOVE_CESS_MONEY,
+           CASE WHEN SUB_ORG_ID = 5 THEN 84 ELSE PURCHASEMAN END AS PURCHASEMAN,
+           CASE WHEN SUB_ORG_ID = 5 THEN 27 ELSE BUSINESS_DEPARTMENT END AS BUSINESS_DEPARTMENT,
+           SUB_ORG_ID
+    FROM saturn_V_PurchaseDetailZhekou WITH(NOLOCK)
+    WHERE DOCUMENT_DATE >= @start_date 
+      AND DOCUMENT_DATE < @end_date 
+      AND DOCUMENT_STATE = 2 
+      AND SUB_ORG_ID IN (1, 2, 3, 4, 5)
+    GROUP BY DOCUMENT_YEAR, 
+             CASE WHEN SUB_ORG_ID = 5 THEN 84 ELSE PURCHASEMAN END,
+             CASE WHEN SUB_ORG_ID = 5 THEN 27 ELSE BUSINESS_DEPARTMENT END,
+             SUB_ORG_ID;
+    
+    CREATE INDEX IX_Base_zhekou_PURCHASEMAN ON #Base_zhekou(PURCHASEMAN);
+    
+    -- 2.4 调拨毛利原始数据
+    CREATE TABLE #Base_DB_RAW (
+        _year INT,
+        HandlerName NVARCHAR(50),
+        Handler INT,
+        DeptID INT,
+        SubOrgID INT,
+        PRODUCT_IN_SUM DECIMAL(18,2),
+        PRODUCT_OUT_SUM DECIMAL(18,2),
+        profit_sum DECIMAL(18,2),
+        DocumentType INT
+    );
+    
+    -- 变价调拨
+    INSERT INTO #Base_DB_RAW
+    SELECT YEAR(DocumentDate) AS _year,
+           HandlerName, Handler, DeptID, SubOrgID,
+           SUM(ROUND(PRODUCT_IN_SUM, 2)) AS PRODUCT_IN_SUM,
+           SUM(ROUND(PRODUCT_OUT_SUM, 2)) AS PRODUCT_OUT_SUM,
+           SUM(ROUND(PRODUCT_OUT_SUM, 2)) - SUM(ROUND(PRODUCT_IN_SUM, 2)) AS profit_sum,
+           2 AS DocumentType
+    FROM View_StoreTransferDetailReport WITH(NOLOCK)
+    WHERE DocumentDate >= @start_date 
+      AND DocumentDate < @end_date 
+      AND DocumentState = 1
+      AND DocumentType = 2
+    GROUP BY YEAR(DocumentDate), HandlerName, Handler, DeptID, SubOrgID;
+    
+    -- 分支机构调拨出库
+    INSERT INTO #Base_DB_RAW
+    SELECT YEAR(DocumentDate) AS _year,
+           HandlerName, Handler, DeptID, OutSubOrgID AS SubOrgID,
+           SUM(ROUND(PRODUCT_SUM, 2)) AS PRODUCT_IN_SUM,
+           SUM(ROUND(PRODUCT_COST_SUM, 2)) AS PRODUCT_OUT_SUM,
+           SUM(ROUND(PRODUCT_SUM, 2)) - SUM(ROUND(PRODUCT_COST_SUM, 2)) AS profit_sum,
+           2 AS DocumentType
+    FROM View_SubOrgTransferDetailReport WITH(NOLOCK)
+    WHERE DocumentDate >= @start_date 
+      AND DocumentDate < @end_date 
+      AND DocumentState = 1
+      AND DocumentType = 2
+    GROUP BY YEAR(DocumentDate), HandlerName, Handler, DeptID, OutSubOrgID;
+    
+    CREATE INDEX IX_Base_DB_RAW_Handler ON #Base_DB_RAW(Handler, SubOrgID);
+    
+    -- 2.5 调拨毛利汇总
+    CREATE TABLE #Base_DB_SUM (
+        _year INT,
+        HandlerName NVARCHAR(50),
+        Handler INT PRIMARY KEY,
+        DeptID INT,
+        SubOrgID INT,
+        profit_sum DECIMAL(18,2)
+    );
+    
+    INSERT INTO #Base_DB_SUM
+    SELECT _year,
+           CASE WHEN SubOrgID = 5 AND _year < 2024 THEN '戴海兵' ELSE HandlerName END AS HandlerName,
+           CASE WHEN SubOrgID = 5 AND _year < 2024 THEN 84 ELSE Handler END AS Handler,
+           CASE WHEN SubOrgID = 5 AND _year < 2024 THEN 44 ELSE DeptID END AS DeptID,
+           SubOrgID,
+           SUM(PRODUCT_IN_SUM - PRODUCT_OUT_SUM) AS profit_sum
+    FROM #Base_DB_RAW
+    GROUP BY _year,
+             CASE WHEN SubOrgID = 5 AND _year < 2024 THEN '戴海兵' ELSE HandlerName END,
+             CASE WHEN SubOrgID = 5 AND _year < 2024 THEN 84 ELSE Handler END,
+             CASE WHEN SubOrgID = 5 AND _year < 2024 THEN 44 ELSE DeptID END,
+             SubOrgID;
+    
+    -- 2.6 调拨应扣数据
+    CREATE TABLE #Base_DBYK_SUM (
+        _year INT,
+        HandlerName NVARCHAR(50),
+        Handler INT PRIMARY KEY,
+        DeptID INT,
+        SubOrgID INT,
+        PRODUCT_IN_SUM DECIMAL(18,2),
+        PRODUCT_OUT_SUM DECIMAL(18,2),
+        profit_sum DECIMAL(18,2)
+    );
+    
+    INSERT INTO #Base_DBYK_SUM
+    SELECT YEAR(A.STORE_TRANSFER_BJ_DATE) AS _year,
+           Hand.STAFF_NAME AS HandlerName,
+           A.HANDLER AS Handler,
+           A.BUSINESS_DEPARTMENT AS DeptID,
+           A.SUB_ORG_ID AS SubOrgID,
+           SUM(ROUND(Items.PRODUCT_SUM_BJ, 2)) AS PRODUCT_IN_SUM,
+           SUM(ROUND(Items.PRODUCT_PRICE * Items.PRODUCT_AMOUNT, 2)) AS PRODUCT_OUT_SUM,
+           SUM(ROUND(Items.PRODUCT_SUM_BJ, 2)) - SUM(ROUND(Items.PRODUCT_PRICE * Items.PRODUCT_AMOUNT, 2)) AS profit_sum
+    FROM ERP_StoreTransferBJ A WITH(NOLOCK)
+    INNER JOIN ERP_StoreTransferBJItems Items WITH(NOLOCK) ON Items.STORE_TRANSFER_BJ_ID = A.STORE_TRANSFER_BJ_ID
+    LEFT JOIN COMMON_StaffInfo Hand WITH(NOLOCK) ON A.HANDLER = Hand.STAFF_ID
+    LEFT JOIN Common_StoreHouse StoreIn WITH(NOLOCK) ON Items.IN_STORE_HOUSE = StoreIn.SHId
+    LEFT JOIN Common_StoreHouse StoreOut WITH(NOLOCK) ON Items.OUT_STORE_HOUSE = StoreOut.SHId
+    INNER JOIN #BASE_DEPT dept ON dept.STAFF_NAME = LEFT(StoreOut.SHName, LEN(StoreOut.SHName) - 2)
+    WHERE A.IS_DELETED = 0
+      AND A.STORE_TRANSFER_BJ_DATE >= @start_date 
+      AND A.STORE_TRANSFER_BJ_DATE < @end_date
+      AND A.BUSINESS_DEPARTMENT = dept.ORGANIZATION_ID
+      AND LEFT(StoreIn.SHName, LEN(StoreIn.SHName) - 3) = LEFT(StoreOut.SHName, LEN(StoreOut.SHName) - 2)
+      AND StoreIn.SHName LIKE '%共享仓%'
+      AND A.IS_CHECKED = 1
+    GROUP BY YEAR(A.STORE_TRANSFER_BJ_DATE), Hand.STAFF_NAME, A.HANDLER, A.BUSINESS_DEPARTMENT, A.SUB_ORG_ID;
+    
+    -- 2.7 会计凭证数据
+    CREATE TABLE #BASE_PZ (
+        AA_STAFF_ID INT,
+        ACCOUNT_TITLE_CODE NVARCHAR(10),
+        ACCOUT_TITEL_NAME NVARCHAR(50),
+        AA_DEPARTMENT_ID INT,
+        SUB_ORG_ID INT,
+        LEFT_SUM DECIMAL(18,2)
+    );
+    
+    
+    -- 会计凭证类型（6411, 6412, 6413, 6415, 6416）
+    INSERT INTO #BASE_PZ
+    SELECT ISNULL(t.staff_id, e.REFERENCE_BILL_ID) AS AA_STAFF_ID,
+           c.ACCOUNT_TITLE_CODE,
+           CASE c.ACCOUNT_TITLE_CODE
+               WHEN '6409' THEN '坏账支出'
+               WHEN '6410' THEN '预提成本'
+               WHEN '6412' THEN '成本调整'
+               WHEN '6413' THEN '系统外内部调拨'
+               WHEN '6411' THEN '其他成本一'
+               WHEN '6415' THEN '其他成本运作'
+               WHEN '6416' THEN '平台抽点费'
+           END AS ACCOUT_TITEL_NAME,
+           d.REFERENCE_BILL_ID AS AA_DEPARTMENT_ID,
+           a.SUB_ORG_ID,
+           CASE WHEN c.LEFT_SUM_SIDE = '借' THEN b.VOUCHER_ITEM_DETBTOR_SUM - b.VOUCHER_ITEM_LENDER_SUM 
+                ELSE b.VOUCHER_ITEM_LENDER_SUM - b.VOUCHER_ITEM_DETBTOR_SUM END AS LEFT_SUM
+    FROM ERP_Voucher a WITH(NOLOCK)
+    LEFT JOIN ERP_VoucherItems b WITH(NOLOCK) ON a.VOUCHER_ID = b.VOUCHER_ID
+    LEFT JOIN ERP_AccountTitle c WITH(NOLOCK) ON b.ACCOUNT_TITLE_ID = c.ACCOUNT_TITLE_ID
+    LEFT JOIN ERP_VoucherAccountiongItems d WITH(NOLOCK) ON b.VOUCHER_ITEM_ID = d.VOUCHER_ITEM_ID AND d.ACCOUNTING_ID = 3
+    LEFT JOIN ERP_VoucherAccountiongItems e WITH(NOLOCK) ON b.VOUCHER_ITEM_ID = e.VOUCHER_ITEM_ID AND e.ACCOUNTING_ID = 4
+    LEFT JOIN saturn_v_org_trans_staff t WITH(NOLOCK) ON t.ORGANIZATION_ID = d.REFERENCE_BILL_ID
+    WHERE a.SET_RED = 0 AND a.IS_AUDITING = 1 
+      AND a.VOUCHER_SOURCE = '手工输入'
+      AND c.ACCOUNT_TITLE_CODE IN ('6409','6410','6411', '6412', '6413', '6415', '6416')
+      AND a.VOUCHER_DATE >= @start_date AND a.VOUCHER_DATE < @end_date;
+    
+    -- 未到票折扣冲回
+    INSERT INTO #BASE_PZ
+    SELECT AA_STAFF_ID, '6414' AS ACCOUNT_TITLE_CODE, '未到票折扣冲回' AS ACCOUT_TITEL_NAME,
+           AA_DEPARTMENT_ID, SUB_ORG_ID,  
+           CASE WHEN LEFT_SUM_SIDE='借' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+    FROM saturn_zkch WITH(NOLOCK)
+    WHERE ACCOUNT_TITLE_CODE = '6414' AND IS_DELETED = 0
+      AND RE_VOUCHER_DATE >= @start_date AND RE_VOUCHER_DATE < @end_date;
+    
+    CREATE INDEX IX_BASE_PZ_STAFF ON #BASE_PZ(AA_STAFF_ID);
+    
+    -- 2.8 会计凭证汇总（行转列）- 修改：移除主键约束，允许NULL值，并过滤NULL
+    CREATE TABLE #BASE_PZ_STAFF_SUM (
+        STAFF_ID INT,  -- 移除PRIMARY KEY约束
+        ORGANIZATION_NAME NVARCHAR(100),
+        SUB_ORG_NAME NVARCHAR(100),
+        STAFF_NAME NVARCHAR(50),
+        成本调整 DECIMAL(18,2),
+        未到票折扣 DECIMAL(18,2),
+        未到票折扣冲回 DECIMAL(18,2),
+        坏账支出 DECIMAL(18,2),
+        预提成本 DECIMAL(18,2),
+        其他成本一 DECIMAL(18,2),
+        系统外内部调拨 DECIMAL(18,2),
+        其他成本运作 DECIMAL(18,2),
+        平台抽点费 DECIMAL(18,2)
+    );
+    
+    -- 修改：使用ISNULL处理NULL值，并添加WHERE条件过滤无效记录
+    INSERT INTO #BASE_PZ_STAFF_SUM
+    SELECT 
+        ISNULL(B.STAFF_ID, 0) AS STAFF_ID,  -- 将NULL转为0或其他标识值
+        ISNULL(B.ORGANIZATION_NAME, '未知部门') AS ORGANIZATION_NAME,
+        ISNULL(B.SUB_ORG_NAME, '未知机构') AS SUB_ORG_NAME,
+        ISNULL(B.STAFF_NAME, '未知员工') AS STAFF_NAME,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '成本调整' THEN LEFT_SUM ELSE 0 END) AS 成本调整,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '未到票折扣' THEN LEFT_SUM ELSE 0 END) AS 未到票折扣,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '未到票折扣冲回' THEN LEFT_SUM ELSE 0 END) AS 未到票折扣冲回,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '坏账支出' THEN LEFT_SUM ELSE 0 END) AS 坏账支出,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '预提成本' THEN LEFT_SUM ELSE 0 END) AS 预提成本,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '其他成本一' THEN LEFT_SUM ELSE 0 END) AS 其他成本一,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '系统外内部调拨' THEN LEFT_SUM ELSE 0 END) AS 系统外内部调拨,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '其他成本运作' THEN LEFT_SUM ELSE 0 END) AS 其他成本运作,
+        SUM(CASE WHEN ACCOUT_TITEL_NAME = '平台抽点费' THEN LEFT_SUM ELSE 0 END) AS 平台抽点费
+    FROM #BASE_PZ
+    LEFT JOIN #BASE_DEPT B ON B.STAFF_ID = AA_STAFF_ID
+    WHERE AA_STAFF_ID IS NOT NULL  -- 添加过滤条件，排除AA_STAFF_ID为NULL的记录
+    GROUP BY 
+        ISNULL(B.STAFF_ID, 0),
+        ISNULL(B.ORGANIZATION_NAME, '未知部门'),
+        ISNULL(B.SUB_ORG_NAME, '未知机构'),
+        ISNULL(B.STAFF_NAME, '未知员工');
+    
+    -- 为汇总表创建索引（非聚集索引，因为主键已移除）
+    CREATE INDEX IX_BASE_PZ_STAFF_SUM_STAFF_ID ON #BASE_PZ_STAFF_SUM(STAFF_ID);
+    
+    -- 2.9 内部调拨应补
+    CREATE TABLE #BASE_DBYB_SUM (
+        STAFF_ID INT PRIMARY KEY,
+        STAFF_NAME NVARCHAR(50),
+        deptID INT,
+        SUB_ORG_ID INT,
+        profit_sum DECIMAL(18,2)
+    );
+    
+    INSERT INTO #BASE_DBYB_SUM
+    SELECT Handler AS STAFF_ID, HandlerName AS STAFF_NAME, 
+           DeptID AS deptID, SubOrgID AS SUB_ORG_ID,
+           SUM(profit_sum) AS profit_sum
+    FROM saturn_DBYB WITH(NOLOCK)
+    WHERE Ck_year >= @start_date_int AND Ck_year < @end_date_int 
+      AND IS_DELETED = 0
+    GROUP BY Handler, HandlerName, DeptID, SubOrgID;
+    
+    -- =============================================
+    -- 步骤3：最终查询 - 只返回明细数据（带业务线过滤）
+    -- =============================================
+    
+    SELECT 
+        DEPT.STAFF_NAME AS 业务员,
+        dept.par_name AS 父级部门,
+        dept.ORGANIZATION_NAME AS 部门,
+        A.Sgroup AS 业务线,
+        dept.SUB_ORG_NAME AS 分支机构,
+        ISNULL(B.SUM_MONEY, 0) AS 含税销售额,
+        ISNULL(B.PRODUCT_CESS_MONEY, 0) AS 含税毛利,
+        ISNULL(B.PRODUCT_SUM, 0) AS 未税销售额,
+        ISNULL(B.PRODUCT_GROSS_PROFIT_SUM, 0) AS [未税毛利+],
+        ROUND(ISNULL(C.PROFIT_MONEY_DOWN, 0), 2) AS [不含税毛利调整-],
+        ISNULL(D.REMOVE_CESS_MONEY, 0) AS [折扣-],
+        ISNULL(E.profit_sum, 0) AS 调拨毛利IN进销存,
+        ISNULL(H.profit_sum, 0) AS 调拨毛利应扣,
+        ISNULL(I.profit_sum, 0) AS 调拨毛利应补,
+        ISNULL(E.profit_sum, 0) - (ISNULL(H.profit_sum, 0) - ISNULL(I.profit_sum, 0)) AS [真实调拨毛利+],
+        ISNULL(F.系统外内部调拨, 0) AS [系统外内部调拨-],
+        ISNULL(F.预提成本, 0) AS [预提成本-],
+        ISNULL(F.坏账支出, 0) AS [坏账支出-],
+        ISNULL(F.其他成本一, 0) AS [其他成本一-],
+        ISNULL(F.其他成本运作, 0) AS [其他成本一运作-],
+        ISNULL(F.未到票折扣, 0) AS [未到票折扣-],
+        ISNULL(F.未到票折扣冲回, 0) AS [未到票折扣冲回-],
+        ISNULL(F.成本调整, 0) AS [年底补税差-],
+        ISNULL(F.平台抽点费, 0) AS [平台抽点费-],
+        ISNULL(B.PRODUCT_GROSS_PROFIT_SUM, 0) - ROUND(ISNULL(C.PROFIT_MONEY_DOWN, 0), 2) 
+            - ISNULL(D.REMOVE_CESS_MONEY, 0) - ISNULL(F.系统外内部调拨, 0) 
+            - ISNULL(F.预提成本, 0) - ISNULL(F.坏账支出, 0) - ISNULL(F.其他成本一, 0) 
+            - ISNULL(F.其他成本运作, 0) + (ISNULL(E.profit_sum, 0) 
+            - (ISNULL(H.profit_sum, 0) - ISNULL(I.profit_sum, 0))) 
+            - ISNULL(F.未到票折扣, 0) - ISNULL(F.未到票折扣冲回, 0)
+            - ISNULL(F.成本调整, 0) - ISNULL(F.平台抽点费, 0) AS 不含税毛利差价,
+       isnull(A.MB_sales,0) as MB_sales,isnull(A.MB_profit,0) as MB_profit, isnull(A.MB_sales_zz,0)as MB_sales_zz     
+    FROM saturn_khdx A WITH(NOLOCK)
+    LEFT JOIN #Base_profit B ON A.PersonId = B.salemanID
+    LEFT JOIN #Base_profit_Down C ON A.PersonId = C.SALESMAN
+    LEFT JOIN #Base_zhekou D ON D.PURCHASEMAN = A.PersonId
+    LEFT JOIN #Base_DB_SUM E ON E.Handler = A.PersonId
+    LEFT JOIN #Base_DBYK_SUM H ON H.Handler = A.PersonId
+    LEFT JOIN #BASE_DEPT DEPT ON DEPT.STAFF_ID = A.PersonId
+    LEFT JOIN #BASE_PZ_STAFF_SUM F ON F.STAFF_ID = A.PersonId
+    LEFT JOIN #BASE_DBYB_SUM I ON I.STAFF_ID = A.PersonId
+    WHERE A.Year = @year
+  
+      AND (NOT EXISTS (SELECT 1 FROM #StaffNames) OR DEPT.STAFF_NAME IN (SELECT StaffName FROM #StaffNames))
+      AND (NOT EXISTS (SELECT 1 FROM #Sgroups) OR A.Sgroup IN (SELECT Sgroup FROM #Sgroups))
+      AND (NOT EXISTS (SELECT 1 FROM #ParNames) OR dept.par_name IN (SELECT ParName FROM #ParNames))
+      AND (NOT EXISTS (SELECT 1 FROM #organizationNames) OR dept.ORGANIZATION_NAME IN (SELECT OrganizationName FROM #organizationNames))
+      AND (NOT EXISTS (SELECT 1 FROM #SubOrgNames) OR dept.SUB_ORG_NAME IN (SELECT SubOrgName FROM #SubOrgNames))
+    ORDER BY A.sort ASC;
+    
+    -- =============================================
+    -- 步骤4：清理临时表（SQL Server 2008兼容方式）
+    -- =============================================
+    
+    IF OBJECT_ID('tempdb..#BASE_DEPT') IS NOT NULL
+        DROP TABLE #BASE_DEPT;
+    
+    IF OBJECT_ID('tempdb..#StaffIDs') IS NOT NULL
+        DROP TABLE #StaffIDs;
+    
+    IF OBJECT_ID('tempdb..#Base_profit') IS NOT NULL
+        DROP TABLE #Base_profit;
+    
+    IF OBJECT_ID('tempdb..#Base_profit_Down') IS NOT NULL
+        DROP TABLE #Base_profit_Down;
+    
+    IF OBJECT_ID('tempdb..#Base_zhekou') IS NOT NULL
+        DROP TABLE #Base_zhekou;
+    
+    IF OBJECT_ID('tempdb..#Base_DB_RAW') IS NOT NULL
+        DROP TABLE #Base_DB_RAW;
+    
+    IF OBJECT_ID('tempdb..#Base_DB_SUM') IS NOT NULL
+        DROP TABLE #Base_DB_SUM;
+    
+    IF OBJECT_ID('tempdb..#Base_DBYK_SUM') IS NOT NULL
+        DROP TABLE #Base_DBYK_SUM;
+    
+    IF OBJECT_ID('tempdb..#BASE_PZ') IS NOT NULL
+        DROP TABLE #BASE_PZ;
+    
+    IF OBJECT_ID('tempdb..#BASE_PZ_STAFF_SUM') IS NOT NULL
+        DROP TABLE #BASE_PZ_STAFF_SUM;
+    
+    IF OBJECT_ID('tempdb..#BASE_DBYB_SUM') IS NOT NULL
+        DROP TABLE #BASE_DBYB_SUM;
+    -- 清理参数分割临时表
+    IF OBJECT_ID('tempdb..#StaffNames') IS NOT NULL
+        DROP TABLE #StaffNames;
+        
+    IF OBJECT_ID('tempdb..#ParNames') IS NOT NULL
+        DROP TABLE #ParNames;
+        
+    IF OBJECT_ID('tempdb..#organizationNames') IS NOT NULL
+        DROP TABLE #organizationNames;
+        
+    IF OBJECT_ID('tempdb..#Sgroups') IS NOT NULL
+        DROP TABLE #Sgroups;
+        
+    IF OBJECT_ID('tempdb..#SubOrgNames') IS NOT NULL
+        DROP TABLE #SubOrgNames;    
+    
+END;
+
+
+
+GO
+
+

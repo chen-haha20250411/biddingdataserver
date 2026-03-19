@@ -1,0 +1,503 @@
+USE [KPM6]
+GO
+
+/****** Object:  StoredProcedure [dbo].[saturn_p_GetSalesProfitReport18]    Script Date: 02/12/2026 16:08:14 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+-- 创建存储过程
+ALTER PROCEDURE [dbo].[saturn_p_GetSalesProfitReport18]
+    @start_date DATE,  -- 起始日期
+    @end_date DATE,    -- 截止日期
+    @staff_name varchar(20) -- 员工姓名
+AS
+BEGIN
+    -- 声明变量
+    DECLARE @start_date_int INT = YEAR(@start_date) * 10000 + MONTH(@start_date) * 100 + DAY(@start_date);
+    DECLARE @end_date_int INT = YEAR(@end_date) * 10000 + MONTH(@end_date) * 100 + DAY(@end_date);
+    DECLARE @year INT=YEAR(@start_date);
+    
+    DECLARE @where_clause NVARCHAR(MAX);
+    SET @where_clause = 'A.year = @year';
+
+    IF @staff_name IS NOT NULL AND @staff_name <> ''
+    BEGIN
+        SET @where_clause = @where_clause + ' AND DEPT.STAFF_NAME = @staff_name';
+    END
+
+    -- 动态 SQL 查询
+    DECLARE @sql NVARCHAR(MAX);
+    SET @sql = N'
+    WITH BASE_DEPT AS (
+        SELECT A.STAFF_ID, A.STAFF_NAME, cp.POSITION_NAME, co.ORGANIZATION_ID, co.ORGANIZATION_NAME, 
+               parco.ORGANIZATION_NAME AS par_name, parco.ORGANIZATION_ID AS par_id,
+               A.SUB_ORG_ID, subOrg.SUB_ORG_NAME
+        FROM COMMON_StaffInfo A
+        INNER JOIN COMMON_PositionToStaff cpto ON cpto.STAFF_ID = A.STAFF_ID AND cpto.ISMAIN_POSITION = 1
+        INNER JOIN COMMON_Position cp ON cp.POSITION_ID = cpto.POSITION_ID AND cp.IS_DELETED = 0
+        INNER JOIN COMMON_Organization co ON co.ORGANIZATION_ID = cp.ORGANIZATION_ID
+        INNER JOIN COMMON_Organization parco ON parco.ORGANIZATION_ID = co.ORGANIZATION_PARENT_ID
+        INNER JOIN COMMON_SubOrg subOrg ON subOrg.SUB_ORG_ID = A.SUB_ORG_ID
+    ),
+    Base_profit AS (
+        SELECT _year, saleman, salemanID, BASE_DEPT.ORGANIZATION_ID AS DeptID, suborgID,
+               SUM(SUM_MONEY) AS SUM_MONEY, SUM(PRODUCT_CESS_COST_SUM) AS PRODUCT_CESS_COST_SUM,
+               SUM(PRODUCT_CESS_MONEY) AS PRODUCT_CESS_MONEY, SUM(PRODUCT_SUM) AS PRODUCT_SUM,
+               SUM(PRODUCT_COST_SUM) AS PRODUCT_COST_SUM, SUM(PRODUCT_GROSS_PROFIT_SUM) AS PRODUCT_GROSS_PROFIT_SUM
+        FROM saturn_porfit A
+        INNER JOIN BASE_DEPT ON A.SaleManID = BASE_DEPT.STAFF_ID
+        WHERE FormartDate >= @start_date_int AND FormartDate < @end_date_int AND IS_DELETED = 0
+        GROUP BY _year, saleman, salemanID, BASE_DEPT.ORGANIZATION_ID, suborgID
+    ),
+    /**********2、 成本调整  不含税毛利调整 来源于自定义报表**/
+	Base_profit_Down as (
+		SELECT  
+	A.SALESMAN,
+	SUM(CONVERT(FLOAT,ROUND(C.CURRENT_STORE_HOUSE_STOCK_COST *
+	 DELEGATION_FOOTED_UP_PRODUCT_AMOUNT * I.CESS / 100
+	-C.CURRENT_STORE_HOUSE_STOCK_COST * DELEGATION_FOOTED_UP_PRODUCT_AMOUNT * HS_TAX2,4) ))AS PROFIT_MONEY_DOWN 
+	FROM ERP_DelegationFootedUp  A LEFT JOIN JZ_FP_TYPE B ON OPEN_INVOICE_COMPANY = FT_NAME
+	LEFT JOIN ERP_DelegationFootedUpProduct C ON A.DELEGATION_FOOTED_UP_ID = C.DELEGATION_FOOTED_UP_ID
+	LEFT JOIN ERP_ProductBatchCode I ON C.BATCH_ID=I.BATCH_ID and C.PRODUCT_ID=I.PRODUCT_ID
+	WHERE DELEGATION_FOOTED_UP_STATE>1 AND A.IS_DELETED=0 
+	AND I.CESS > FT_TAX*100 
+    and a.INVOICE_TYPE<>72  
+	AND ( A.DELEGATION_FOOTED_UP_DATE >=@start_date  AND A.DELEGATION_FOOTED_UP_DATE <@end_date
+	AND  A.DELEGATION_FOOTED_UP_DATE >=''2022-01-01'' )
+	GROUP  BY A.SALESMAN,year(DELEGATION_FOOTED_UP_DATE)
+	UNION ALL
+	SELECT  
+	A.SALESMAN,
+	SUM(CONVERT(FLOAT,ROUND(C.CURRENT_STORE_HOUSE_STOCK_COST *
+	 DELEGATION_FOOTED_UP_PRODUCT_AMOUNT * I.CESS / 100
+	-C.CURRENT_STORE_HOUSE_STOCK_COST * DELEGATION_FOOTED_UP_PRODUCT_AMOUNT * HS_TAX2,4) ))AS PROFIT_MONEY_DOWN 
+	FROM ERP_DelegationFootedUp  A LEFT JOIN JZ_FP_TYPE B ON OPEN_INVOICE_COMPANY = FT_NAME
+	LEFT JOIN ERP_DelegationFootedUpProduct C ON A.DELEGATION_FOOTED_UP_ID = C.DELEGATION_FOOTED_UP_ID
+	LEFT JOIN ERP_ProductBatchCode I ON C.BATCH_ID=I.BATCH_ID and C.PRODUCT_ID=I.PRODUCT_ID
+	WHERE DELEGATION_FOOTED_UP_STATE>1 AND A.IS_DELETED=0 
+	AND I.CESS > FT_TAX*100 
+	AND ( A.DELEGATION_FOOTED_UP_DATE >=@start_date  AND A.DELEGATION_FOOTED_UP_DATE <@end_date
+	AND  A.DELEGATION_FOOTED_UP_DATE <>''2017-04-30''
+	AND  A.DELEGATION_FOOTED_UP_DATE <''2022-01-01'' 
+	)
+	GROUP  BY A.SALESMAN,year(DELEGATION_FOOTED_UP_DATE)		
+	),
+	/**********3、 折扣  来源于采购明细表数据 20241213修改视图******************/
+	Base_zhekou as (
+	select 
+	DOCUMENT_YEAR as _year,
+	sum(REMOVE_CESS_MONEY) as REMOVE_CESS_MONEY,
+	 PURCHASEMAN , BUSINESS_DEPARTMENT,SUB_ORG_ID 
+	from saturn_V_PurchaseDetailZhekou shmx
+	where  DOCUMENT_DATE>=@start_date  and  DOCUMENT_DATE<@end_date 
+    And DOCUMENT_STATE =2 and SUB_ORG_ID in(1,2,3,4)
+	group  by PURCHASEMAN,BUSINESS_DEPARTMENT,
+	SUB_ORG_ID,DOCUMENT_YEAR
+	union all
+	select 
+	DOCUMENT_YEAR as _year,
+	sum(REMOVE_CESS_MONEY) as REMOVE_CESS_MONEY,
+	84 as PURCHASEMAN ,27  as BUSINESS_DEPARTMENT,SUB_ORG_ID 
+	from saturn_V_PurchaseDetailZhekou shmx
+	where  DOCUMENT_DATE>=@start_date  and  DOCUMENT_DATE<@end_date 
+    And DOCUMENT_STATE =2 and SUB_ORG_ID=5
+	group  by  SUB_ORG_ID,DOCUMENT_YEAR
+	),
+
+	/***********4、 调拨毛利  来源于变价调拨 和分支机构调拨出库数据**/
+	Base_DB as (
+	 select 
+	 YEAR(convert(varchar(10),DocumentDate,120)) as _year,
+	 HandlerName, Handler,DeptID,SubOrgID,
+	 sum(round(PRODUCT_IN_SUM,2)) as PRODUCT_IN_SUM,
+	 sum(round(PRODUCT_OUT_SUM,2)) as PRODUCT_OUT_SUM,
+	 sum(ROUND(PRODUCT_OUT_SUM,2))-SUM(ROUND(PRODUCT_IN_SUM,2)) as profit_sum
+	 From View_StoreTransferDetailReport WITH(NOLOCK) 
+	 Where 0<>1
+	 And DocumentDate>=@start_date and DocumentDate<@end_date 
+	 And DocumentState In (1)
+	 And DocumentType=2 --变价调拨
+	 group by Handler,HandlerName,DeptID,SubOrgID,YEAR(convert(varchar(10),DocumentDate,120))
+	 union all
+	 Select 
+	 YEAR(convert(varchar(10),DocumentDate,120)) as _year,
+	 HandlerName,Handler,DeptID,OutSubOrgID as SubOrgID ,
+	 sum(round(PRODUCT_SUM,2)) as PRODUCT_IN_SUM ,
+	 sum(round(PRODUCT_COST_SUM,2)) as PRODUCT_OUT_SUM,
+	 SUM(round(PRODUCT_SUM,2))-SUM(round( PRODUCT_COST_SUM,2)) as profit_sum
+	 From View_SubOrgTransferDetailReport  WITH(NOLOCK)  
+	 Where 0<>1 
+	 And DocumentDate>=@start_date and DocumentDate<@end_date
+	 And DocumentState In (1)
+	 and DocumentType=2 --分支机构调拨出库
+	 group by Handler,HandlerName,DeptID,OutSubOrgID,YEAR(convert(varchar(10),DocumentDate,120))
+	 ),
+	 /*********4.1 调拨毛利汇总  按业务员、部门、分支机构、年度*************************************/
+	 Base_DB_SUM as (
+	 select     
+	 _year,HandlerName,Handler,DeptID,SubOrgID, sum(PRODUCT_IN_SUM-PRODUCT_OUT_SUM) as profit_sum
+	 from Base_DB 
+     where  SubOrgID<>5
+	 group by Handler,HandlerName,DeptID,SubOrgID,_year
+     union all
+	 select _year,''戴海兵'', 84,44,SubOrgID, sum(PRODUCT_IN_SUM-PRODUCT_OUT_SUM) as profit_sum
+	 from Base_DB 
+	 where  SubOrgID=5 and _year<2024
+	 group by SubOrgID,_year
+	 union all
+	 /******20230311 调整弱电平台 细分二级业务员*********/
+	 select _year,HandlerName, Handler,DeptID,SubOrgID,sum(PRODUCT_IN_SUM-PRODUCT_OUT_SUM) as profit_sum
+	 from Base_DB 
+	 where  SubOrgID=5 and _year>=2024
+	 group by Handler,HandlerName,DeptID,SubOrgID,_year
+	),
+	
+	 /**********5、 调拨应扣     来源于变价调拨中 私有仓调入共享仓的差价值**************/ 
+	 Base_BJDB_BATCH as (
+            SELECT  ''2'' AS DocumentType ,
+			''变价调拨'' AS DocumentTypeName ,
+			Main.STORE_TRANSFER_BJ_ID AS DocumentId ,
+			Main.STORE_TRANSFER_BJ_DATE AS DocumentDate ,
+			Main.IS_CHECKED AS DocumentState ,
+			Main.STORE_TRANSFER_BJ_CODE AS DocumentCode ,
+			Main.SUB_ORG_ID AS SubOrgID ,
+			Main.BUSINESS_DEPARTMENT AS DeptID ,
+			Main.HANDLER AS Handler ,
+			Hand.STAFF_NAME AS HandlerName ,
+			Items.IN_STORE_HOUSE AS StoreInID ,
+			StoreIn.SHName AS StoreInName ,
+			Items.OUT_STORE_HOUSE AS StoreOutID ,
+			StoreOut.SHName AS StoreOutName ,
+			Items.PRODUCT_AMOUNT ,
+			Items.PRODUCT_PRICE_BJ AS PRODUCT_IN_PRICE ,
+			Items.PRODUCT_SUM_BJ AS PRODUCT_IN_SUM ,
+			Items.PRODUCT_PRICE AS PRODUCT_OUT_PRICE ,
+			Items.BATCH_ID,
+			( Items.PRODUCT_PRICE * Items.PRODUCT_AMOUNT ) AS PRODUCT_OUT_SUM 
+	FROM    dbo.ERP_StoreTransferBJ AS Main
+			INNER JOIN dbo.ERP_StoreTransferBJItems AS Items ON Items.STORE_TRANSFER_BJ_ID = Main.STORE_TRANSFER_BJ_ID
+			LEFT OUTER JOIN dbo.COMMON_StaffInfo AS Hand ON Main.HANDLER = Hand.STAFF_ID
+			LEFT OUTER JOIN dbo.Common_StoreHouse AS StoreIn ON Items.IN_STORE_HOUSE = StoreIn.SHId
+			LEFT OUTER JOIN dbo.Common_StoreHouse AS StoreOut ON Items.OUT_STORE_HOUSE = StoreOut.SHId
+	WHERE   Main.IS_DELETED = 0
+     ),		
+	 Base_DBYK_MX as ( 
+	 select 
+	 StoreInName,StoreOutName,
+	 YEAR(convert(varchar(10),DocumentDate,120)) as _year,
+	 HandlerName,
+	 dept.ORGANIZATION_NAME,
+	 Handler,DeptID,SubOrgID,
+	 ROUND(PRODUCT_IN_SUM,2) as PRODUCT_IN_SUM,
+	 ROUND(PRODUCT_OUT_SUM,2) as PRODUCT_OUT_SUM
+	 From Base_BJDB_BATCH vv 
+	 inner join BASE_DEPT dept on dept.STAFF_NAME=substring(StoreOutName,1,Len(StoreOutName)-2)
+	 Where 0<>1
+	 And DocumentDate>=@start_date and DocumentDate<@end_date 
+	 And VV.DeptID=dept.ORGANIZATION_ID -- 调出仓库管理员与经手人是同一个部门的
+	 And (substring(StoreInName,1,Len(StoreInName)-3)=substring(StoreOutName,1,Len(StoreOutName)-2)) --仓库管理员同一个人
+	 And StoreInName like ''%共享仓%''
+	 And DocumentState In (1)
+	 ),
+	 /**********5.1、 调拨应扣汇总    按业务员、部门、分支机构、年度**************/ 
+	 Base_DBYK_SUM as (
+	 select     
+	 _year,
+	 HandlerName,
+	 Handler,DeptID,SubOrgID,
+	 sum(PRODUCT_IN_SUM) as PRODUCT_IN_SUM,
+	 sum(PRODUCT_OUT_SUM) as PRODUCT_OUT_SUM,
+	 sum(PRODUCT_IN_SUM-PRODUCT_OUT_SUM) as profit_sum 
+	 from Base_DBYK_MX 
+	 group by Handler,HandlerName,DeptID,SubOrgID,_year
+	 ),
+
+	 /********* 6、 会计凭证取值  *********************************************/
+	 BASE as (
+
+      select B.VOUCHER_ITEM_ABSTRACT,ACCOUNT_TITLE_CODE,
+      e.REFERENCE_BILL_ID as or_AA_STAFF_ID,
+      ISNULL(t.staff_id, e.REFERENCE_BILL_ID )as AA_STAFF_ID, --20240311 调整
+      a.SUB_ORG_ID,
+      d.REFERENCE_BILL_ID as  AA_DEPARTMENT_ID,LEFT_SUM_SIDE,
+	  b.VOUCHER_ITEM_DETBTOR_SUM DETBTOR_SUM,b.VOUCHER_ITEM_LENDER_SUM LENDER_SUM,VOUCHER_DATE
+	  from ERP_Voucher a
+	  left join ERP_VoucherItems b on a.VOUCHER_ID=b.VOUCHER_ID
+	  left join ERP_AccountTitle c on b.ACCOUNT_TITLE_ID=c.ACCOUNT_TITLE_ID
+	  left join ERP_VoucherAccountiongItems d on b.VOUCHER_ITEM_ID=d.VOUCHER_ITEM_ID and d.ACCOUNTING_ID=3
+	  left join ERP_VoucherAccountiongItems e on b.VOUCHER_ITEM_ID=e.VOUCHER_ITEM_ID and e.ACCOUNTING_ID=4
+	  left join saturn_v_org_trans_staff t on t.ORGANIZATION_ID=d.REFERENCE_BILL_ID --20240311 2024年针对手工凭证 弱电平台二级业务员统一格式 如 俞良锋 转化 项目一
+	  where SET_RED=0 AND IS_AUDITING=1 
+	  AND VOUCHER_SOURCE=''手工输入''   -- 加索引
+	  --AND ACCOUNT_TITLE_CODE LIKE ''''64%''''  --去除无法使用索引的like 查询条件
+	   /**主营业务成本6401、内部调拨6407、进销差价(折扣)6408、坏帐支出6409、预提成本6410、
+	     其他成本一6411、成本调整6412、系统外内部调拨6413、未到票折扣6414、其他成本-（运作）6415**/
+	  AND ACCOUNT_TITLE_CODE in(''6401'',''6407'',''6408'',''6409'',''6410'',''6411'',''6412'',''6413'',''6414'',''6415'',''6416'')
+	  AND VOUCHER_DATE >=@start_date AND VOUCHER_DATE <@end_date), --12月补税差 6412， 12月未到票折扣 6408
+
+    BASE_MX as(
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''坏账支出'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		 FROM BASE VV 
+		where  ACCOUNT_TITLE_CODE=''6409''
+	UNION ALL 
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''预提成本'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV 
+		where  ACCOUNT_TITLE_CODE=''6410''   
+	UNION ALL
+	    SELECT 
+		ACCOUNT_TITLE_CODE,
+		''成本调整'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM saturn_ndbsc VV  
+		where  ACCOUNT_TITLE_CODE=''6412'' 
+	    AND VOUCHER_DATE >=@start_date AND VOUCHER_DATE <@end_date
+
+   UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''系统外内部调拨'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV 
+		where  ACCOUNT_TITLE_CODE=''6413'' 		
+	UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''未到票折扣'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV  
+		where  ACCOUNT_TITLE_CODE=''6408''  and VOUCHER_ITEM_ABSTRACT like ''%未到票折扣%''
+        UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''未到票折扣'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV  
+		where  ACCOUNT_TITLE_CODE=''6414'' and VOUCHER_ITEM_ABSTRACT like ''%暂扣%''
+    UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''未到票折扣冲回'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM saturn_zkch VV  
+		where  ACCOUNT_TITLE_CODE=''6414''  
+	    AND RE_VOUCHER_DATE >=@start_date AND RE_VOUCHER_DATE <@end_date and VV.IS_DELETED=0
+
+	UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''其他成本一'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV 
+		where  ACCOUNT_TITLE_CODE=''6411'' 
+    UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''其他成本运作'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV 
+		where  ACCOUNT_TITLE_CODE=''6415'' 	
+   UNION ALL
+		SELECT 
+		ACCOUNT_TITLE_CODE,
+		''平台抽点费'' as ACCOUT_TITEL_NAME,
+		VV.AA_STAFF_ID,
+		VV.SUB_ORG_ID,
+		VV.AA_DEPARTMENT_ID,
+		CASE WHEN VV.LEFT_SUM_SIDE=''借'' THEN DETBTOR_SUM-LENDER_SUM ELSE LENDER_SUM-DETBTOR_SUM END AS LEFT_SUM
+		FROM BASE VV 
+		where  ACCOUNT_TITLE_CODE=''6416'' 			
+	
+	),
+	BASE_MX_DEPT as(
+	SELECT 
+	AA_STAFF_ID,
+	ACCOUT_TITEL_NAME,
+	AA_DEPARTMENT_ID,SUB_ORG_ID,
+	SUM(LEFT_SUM) AS LEFT_SUM 
+	FROM BASE_MX 
+	GROUP BY AA_STAFF_ID,AA_DEPARTMENT_ID,SUB_ORG_ID,ACCOUT_TITEL_NAME,ACCOUNT_TITLE_CODE
+	),
+    /***********会计凭证 行转列 ************/
+    povit_mx as (
+      select 
+      AA_STAFF_ID,
+      AA_DEPARTMENT_ID,
+      SUB_ORG_ID,
+      ISNULL (pvt.成本调整,0) as 成本调整,
+      ISNULL (pvt.未到票折扣,0)as 未到票折扣,
+      ISNULL (pvt.未到票折扣冲回,0)as 未到票折扣冲回,
+      ISNULL (pvt.坏账支出,0)as 坏账支出,
+      ISNULL (pvt.预提成本,0)as 预提成本,
+      ISNULL (pvt.其他成本一,0)as 其他成本一,
+      ISNULL(pvt.系统外内部调拨,0) as 系统外内部调拨,
+      ISNULL (pvt.其他成本运作,0)as 其他成本运作,
+      ISNULL (pvt.平台抽点费,0)as 平台抽点费
+     from BASE_MX_DEPT
+	 PIVOT(
+	 sum(LEFT_SUM)
+	 FOR ACCOUT_TITEL_NAME IN
+	 ( [未到票折扣],[未到票折扣冲回],[成本调整],[预提成本],[坏账支出],[其他成本一],[系统外内部调拨],[其他成本运作],[平台抽点费] )) AS pvt
+	 ),
+    /***********6.1 按员工会计凭证汇总值   *****************/
+     BASE_PZ_STAFF_SUM as ( 
+     select B.ORGANIZATION_NAME,B.SUB_ORG_NAME,B.STAFF_NAME,B.STAFF_ID,
+	 SUM(povit_mx.[未到票折扣])as 未到票折扣,
+	 SUM(povit_mx.[未到票折扣冲回])as [未到票折扣冲回],
+	 SUM(povit_mx.[成本调整])as 成本调整,
+	 SUM(povit_mx.[坏账支出])as 坏账支出,
+	 SUM(povit_mx.[预提成本])as 预提成本,
+	 SUM(povit_mx.[其他成本一])as 其他成本一,
+	 SUM(povit_mx.[系统外内部调拨])as 系统外内部调拨,
+	 SUM(povit_mx.[其他成本运作])as 其他成本运作,
+	 SUM(povit_mx.[平台抽点费])as 平台抽点费
+	 from povit_mx 
+	 left join BASE_DEPT  B on B.STAFF_ID=AA_STAFF_ID
+	 group by B.STAFF_NAME,B.ORGANIZATION_NAME,B.SUB_ORG_NAME,B.STAFF_ID
+      ),
+      
+     BASE_PZ_STAFF_SUM_BU as ( 
+     select B.ORGANIZATION_NAME,B.SUB_ORG_NAME,B.STAFF_NAME,B.STAFF_ID,
+	 SUM(povit_mx.[未到票折扣])as 未到票折扣,
+	 SUM(povit_mx.[未到票折扣冲回])as 未到票折扣冲回,
+	 SUM(povit_mx.[成本调整])as 成本调整
+	 from povit_mx 
+	 left join BASE_DEPT  B on B.STAFF_ID=AA_STAFF_ID
+	 group by B.STAFF_NAME,B.ORGANIZATION_NAME,B.SUB_ORG_NAME,B.STAFF_ID
+      ), 
+    
+	/**************内部调拨应补*******************/
+	BASE_DBYB_SUM as (
+	  select Handler as STAFF_ID,
+	  HandlerName as STAFF_NAME,
+	  DeptID as deptID,
+	  SubOrgID as SUB_ORG_ID,
+	  sum(profit_sum) as profit_sum
+	  from saturn_DBYB 
+	  where Ck_year>=@start_date_int AND Ck_year<@end_date_int and IS_DELETED=0
+
+	  group by Handler,HandlerName,DeptID,SubOrgID
+	),
+    /***************7、获取考核对象 作为主表************************/
+	base_staffID as (
+	select distinct SaleManID,SaleMan from saturn_porfit   
+	where FormartDate>=@start_date_int and FormartDate<@end_date_int and IS_DELETED=0 
+	UNION ALL
+	select distinct
+	PURCHASEMAN as SaleManID ,info.staff_name  as SaleMan
+	from saturn_V_PurchaseDetailZhekou shmx
+	inner join COMMON_StaffInfo info on info.STAFF_ID=shmx.PURCHASEMAN 
+	where DOCUMENT_DATE>=@start_date  and  DOCUMENT_DATE<@end_date 
+	UNION ALL
+	SELECT distinct  
+	A.SALESMAN as  SaleManID,DEPT.STAFF_NAME  as SaleMan
+	FROM ERP_DelegationFootedUp   A
+	LEFT JOIN ERP_DelegationFootedUpProduct C ON A.DELEGATION_FOOTED_UP_ID = C.DELEGATION_FOOTED_UP_ID
+	LEFT JOIN ERP_ProductBatchCode I ON C.BATCH_ID=I.BATCH_ID and C.PRODUCT_ID=I.PRODUCT_ID
+	LEFT JOIN BASE_DEPT DEPT ON DEPT.STAFF_ID=A.SALESMAN
+	WHERE DELEGATION_FOOTED_UP_STATE>1 AND A.IS_DELETED=0 
+	AND ( A.DELEGATION_FOOTED_UP_DATE >=@start_date  AND A.DELEGATION_FOOTED_UP_DATE <@end_date
+	AND  A.DELEGATION_FOOTED_UP_DATE <>''2017-04-30'' )
+	UNION ALL
+	select distinct   Handler as  SaleManID  ,HandlerName as SaleMan from Base_DB_SUM
+    where profit_sum<>0
+	UNION ALL
+	select distinct  STAFF_ID as SaleManID, STAFF_NAME as SaleMan  from  BASE_PZ_STAFF_SUM 
+	UNION ALL
+	select distinct  STAFF_ID as SaleManID, STAFF_NAME as SaleMan  from BASE_PZ_STAFF_SUM_BU
+	UNION ALL
+	select distinct STAFF_ID as SaleManID , STAFF_NAME as SaleMan from BASE_DBYB_SUM
+    where profit_sum<>0
+	),
+	base_distinct_staff as (
+	select distinct A.SaleManID,B.order_id from base_staffID A
+	left join saturn_sale_order  B on A.SaleManID=B.saleID
+                               
+	)
+     /*************8 结果值************************************************/
+	select DEPT.STAFF_NAME as 业务员,
+	dept.ORGANIZATION_NAME as 部门,
+    A.Sgroup as 业务线,
+	dept.SUB_ORG_NAME as 分支机构,
+	IsNUll(B.SUM_MONEY,0) as 含税销售额,
+	ISNULL(B.PRODUCT_CESS_MONEY,0) as 含税毛利,
+	ISNULL(B.PRODUCT_SUM,0) as 未税销售额,
+	ISnull(B.PRODUCT_GROSS_PROFIT_SUM,0) as ''未税毛利+'',
+	round(ISnull(c.PROFIT_MONEY_DOWN,0),2) as ''不含税毛利调整-'',
+	ISnull(D.REMOVE_CESS_MONEY,0) as ''折扣-'',
+	ISNULL(E.profit_sum,0) as 调拨毛利IN进销存,
+	ISNULL(H.profit_sum,0) as 调拨毛利应扣,
+	ISNULL(I.profit_sum,0) as 调拨毛利应补,
+	ISNULL(E.profit_sum,0)-(ISNULL(H.profit_sum,0)-ISNULL(I.profit_sum,0)) as ''真实调拨毛利+'',
+	ISNULL(F.系统外内部调拨,0) as ''系统外内部调拨-'',
+	ISNULL(F.预提成本,0) as ''预提成本-'',
+	ISNULL(F.坏账支出,0) as ''坏账支出-'',
+	ISNULL(F.其他成本一,0) as ''其他成本一-'',
+	ISNULL(F.其他成本运作,0) as ''其他成本一运作-'',
+	ISNULL(BU.未到票折扣,0) as ''未到票折扣-'',
+	ISNULL(BU.未到票折扣冲回,0) as ''未到票折扣冲回-'',
+	ISNULL(BU.成本调整,0) as ''年底补税差-'',
+	ISNULL(F.平台抽点费,0) as ''平台抽点费-'',
+	ISnull(B.PRODUCT_GROSS_PROFIT_SUM,0)-round(ISnull(c.PROFIT_MONEY_DOWN,0),2)-ISnull(D.REMOVE_CESS_MONEY,0)-
+	ISNULL(F.系统外内部调拨,0)-ISNULL(F.预提成本,0)-ISNULL(F.坏账支出,0)-ISNULL(F.其他成本一,0)-ISNULL(F.其他成本运作,0) +
+    (ISNULL(E.profit_sum,0)-(ISNULL(H.profit_sum,0)-ISNULL(I.profit_sum,0)))-ISNULL(BU.未到票折扣,0)-ISNULL(BU.未到票折扣冲回,0)
+    -ISNULL(BU.成本调整,0)-ISNULL(F.平台抽点费,0) as 不含税毛利差价
+
+	from  saturn_khdx A 
+	left join Base_profit B on A.PersonId=B.SaleManID  --含税毛利
+	left join Base_profit_Down C on A.PersonId=C.SALESMAN --成本调整
+	left join Base_zhekou D on D.PURCHASEMAN=A.PersonId  --折扣
+	left join Base_DB_SUM E on E.Handler=A.PersonId --内部调拨数据
+	left join Base_DBYK_SUM H on H.Handler=A.PersonId --内部调拨应扣数据
+	left join BASE_DEPT DEPT on DEPT.STAFF_ID=A.PersonId 
+	left join BASE_PZ_STAFF_SUM  F on F.STAFF_ID=A.PersonId  --手工凭证数据
+	left join BASE_DBYB_SUM I on I.STAFF_ID=A.PersonId --内部调拨应补数据
+	left join BASE_PZ_STAFF_SUM_BU BU on BU.STAFF_ID=A.PersonId  --12月手工凭证调整
+    WHERE ' + @where_clause + '
+    ORDER BY A.sort ASC';
+    --select @sql
+    EXEC sp_executesql @sql, N'@start_date DATE, @end_date DATE, @staff_name NVARCHAR(20), @year INT, 
+    @start_date_int INT, @end_date_int INT', 
+    @start_date = @start_date, @end_date = @end_date, @staff_name = @staff_name, @year = @year, 
+    @start_date_int = @start_date_int, @end_date_int = @end_date_int;
+END;
+
+GO
+
+

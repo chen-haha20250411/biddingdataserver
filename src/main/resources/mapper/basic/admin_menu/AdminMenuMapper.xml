@@ -117,16 +117,87 @@
 		</where>
 	</select>
 
-	<select id="queryById" resultMap="menu" parameterType="int">
-		select a.menu_id,a.menu_name,b.menu_name as menuName1,a.menu_auth from admin_menu a
-		,admin_menu b
-		where a.parent_no =b.menu_id and a.menu_id=#{value,jdbcType=INTEGER}
-	</select>
-
 
 	<select id="queryAllAuthinfoBtn" resultMap="menuBtn">
 		select * from
 		admin_btn b
+	</select>
+
+	<!-- 基础方法实现 -->
+	<insert id="insert" parameterType="com.xiao.core.basic.admin_menu.domain.AdminMenu">
+		insert into admin_menu (menu_name, menu_url, state, parent_no, operato_no, sort_order, imageurl, menu_auth, add_Time, edit_Time)
+		values (#{menuName}, #{menuURL}, #{state}, #{parentNo}, #{operatoNo}, #{sortOrder}, #{imageurl}, #{menu_auth}, now(), now())
+	</insert>
+
+	<update id="update" parameterType="com.xiao.core.basic.admin_menu.domain.AdminMenu">
+		update admin_menu
+		set menu_name = #{menuName},
+			menu_url = #{menuURL},
+			state = #{state},
+			parent_no = #{parentNo},
+			sort_order = #{sortOrder},
+			imageurl = #{imageurl},
+			menu_auth = #{menu_auth},
+			edit_Time = now()
+		<if test="operatoNo != null">
+			, operato_no = #{operatoNo}
+		</if>
+		where menu_id = #{menuId}
+	</update>
+
+	<delete id="deleteById" parameterType="java.lang.String">
+		delete from admin_menu where menu_id = #{value}
+	</delete>
+
+	<delete id="deleteByMap" parameterType="java.util.Map">
+		delete from admin_menu
+		<where>
+			<foreach collection="columnMap.entrySet" item="value" index="key" separator="and">
+				${key} = #{value}
+			</foreach>
+		</where>
+	</delete>
+
+	<select id="queryById" resultMap="menu" parameterType="java.lang.String">
+		select * from admin_menu where menu_id = #{value}
+	</select>
+
+	<select id="queryByIds" resultMap="menu" parameterType="java.util.List">
+		select * from admin_menu where menu_id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+
+	<select id="queryByMap" resultMap="menu" parameterType="java.util.Map">
+		select * from admin_menu
+		<where>
+			<if test="menuName != null and menuName != ''">
+				and menu_name like concat('%', #{menuName}, '%')
+			</if>
+			<if test="parentNo != null">
+				and parent_no = #{parentNo}
+			</if>
+			<if test="state != null">
+				and state = #{state}
+			</if>
+		</where>
+		order by sort_order
+	</select>
+
+	<select id="queryByCount" resultType="java.lang.Integer" parameterType="java.util.Map">
+		select count(*) from admin_menu
+		<where>
+			<if test="menuName != null and menuName != ''">
+				and menu_name like concat('%', #{menuName}, '%')
+			</if>
+			<if test="parentNo != null">
+				and parent_no = #{parentNo}
+			</if>
+			<if test="state != null">
+				and state = #{state}
+			</if>
+		</where>
 	</select>
 
 </mapper>

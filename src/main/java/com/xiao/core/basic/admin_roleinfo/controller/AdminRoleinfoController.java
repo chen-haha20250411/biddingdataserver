@@ -170,27 +170,16 @@ public class AdminRoleinfoController extends BaseController{
 	@LoginRequired(remark="角色-查询角色菜单树")
 	@RequestMapping(value = "/getRoleTreeEdit",method={RequestMethod.POST,RequestMethod.GET})
 	public ResultModel getRoleTreeForEdit(@RequestParam @NotNull(message="角色ID"+ E.E0) Integer roleInfoId) {
-		List<AdminMenu> rootMenus = new ArrayList<AdminMenu>();
-		List<AdminMenu> childMenus = new ArrayList<AdminMenu>();
+		List<AdminMenu> allMenus = new ArrayList<AdminMenu>();
 		List<AdminBtn> menuBtns = new ArrayList<AdminBtn>();// 按钮
 		Map<String, Object> context = getRootMap();
-		// 根据用户�?属角色查�? 关联的权�?
-		Map<String, Object> params = new HashMap<String, Object>();
-		rootMenus = menuService.queryMenuList(params);
-		//�?级菜单列�?
-		if(rootMenus != null || rootMenus.size() > 0){
-			for (AdminMenu menu : rootMenus) {
-				List<AdminMenu> menus = menuService.queryChildMenuByUser(menu.getMenuId()+"");// 查询�?有子节点（一级菜单）
-				if(menus != null ||  menus.size() > 0){
-					childMenus.addAll(menus);
-				}
-			}
-		}
-		menuBtns = menuService.queryAllAuthinfoBtn();//取到�?有的but
+		
+		// 获取所有菜单
+		allMenus = menuService.queryByMap(new HashMap<>());
+		menuBtns = menuService.queryAllAuthinfoBtn();//取到所有的按钮
 
 		List<AdminRolemenu> listauther = roleInfoService.queryRoleAuthInfo(roleInfoId+"");
 		List<AdminRolebtn> menuBtnList = roleInfoService.queryRoleAuthBtn(roleInfoId+"");
-
 
 		Map<String, AdminRolebtn> authinfoBtnMap = new HashMap<String, AdminRolebtn>();//权限按钮map
 		Map<String, AdminRolemenu> autherMap = new HashMap<String, AdminRolemenu>();//权限菜单map
@@ -204,9 +193,9 @@ public class AdminRoleinfoController extends BaseController{
 				autherMap.put(String.valueOf(roleauthrel.getMenuId()), roleauthrel);
 			}
 		}
-		// 先给按钮拍下�? ，增强�?�能
+		
+		// 先给按钮拍下序 ，增强性能
 		Map<String, List<TreeNode>> btns = new HashMap<String, List<TreeNode>>();
-		//20200701修改by--裘晓伟
 		for (int i = 0; i < menuBtns.size(); i++) {
 			AdminBtn menuBtn = menuBtns.get(i);
 			if(!StringUtil.isEmpty(menuBtn.getMenuId()+"")){
@@ -218,114 +207,65 @@ public class AdminRoleinfoController extends BaseController{
 				btns.put(String.valueOf(menuBtn.getMenuId()), btnList);
 			}
 		}
-//		for (int i = 0; i < menuBtns.size(); i++) {
-//			AdminBtn menuBtn = menuBtns.get(i);
-//			if (btns.get(String.valueOf(menuBtn.getMenuId())) != null) {
-//				continue;
-//			}
-//			List<TreeNode> btnList = new ArrayList<TreeNode>();
-//			setBtn(btnList, menuBtn, "",authinfoBtnMap);
-//			for (int j = i + 1; j < menuBtns.size(); j++) {
-//				AdminBtn authinfoBtn2 = menuBtns.get(j);
-//				if (menuBtn.getMenuId().equals(authinfoBtn2.getMenuId())) {
-//					setBtn(btnList, authinfoBtn2, "", authinfoBtnMap);
-//				}
-//			}
-//			btns.put(String.valueOf(menuBtn.getMenuId()), btnList);
-//		}
+		
+		// 构建菜单树
 		List<TreeNode> rootList = new ArrayList<TreeNode>();
 		TreeNode rootNode = new TreeNode("0", "0", "权限菜单", false, true, null);
-		//rootNode.setIcon(context.get("imgUrl") + "/root.gif");
-		// 菜单
-		for (AdminMenu menu : rootMenus) {
-
-			TreeNode node = new TreeNode();//根节点（Top菜单�?
-			node.setId(String.valueOf(menu.getMenuId()));
-			node.setName(menu.getMenuName());
-			if (autherMap.get(String.valueOf(menu.getMenuId())) != null) {
-				node.setChecked(true);
+		
+		// 递归构建多级菜单树
+		for (AdminMenu menu : allMenus) {
+			if (menu.getParentNo() == null) {
+				// 一级菜单
+				TreeNode node = buildMenuTreeNode(menu, allMenus, btns, autherMap);
+				rootList.add(node);
 			}
-			node.setOpen(true);
-			//node.setIconOpen(context.get("imgUrl") + "/1_open.png");
-			//node.setIconClose(context.get("imgUrl") + "/1_close.png");
-			List<TreeNode> childlist = new ArrayList<TreeNode>();//�?级节�?
-			node.setpId("0");
-			for (AdminMenu childMenu : childMenus) {
-				if (menu.getMenuId().equals(childMenu.getParentNo())) {
-					TreeNode childNode = getChildToTreeNode(childMenu, btns, autherMap);//取到二级节点
-					//TreeNode childNode = new TreeNode();
-					childlist.add(childNode);
-				}
-			}
-			node.setChildren(childlist);
-			rootList.add(node);
 		}
+		
 		rootNode.setChildren(rootList);
 		AdminRoleinfo roleInfo = roleInfoService.queryById(roleInfoId+"");
 
 		return sendSuccessMessage("获取数据成功").putData("rootList",rootList).putData("roleInfo", roleInfo);
-		//String date = JSON.toJSONString(rootNode);
-		//writerJson(resp,date);
 	}
 
 	/**
-	 * 构建�?级菜单树
-	 * @param menu
-	 * @param subMenus
-	 * @param btns
-	 * @param autherMap
-	 * @return
+	 * 递归构建菜单树节点
+	 * @param menu 当前菜单
+	 * @param allMenus 所有菜单
+	 * @param btns 按钮映射
+	 * @param autherMap 权限映射
+	 * @return 菜单树节点
 	 */
-	private TreeNode getSubTreeNode(AdminMenu menu, List<AdminMenu> subMenus, Map<String, List<TreeNode>> btns, Map<String, AdminRolemenu> autherMap) {
+	private TreeNode buildMenuTreeNode(AdminMenu menu, List<AdminMenu> allMenus, Map<String, List<TreeNode>> btns, Map<String, AdminRolemenu> autherMap) {
 		TreeNode node = new TreeNode();
 		node.setId(String.valueOf(menu.getMenuId()));
 		node.setName(menu.getMenuName());
-		//node.setChildren(btns.get(authinfo.getMenu_Id()));
-		node.setpId(String.valueOf(menu.getParentNo()));
+		node.setpId(menu.getParentNo() == null ? "0" : String.valueOf(menu.getParentNo()));
 		node.setOpen(true);
-		if (autherMap != null) {
-			if (autherMap.get(String.valueOf(menu.getMenuId())) != null) {
-				node.setChecked(true);
-			} else {
-				node.setChecked(false);
-			}
-		}
-
-		List<TreeNode> sublist = new ArrayList<TreeNode>();
-		node.setpId("0");
-		for (AdminMenu subMenu : subMenus) {
-			if(subMenu.getParentNo().equals(menu.getMenuId())){
-				TreeNode childNode = getChildToTreeNode(subMenu, btns, autherMap);
-				sublist.add(childNode);
-			}
-		}
-		node.setChildren(sublist);
-		return node;
-	}
-
-	/**
-	 * 构建二级菜单�?
-	 * @param menu
-	 * @param btns
-	 * @param autherMap
-	 * @return
-	 */
-	private TreeNode getChildToTreeNode(AdminMenu menu, Map<String, List<TreeNode>> btns, Map<String, AdminRolemenu> autherMap) {
-		TreeNode node = new TreeNode();
-		node.setId(String.valueOf(menu.getMenuId()));
-		node.setName(menu.getMenuName());
+		
+		// 设置按钮
 		node.setChildren(btns.get(String.valueOf(menu.getMenuId())));
-		node.setpId(String.valueOf(menu.getParentNo()));
-		node.setOpen(true);
-		if (autherMap != null) {
-			if (autherMap.get(String.valueOf(menu.getMenuId())) != null) {
-				node.setChecked(true);
-			} else {
-				node.setChecked(false);
+		
+		// 设置权限状态
+		if (autherMap != null && autherMap.get(String.valueOf(menu.getMenuId())) != null) {
+			node.setChecked(true);
+		} else {
+			node.setChecked(false);
+		}
+		
+		// 递归构建子菜单
+		List<TreeNode> childNodes = new ArrayList<TreeNode>();
+		for (AdminMenu childMenu : allMenus) {
+			if (childMenu.getParentNo() != null && childMenu.getParentNo().equals(menu.getMenuId())) {
+				TreeNode childNode = buildMenuTreeNode(childMenu, allMenus, btns, autherMap);
+				childNodes.add(childNode);
 			}
 		}
+		node.setChildren(childNodes);
+		
 		return node;
 	}
+
+	
 
 	/**
 	 * 构建按钮节点

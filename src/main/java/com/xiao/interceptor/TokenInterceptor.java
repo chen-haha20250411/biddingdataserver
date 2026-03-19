@@ -140,8 +140,28 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             if(redisUtils.hasKey("adminAuth_"+member_id)){
                 List<String> list=(List<String>)redisUtils.get("adminAuth_"+member_id);
                 String url2 = url.substring(0, url.lastIndexOf("/"));
+                String url3 = url2.contains("/") ? url2.substring(0, url2.lastIndexOf("/")) : url2;
                 list.add("/admin/homePage/getAdminOper");
-                if(!list.contains(url) && !list.contains(url2)){
+                list.add("/admin/oper/listWithDetails");
+                list.add("/admin/oper/detail");
+                list.add("/api/dataRole");
+                list.add("/api/dataPermission");
+                list.add("/api/userDataRole");
+                list.add("/api/departmentInfo");
+                list.add("/api/branchInfo");
+                list.add("/admin/menu/list");
+                list.add("/admin/menu/getMenuInfo");
+                list.add("/admin/menu/addMenu");
+                list.add("/admin/menu/updateMenu");
+                list.add("/admin/menu/delMenu");
+                list.add("/admin/menu/getRootMenus");
+                list.add("/admin/menu/getAllMenus");
+                list.add("/api/user/info");
+                list.add("/api/auth/login");
+                list.add("/api/user/logout");
+                list.add("/api/auth/captcha");
+                list.add("/api/vue-element-admin/data-permissions");
+                if(!list.contains(url) && !list.contains(url2) && !list.contains(url3)){
                     flushApiResponseError(response, "用户无权限访问", E.ECODE3);
                     return false;
                 }

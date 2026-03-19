@@ -23,6 +23,8 @@
 		<result column="phoneNo" property="phoneNo"/>
 		<result column="jbrxm" property="jbrxm"/>
 	 	<result column="jbrphone" property="jbrphone"/>
+		<result column="dept_id" property="deptId"/>
+		<result column="sug_org_id" property="sugOrgId"/>
 	</resultMap>
 
 	<!-- Result Map -->
@@ -45,22 +47,25 @@
 	    	SELECT @@IDENTITY
 	  	</selectKey>
 	  INSERT INTO operator(
-	  	real_Name,login_name,login_pwd,phone_tel,email,roleinfoId,add_time,edit_time,oper_code,lastTime,failTimes,companyName,unifiedCode,corporate,phoneNo,jbrxm,jbrphone
+	  	real_Name,login_name,login_pwd,phone_tel,email,roleinfoId,add_time,edit_time,oper_code,lastTime,failTimes,companyName,unifiedCode,corporate,phoneNo,jbrxm,jbrphone,dept_id,sug_org_id
 	  ) VALUES(
 		  #{realName},#{loginName},#{loginPwd},#{phoneTel},#{email},#{roleinfoId},now(),#{editTime},#{oper_code},#{lastTime},#{failTimes},
-		  #{companyName},#{unifiedCode},#{corporate},#{phoneNo},#{jbrxm},#{jbrphone}
+		  #{companyName},#{unifiedCode},#{corporate},#{phoneNo},#{jbrxm},#{jbrphone},#{deptId},#{sugOrgId}
 	  )
 	</insert>
 
 	<!-- 得到指定的操作员 -->
 	<select id="queryById" resultMap="operator" >
-	 	SELECT * FROM operator where operator_id = #{value}
+	  SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes,
+	  o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone,o.dept_id,o.sug_org_id
+	  FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id
+	  WHERE o.operator_id = #{value}
 	</select>
 
 	<!-- 获取操作员-->
 	<select id="queryByMap" resultMap="operator" >
 		SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes,
-		o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone
+		o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone,o.dept_id,o.sug_org_id
 		FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id
 		<where>
 			<if test="loginName != null and loginName != '' ">
@@ -158,6 +163,22 @@
 		  	  <if test="jbrphone != null and jbrphone != '' ">
 		  		 jbrphone=#{jbrphone},
 		  	  </if>
+		  	  <choose>
+		  	  	<when test="deptId != null">
+		  		 dept_id=#{deptId},
+		  	  	</when>
+		  	  	<when test="clearDept != null and clearDept == true">
+		  		 dept_id=null,
+		  	  	</when>
+		  	  </choose>
+		  	  <choose>
+		  	  	<when test="sugOrgId != null">
+		  		 sug_org_id=#{sugOrgId},
+		  	  	</when>
+		  	  	<when test="clearBranch != null and clearBranch == true">
+		  		 sug_org_id=null,
+		  	  	</when>
+		  	  </choose>
 		  	  edit_time	= now()
 		  WHERE operator_id = #{operatorId}
 	</update>

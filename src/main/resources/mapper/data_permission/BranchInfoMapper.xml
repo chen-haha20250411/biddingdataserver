@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiao.core.data_permission.mapper.BranchInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.xiao.core.data_permission.domain.BranchInfo">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="branch_name" property="branchName" jdbcType="VARCHAR" />
+        <result column="branch_code" property="branchCode" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+        <result column="branch_level" property="branchLevel" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, branch_name, branch_code, parent_id, branch_level, status, created_at, updated_at
+    </sql>
+
+    <select id="queryById" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        branch_info
+        WHERE
+        id = #{id}
+    </select>
+
+    <select id="queryByParentId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        branch_info
+        WHERE
+        parent_id = #{parentId}
+        ORDER BY id
+    </select>
+
+    <select id="queryByStatus" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        branch_info
+        WHERE
+        status = #{status}
+        ORDER BY id
+    </select>
+
+    <select id="queryByBranchCode" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        branch_info
+        WHERE
+        branch_code = #{branchCode}
+    </select>
+
+    <insert id="insert" parameterType="com.xiao.core.data_permission.domain.BranchInfo">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT @@IDENTITY
+        </selectKey>
+        INSERT INTO branch_info(
+            branch_name, branch_code, parent_id, branch_level, status, created_at, updated_at
+        ) VALUES(
+            #{branchName}, #{branchCode}, #{parentId}, #{branchLevel}, #{status}, now(), now()
+        )
+    </insert>
+
+    <update id="update" parameterType="com.xiao.core.data_permission.domain.BranchInfo">
+        UPDATE branch_info
+        SET
+            <if test="branchName != null and branchName != ''">
+                branch_name = #{branchName},
+            </if>
+            <if test="branchCode != null and branchCode != ''">
+                branch_code = #{branchCode},
+            </if>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="branchLevel != null">
+                branch_level = #{branchLevel},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            updated_at = now()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM branch_info WHERE id = #{id}
+    </delete>
+
+</mapper>

@@ -66,6 +66,14 @@ public class Operator extends BaseDomain {
     private String jbrxm;
     //经办人联系方式
 	private String jbrphone;
+    //部门ID
+    private Integer deptId;
+    //分支机构ID
+    private Integer sugOrgId;
+    //清除部门标记
+    private Boolean clearDept;
+    //清除分支机构标记
+    private Boolean clearBranch;
     
 	public Integer getOperatorId() {
 		return operatorId;
@@ -215,6 +223,38 @@ public class Operator extends BaseDomain {
 
 	public void setJbrphone(String jbrphone) {
 		this.jbrphone = jbrphone;
+	}
+
+	public Integer getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public Integer getSugOrgId() {
+		return sugOrgId;
+	}
+
+	public void setSugOrgId(Integer sugOrgId) {
+		this.sugOrgId = sugOrgId;
+	}
+
+	public Boolean getClearDept() {
+		return clearDept;
+	}
+
+	public void setClearDept(Boolean clearDept) {
+		this.clearDept = clearDept;
+	}
+
+	public Boolean getClearBranch() {
+		return clearBranch;
+	}
+
+	public void setClearBranch(Boolean clearBranch) {
+		this.clearBranch = clearBranch;
 	}
 	
 }
