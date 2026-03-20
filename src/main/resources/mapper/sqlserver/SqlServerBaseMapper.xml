@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.sqlserver.mapper.SqlServerBaseMapper">
+    <!-- 占位文件：sqlserver模块的MyBatis Mapper目录 -->
+    <!-- 当有新的Mapper需要添加时，在此目录下创建对应的XML文件 -->
+</mapper>

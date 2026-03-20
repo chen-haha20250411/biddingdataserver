@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.customerSales.mapper.CustomerSalesMapper">
+    
+    <select id="callCustomerAndCustOrgSalesReport" statementType="CALLABLE" resultType="map">
+        {call saturn_p_CustomerAndCustOrgSalesReport(
+            #{reportType, jdbcType=VARCHAR, mode=IN},
+            #{startDate, jdbcType=VARCHAR, mode=IN},
+            #{endDate, jdbcType=VARCHAR, mode=IN},
+            #{customerName, jdbcType=VARCHAR, mode=IN},
+            #{orgName, jdbcType=VARCHAR, mode=IN},
+            #{salesPerson, jdbcType=VARCHAR, mode=IN}
+        )}
+    </select>
+    
+</mapper>
