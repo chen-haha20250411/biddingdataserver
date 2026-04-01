@@ -33,7 +33,7 @@ public class DataPermissionController {
     @Autowired
     private OperatorService operService;
 
-    @LoginRequired(remark="查询角色权限列表操作")
+    @LoginRequired(remark="查询指定角色有哪些数据权限操作")
     @GetMapping("/list/{roleId}")
     public ResultModel getPermissionsByRoleId(@CurrentUser Operator currentUser, @PathVariable Integer roleId) {
         try {
@@ -44,7 +44,7 @@ public class DataPermissionController {
         }
     }
 
-    @LoginRequired(remark="分配权限操作")
+    @LoginRequired(remark="给角色分配数据权限操作")
     @PostMapping("/assign")
     public ResultModel assignPermission(@CurrentUser Operator currentUser, @RequestBody DataPermission permission) {
         try {
@@ -73,7 +73,7 @@ public class DataPermissionController {
         }
     }
 
-    @LoginRequired(remark="更新权限操作")
+    @LoginRequired(remark="更新角色数据权限操作")
     @PutMapping("/update")
     public ResultModel updatePermission(@CurrentUser Operator currentUser, @RequestBody DataPermission permission) {
         try {
@@ -95,7 +95,7 @@ public class DataPermissionController {
         }
     }
 
-    @LoginRequired(remark="删除权限操作")
+    @LoginRequired(remark="删除角色数据权限操作")
     @DeleteMapping("/delete/{id}")
     public ResultModel deletePermission(@CurrentUser Operator currentUser, @PathVariable Integer id) {
         try {
@@ -113,7 +113,7 @@ public class DataPermissionController {
         }
     }
 
-    @LoginRequired(remark="检查权限操作")
+    @LoginRequired(remark="检查用户是否有角色数据权限操作")
     @PostMapping("/check")
     public ResultModel checkPermission(@CurrentUser Operator currentUser, @RequestBody Map<String, Object> request) {
         try {
@@ -132,7 +132,7 @@ public class DataPermissionController {
         }
     }
 
-    @LoginRequired(remark="获取用户权限值操作")
+    @LoginRequired(remark="获取用户角色数据权限值操作")
     @GetMapping("/userPermissions/{userId}/{permissionType}")
     public ResultModel getUserPermissionValues(@CurrentUser Operator currentUser, @PathVariable Integer userId, @PathVariable String permissionType) {
         try {
@@ -146,7 +146,7 @@ public class DataPermissionController {
         }
     }
 
-    @LoginRequired(remark="清除权限缓存操作")
+    @LoginRequired(remark="清除用户角色数据权限缓存操作")
     @PostMapping("/clearCache/{userId}")
     public ResultModel clearUserPermissionCache(@CurrentUser Operator currentUser, @PathVariable Integer userId) {
         try {
@@ -213,6 +213,133 @@ public class DataPermissionController {
                 return ResultModel.success("查询成功", userList);
             }
             return ResultModel.success("查询成功", new ArrayList<>());
+        } catch (Exception e) {
+            return ResultModel.error("查询失败: " + e.getMessage());
+        }
+    }
+
+    @LoginRequired(remark="获取所有权限类型操作")
+    @GetMapping("/permissionTypes")
+    public ResultModel getPermissionTypes(@CurrentUser Operator currentUser) {
+        try {
+            // 这里可以从数据库或配置中获取所有权限类型
+            // 暂时返回一些常见的权限类型作为示例
+            List<String> permissionTypes = new ArrayList<>();
+            permissionTypes.add("department");
+            permissionTypes.add("project");
+            permissionTypes.add("region");
+            permissionTypes.add("status");
+            return ResultModel.success("查询成功", permissionTypes);
+        } catch (Exception e) {
+            return ResultModel.error("查询失败: " + e.getMessage());
+        }
+    }
+
+    @LoginRequired(remark="批量分配权限操作")
+    @PostMapping("/batchAssign")
+    public ResultModel batchAssignPermission(@CurrentUser Operator currentUser, @RequestBody Map<String, Object> request) {
+        try {
+            if (!isAdmin(currentUser)) {
+                return ResultModel.error("无权限操作");
+            }
+            
+            Integer roleId = (Integer) request.get("roleId");
+            List<DataPermission> permissions = (List<DataPermission>) request.get("permissions");
+            
+            if (roleId == null || permissions == null || permissions.isEmpty()) {
+                return ResultModel.error("参数不能为空");
+            }
+            
+            // 先删除该角色的所有权限
+            dataPermissionService.deletePermissionsByRoleId(roleId);
+            
+            // 批量分配新权限
+            boolean allSuccess = true;
+            for (DataPermission permission : permissions) {
+                permission.setRoleId(roleId);
+                if (!dataPermissionService.assignPermission(permission)) {
+                    allSuccess = false;
+                }
+            }
+            
+            if (allSuccess) {
+                clearRoleUsersCache(roleId);
+                return ResultModel.success("批量分配成功");
+            } else {
+                return ResultModel.error("部分权限分配失败");
+            }
+        } catch (Exception e) {
+            return ResultModel.error("批量分配失败: " + e.getMessage());
+        }
+    }
+
+    @LoginRequired(remark="批量删除权限操作")
+    @DeleteMapping("/batchDelete")
+    public ResultModel batchDeletePermission(@CurrentUser Operator currentUser, @RequestBody List<Integer> ids) {
+        try {
+            if (!isAdmin(currentUser)) {
+                return ResultModel.error("无权限操作");
+            }
+            
+            if (ids == null || ids.isEmpty()) {
+                return ResultModel.error("参数不能为空");
+            }
+            
+            boolean allSuccess = true;
+            for (Integer id : ids) {
+                if (!dataPermissionService.deletePermission(id)) {
+                    allSuccess = false;
+                }
+            }
+            
+            if (allSuccess) {
+                return ResultModel.success("批量删除成功");
+            } else {
+                return ResultModel.error("部分权限删除失败");
+            }
+        } catch (Exception e) {
+            return ResultModel.error("批量删除失败: " + e.getMessage());
+        }
+    }
+
+    @LoginRequired(remark="获取权限详情操作")
+    @GetMapping("/detail/{id}")
+    public ResultModel getPermissionDetail(@CurrentUser Operator currentUser, @PathVariable Integer id) {
+        try {
+            DataPermission permission = dataPermissionService.queryById(String.valueOf(id));
+            if (permission != null) {
+                return ResultModel.success("查询成功", permission);
+            } else {
+                return ResultModel.error("权限不存在");
+            }
+        } catch (Exception e) {
+            return ResultModel.error("查询失败: " + e.getMessage());
+        }
+    }
+
+    @LoginRequired(remark="检查角色是否有特定权限操作")
+    @PostMapping("/checkRole")
+    public ResultModel checkRolePermission(@CurrentUser Operator currentUser, @RequestBody Map<String, Object> request) {
+        try {
+            Integer roleId = (Integer) request.get("roleId");
+            String permissionType = (String) request.get("permissionType");
+            String permissionValue = (String) request.get("permissionValue");
+            
+            if (roleId == null || permissionType == null || permissionValue == null) {
+                return ResultModel.error("参数不能为空");
+            }
+            
+            List<DataPermission> permissions = dataPermissionService.getPermissionsByRoleId(roleId);
+            boolean hasPermission = false;
+            for (DataPermission permission : permissions) {
+                if (permission.getPermissionType().equals(permissionType) && 
+                    permission.getPermissionValue().contains(permissionValue)) {
+                    hasPermission = true;
+                    break;
+                }
+            }
+            
+            return ResultModel.success("查询成功", hasPermission);
         } catch (Exception e) {
             return ResultModel.error("查询失败: " + e.getMessage());
         }

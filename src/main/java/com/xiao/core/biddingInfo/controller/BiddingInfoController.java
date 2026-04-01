@@ -21,7 +21,7 @@ import com.xiao.core.biddingInfo.domain.BiddingInfo;
 
 
 @RestController
-@RequestMapping("/admin/biddingInfo")
+@RequestMapping("/api/biddingInfo")
 //@Api(tags = "BiddingInfoController", description = "")
 public class BiddingInfoController extends BaseController{
 
@@ -34,17 +34,18 @@ public class BiddingInfoController extends BaseController{
 	*/
 	@LoginRequired(remark="查询列表操作")
 	@RequestMapping(value = "/toList",method={RequestMethod.POST,RequestMethod.GET})
-	//@ApiOperation(value = "查询列表操作")
-	public ResultModel toList(@CurrentUser Operator oper,String projectNumber,String projectName,String descase, Integer limit, Integer currPageNo) {
+	public ResultModel toList(@CurrentUser Operator oper,String projectNumber,String projectName,String descase,
+	                          @RequestParam(required = false) String startDate,
+	                          @RequestParam(required = false) String endDate,
+	                          Integer limit, Integer currPageNo) {
 		Page<BiddingInfo> page=new Page<BiddingInfo>(currPageNo,limit);
-		//查询位置
 		page.putQueryParam("projectNumber", projectNumber);
 		page.putQueryParam("projectName", projectName);
-		//查询总数
+		page.putQueryParam("startDate", startDate);
+		page.putQueryParam("endDate", endDate);
 		int rowCount = biddingInfoService.queryByCount(page.getQueryParams());
 		page.setTotal(rowCount);
 		List<BiddingInfo> biddingInfoList = biddingInfoService.queryByMap(page.getQueryParams());
-		//查询结果
 		page.setList(biddingInfoList);
 		return PageUtils.pageSuccess(page);
 	}

@@ -15,33 +15,39 @@
 
 <!-- 查询列表带分页 -->
 <select id="queryByMap" resultMap="biddingInfo">
-	 select 
+	 select
 		id,project_number,project_name,publish_date,content,project_id,total_content,data_source,html_url
-	  from bidding_info 
+	  from bidding_info
 	<where>
 	    is_del=0
- 		<if test="projectNumber != null and projectNumber != ''">
+		<if test="projectNumber != null and projectNumber != ''">
 			 AND project_Number LIKE CONCAT('%', #{projectNumber}, '%')
 		</if>
- 		<if test="projectName != null and projectName != ''">
+		<if test="projectName != null and projectName != ''">
 			 AND project_Name LIKE CONCAT('%', #{projectName}, '%')
 		</if>
- 		<if test="publishDate != null and publishDate != ''">
+		<if test="startDate != null and startDate != ''">
+			 AND publish_date &gt;= #{startDate}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			 AND publish_date &lt;= #{endDate}
+		</if>
+		<if test="publishDate != null and publishDate != ''">
 			 AND publish_date = #{publishDate}
 		</if>
- 		<if test="content != null and content != ''">
+		<if test="content != null and content != ''">
 			 AND content = #{content}
 		</if>
- 		<if test="projectId != null and projectId != ''">
+		<if test="projectId != null and projectId != ''">
 			 AND project_id = #{projectId}
 		</if>
- 		<if test="totalContent != null and totalContent != ''">
+		<if test="totalContent != null and totalContent != ''">
 			 AND total_content = #{totalContent}
 		</if>
- 		<if test="dataSource != null and dataSource != ''">
+		<if test="dataSource != null and dataSource != ''">
 			 AND data_source = #{dataSource}
 		</if>
- 		<if test="htmlUrl != null and htmlUrl != ''">
+		<if test="htmlUrl != null and htmlUrl != ''">
 			 AND html_url = #{htmlUrl}
 		</if>
 	 </where>
@@ -62,6 +68,12 @@
 		 </if>
 		 <if test="projectName != null and projectName != ''">
 			 AND project_Name LIKE CONCAT('%', #{projectName}, '%')
+		 </if>
+		 <if test="startDate != null and startDate != ''">
+			 AND publish_date &gt;= #{startDate}
+		 </if>
+		 <if test="endDate != null and endDate != ''">
+			 AND publish_date &lt;= #{endDate}
 		 </if>
  		 <if test="publishDate != null and publishDate != ''">
 			 AND publish_date = #{publishDate}

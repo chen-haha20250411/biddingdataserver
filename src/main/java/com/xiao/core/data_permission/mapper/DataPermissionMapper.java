@@ -11,5 +11,7 @@ public interface DataPermissionMapper extends BaseMapper<DataPermission> {
 
     List<DataPermission> queryByPermissionType(String permissionType);
 
+    DataPermission queryByRoleIdAndType(Integer roleId, String permissionType);
+
     int deleteByRoleId(Integer roleId);
 }

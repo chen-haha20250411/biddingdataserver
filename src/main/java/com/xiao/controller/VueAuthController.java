@@ -545,7 +545,7 @@ public class VueAuthController {
         if (userId == null) {
             return ResultModel.error("用户ID不能为空");
         }
-     
+      
         
         try {
             // 查询用户
@@ -567,6 +567,55 @@ public class VueAuthController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResultModel.error("密码重置失败：" + e.getMessage());
+        }
+    }
+    
+    /**
+     * 更新用户角色
+     * POST /api/user/updateRole
+     */
+    @LoginRequired(remark="更新用户角色")
+    @PostMapping("/user/updateRole")
+    public ResultModel updateUserRole(@RequestBody Map<String, Object> params, @CurrentUser Operator oper) {
+        Integer userId = (Integer) params.get("userId");
+        Integer roleId = (Integer) params.get("roleId");
+        
+        if (userId == null) {
+            return ResultModel.error("用户ID不能为空");
+        }
+        if (roleId == null) {
+            return ResultModel.error("角色ID不能为空");
+        }
+      
+        try {
+            // 查询用户
+            Operator user = operService.queryById(userId.toString());
+            if (user == null) {
+                return ResultModel.error("用户不存在");
+            }
+            
+            // 查询角色是否存在
+            AdminRoleinfo role = roleInfoService.queryById(roleId.toString());
+            if (role == null) {
+                return ResultModel.error("角色不存在");
+            }
+            
+            // 更新用户角色
+            user.setRoleinfoId(roleId);
+            user.setRoleName(role.getRoleName());
+            operService.update(user);
+            
+            // 清除用户权限缓存
+            redisUtils.del("permissions_" + userId);
+            redisUtils.del("adminAuth_" + userId);
+            
+            // 记录操作日志
+            operateLogService.insertOperLog("更新用户角色", oper);
+            
+            return ResultModel.success("更新用户角色成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultModel.error("更新用户角色失败：" + e.getMessage());
         }
     }
     
@@ -840,6 +889,57 @@ public class VueAuthController {
                     }
                 }
             }
+        }
+    }
+    
+
+    
+    /**
+     * 授权用户数据权限
+     * POST /api/dataRole/grantUserRoles
+     */
+    @LoginRequired(remark="授权用户数据权限")
+    @PostMapping("/dataRole/grantUserDataRoles")
+    public ResultModel grantUserDataRoles(@RequestBody Map<String, Object> params, @CurrentUser Operator oper) {
+        try {
+            Integer userId = (Integer) params.get("userId");
+            List<Integer> roleIds = (List<Integer>) params.get("roleIds");
+            
+            if (userId == null) {
+                return ResultModel.error("用户ID不能为空");
+            }
+            
+            if (roleIds == null || roleIds.isEmpty()) {
+                return ResultModel.error("角色ID列表不能为空");
+            }
+            
+            // 检查用户是否存在
+            Operator user = operService.queryById(userId.toString());
+            if (user == null) {
+                return ResultModel.error("用户不存在");
+            }
+            
+            // 清除用户原有的数据角色
+            userDataRoleService.revokeAllRolesFromUser(userId);
+            
+            // 批量分配新的数据角色
+            boolean success = userDataRoleService.batchAssignRolesToUser(userId, roleIds);
+            
+            if (success) {
+                // 清除用户权限缓存
+                redisUtils.del("permissions_" + userId);
+                redisUtils.del("adminAuth_" + userId);
+                
+                // 记录操作日志
+                operateLogService.insertOperLog("更新用户数据权限", oper);
+                
+                return ResultModel.success("数据权限更新成功");
+            } else {
+                return ResultModel.error("数据权限更新失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultModel.error("数据权限更新失败：" + e.getMessage());
         }
     }
 }

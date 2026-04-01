@@ -52,19 +52,31 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/admin/role")
+/**
+ * 角色管理控制器
+ * 提供角色的CRUD操作和权限分配功能
+ */
 public class AdminRoleinfoController extends BaseController{
 	@Autowired
-    AdminRoleinfoService roleInfoService;
+    private AdminRoleinfoService roleInfoService;
 	@Autowired
-    AdminMenuService menuService;
+    private AdminMenuService menuService;
 	@Resource
-	OperatorService operatorService;
+	private OperatorService operatorService;
 	@Autowired
-	RedisUtils redisUtils;
+	private RedisUtils redisUtils;
 
+	/**
+	 * 查询角色列表
+	 * @param oper 当前操作人
+	 * @param roleName 角色名称（可选，用于模糊查询）
+	 * @param limit 每页条数
+	 * @param currPageNo 当前页码
+	 * @return 分页角色列表
+	 */
 	@LoginRequired(remark="角色-查询角色列表操作")
 	@RequestMapping(value = "/list",method={RequestMethod.POST,RequestMethod.GET})
-	public ResultModel left(@CurrentUser Operator oper, String roleName, Integer limit, Integer currPageNo) {
+	public ResultModel listRoles(@CurrentUser Operator oper, String roleName, Integer limit, Integer currPageNo) {
 		Page<AdminRoleinfo> page=new Page<AdminRoleinfo>(currPageNo,limit);
 		page.putQueryParam("roleName", roleName);
 		int rowCount = roleInfoService.queryByCount(page.getQueryParams());
@@ -76,11 +88,16 @@ public class AdminRoleinfoController extends BaseController{
 
 	/**
 	 * 获取角色详情
-	 * POST /admin/role/getRoleInfo
+	 * @param request 请求参数，包含roleInfoId
+	 * @return 角色详情
 	 */
 	@LoginRequired(remark="获取角色详情")
 	@PostMapping("/getRoleInfo")
-	public ResultModel getRoleInfo(@RequestParam Integer roleInfoId) {
+	public ResultModel getRoleInfo(@RequestBody Map<String, Object> request) {
+		Integer roleInfoId = (Integer) request.get("roleInfoId");
+		if (roleInfoId == null) {
+			return ResultModel.failure("角色ID不能为空");
+		}
 		AdminRoleinfo roleInfo = roleInfoService.queryById(roleInfoId + "");
 		if (roleInfo != null) {
 			return ResultModel.success(roleInfo);
@@ -88,7 +105,7 @@ public class AdminRoleinfoController extends BaseController{
 		return ResultModel.failure("角色不存在");
 	}
 
-	/** 去添加页�? */
+	/** 去添加页面 */
 	@RequestMapping(value = "/toAddRole")
 	public ModelAndView toAddRole(HttpServletRequest req,HttpServletResponse resp, HttpSession session) {
 		Map<String, Object> context = getRootMap();
@@ -99,20 +116,52 @@ public class AdminRoleinfoController extends BaseController{
 		return forword("sys/role/addRole", context);
 	}
 
-	/**添加*/
+	/**
+	 * 添加角色
+	 * @param operator 当前操作人
+	 * @param request 请求参数，包含role（角色信息）和authStr（权限字符串）
+	 * @return 操作结果
+	 */
 	@LoginRequired(remark="角色-添加权限")
-	@RequestMapping(value = "/addRole",method={RequestMethod.POST,RequestMethod.GET})
-	public ResultModel addRole(@CurrentUser Operator operator, AdminRoleinfo role){
+	@PostMapping(value = "/addRole", consumes = "application/json")
+	public ResultModel addRole(@CurrentUser Operator operator, @RequestBody Map<String, Object> request){
 		try {
-			//添加角色的操作
+			// 解析角色信息
+			AdminRoleinfo role = new AdminRoleinfo();
+			if (request.get("role") != null) {
+				String json = JSON.toJSONString(request.get("role"), true);
+				String obj = (String) JSON.parse(json);
+				role = JSON.parseObject(obj, AdminRoleinfo.class);
+			} else {
+				String roleName = (String) request.get("roleName");
+				String remark = (String) request.get("remark");
+				role.setRoleName(roleName);
+				role.setRemark(remark);
+			}
+			
+			// 添加操作人ID
 			int operatorId = operator.getOperatorId();
 			role.setOperatorId(operatorId);
+			
+			// 检查角色名称是否已存在
 			Map<String,Object> map=new HashMap<String, Object>();
 			map.put("roleName", role.getRoleName());
-
 			int count = roleInfoService.queryByCount(map);
+			
 			if(count==0){
+				// 插入角色
 				roleInfoService.insert(role);
+				
+				// 分配权限
+				String authStr = (String) request.get("authStr");
+				if (authStr != null && !authStr.isEmpty()) {
+					List<AdminRolemenu> roleauthrels = new ArrayList<AdminRolemenu>();
+					List<AdminRolebtn> roleBtns = new ArrayList<AdminRolebtn>();
+					getAuthinfo(roleauthrels, roleBtns, authStr, role.getRoleInfoId() + "");
+					roleInfoService.addRolBtn(role.getRoleInfoId() + "", roleBtns);
+					roleInfoService.addRoleAuthInfo(role.getRoleInfoId() + "", roleauthrels);
+				}
+				
 				return sendSuccessMessage("添加成功");
 			}else{
 				return sendFailureMessage("添加失败");
@@ -125,7 +174,53 @@ public class AdminRoleinfoController extends BaseController{
 
 	}
 
-	/**删除*/
+	/**
+	 * 添加角色 - 表单格式兼容
+	 * @param operator 当前操作人
+	 * @param role 角色信息
+	 * @param authStr 权限ID字符串（逗号分隔）
+	 * @return 操作结果
+	 */
+	@LoginRequired(remark="角色-添加权限")
+	@RequestMapping(value = "/addRole", method = {RequestMethod.POST, RequestMethod.GET})
+	public ResultModel addRoleForm(@CurrentUser Operator operator, AdminRoleinfo role, String authStr){
+		try {
+			//添加角色的操作
+			int operatorId = operator.getOperatorId();
+			role.setOperatorId(operatorId);
+			Map<String,Object> map=new HashMap<String, Object>();
+			map.put("roleName", role.getRoleName());
+
+			int count = roleInfoService.queryByCount(map);
+			if(count==0){
+				roleInfoService.insert(role);
+				
+				// 分配权限
+				if (authStr != null && !authStr.isEmpty()) {
+					List<AdminRolemenu> roleauthrels = new ArrayList<AdminRolemenu>();
+					List<AdminRolebtn> roleBtns = new ArrayList<AdminRolebtn>();
+					getAuthinfo(roleauthrels, roleBtns, authStr, role.getRoleInfoId() + "");
+					roleInfoService.addRolBtn(role.getRoleInfoId() + "", roleBtns);
+					roleInfoService.addRoleAuthInfo(role.getRoleInfoId() + "", roleauthrels);
+				}
+				
+				return sendSuccessMessage("添加成功");
+			}else{
+				return sendFailureMessage("添加失败");
+			}
+
+		} catch (Exception e) {
+			log.error("添加异常:"+e.getMessage(),e);
+			return sendFailureMessage("网络原因,添加失败");
+		}
+
+	}
+
+	/**
+	 * 删除角色
+	 * @param roleInfoId 角色ID
+	 * @return 操作结果
+	 */
 	@LoginRequired(remark="角色-删除权限")
 	@RequestMapping(value = "/delRole",method={RequestMethod.POST,RequestMethod.GET})
 	public ResultModel delRole(@RequestParam @NotNull(message="角色ID"+ E.E0) Integer roleInfoId){
@@ -136,12 +231,17 @@ public class AdminRoleinfoController extends BaseController{
 			return sendSuccessMessage("删除成功");
 		} catch (Exception e) {
 			log.error("删除异常:"+e.getMessage(),e);
-			return sendFailureMessage("网络异常，删除失败?");
+			return sendFailureMessage("网络异常，删除失败");
 		}
 
 	}
 
-	/**批量删除*/
+	/**
+	 * 批量删除角色
+	 * @param req HTTP请求
+	 * @param resp HTTP响应
+	 * @return 操作结果
+	 */
 	@RequestMapping(value = "/delBatch",method={RequestMethod.POST,RequestMethod.GET})
 	public ResultModel delBatch(HttpServletRequest req, HttpServletResponse resp){
 		try {
@@ -155,7 +255,7 @@ public class AdminRoleinfoController extends BaseController{
 
 	}
 
-	/** 去授权页�? */
+	/** 去授权页面 */
 	@RequestMapping(value = "/toEdit")
 	public ModelAndView toGrant(HttpServletRequest req,HttpServletResponse resp, HttpSession session) {
 		String roleInfoId = req.getParameter("roleinfoId");
@@ -167,12 +267,16 @@ public class AdminRoleinfoController extends BaseController{
 		return forword("sys/role/editRolePage", context);
 	}
 
+	/**
+	 * 获取角色菜单树
+	 * @param roleInfoId 角色ID
+	 * @return 菜单树结构和角色信息
+	 */
 	@LoginRequired(remark="角色-查询角色菜单树")
 	@RequestMapping(value = "/getRoleTreeEdit",method={RequestMethod.POST,RequestMethod.GET})
-	public ResultModel getRoleTreeForEdit(@RequestParam @NotNull(message="角色ID"+ E.E0) Integer roleInfoId) {
+	public ResultModel getRoleTreeEdit(@RequestParam @NotNull(message="角色ID"+ E.E0) Integer roleInfoId) {
 		List<AdminMenu> allMenus = new ArrayList<AdminMenu>();
 		List<AdminBtn> menuBtns = new ArrayList<AdminBtn>();// 按钮
-		Map<String, Object> context = getRootMap();
 		
 		// 获取所有菜单
 		allMenus = menuService.queryByMap(new HashMap<>());
@@ -210,7 +314,6 @@ public class AdminRoleinfoController extends BaseController{
 		
 		// 构建菜单树
 		List<TreeNode> rootList = new ArrayList<TreeNode>();
-		TreeNode rootNode = new TreeNode("0", "0", "权限菜单", false, true, null);
 		
 		// 递归构建多级菜单树
 		for (AdminMenu menu : allMenus) {
@@ -221,7 +324,6 @@ public class AdminRoleinfoController extends BaseController{
 			}
 		}
 		
-		rootNode.setChildren(rootList);
 		AdminRoleinfo roleInfo = roleInfoService.queryById(roleInfoId+"");
 
 		return sendSuccessMessage("获取数据成功").putData("rootList",rootList).putData("roleInfo", roleInfo);
@@ -269,13 +371,13 @@ public class AdminRoleinfoController extends BaseController{
 
 	/**
 	 * 构建按钮节点
-	 * @param btns
-	 * @param authinfoBtn
-	 * @param imageUrl
-	 * @param authinfoBtnMap
+	 * @param btns 按钮列表
+	 * @param authinfoBtn 按钮信息
+	 * @param imageUrl 图标URL
+	 * @param authinfoBtnMap 权限按钮映射
 	 */
 	private void setBtn(List<TreeNode> btns, AdminBtn authinfoBtn, String imageUrl, Map<String, AdminRolebtn> authinfoBtnMap) {
-		// 为了区分菜单权限 对id做处�?,超过5千的则为按钮 ,因为按钮表和菜单�? 的id可能造成重复  �?以需要加5�?
+		// 为了区分菜单权限 对id做处理,超过5千的则为按钮 ,因为按钮表和菜单表 的id可能造成重复 所以需要加5000
 		TreeNode node = new TreeNode();
 		Integer id = 0;
 		if(authinfoBtn != null ){
@@ -292,7 +394,7 @@ public class AdminRoleinfoController extends BaseController{
 		node.setIcon(imageUrl);
 		if (authinfoBtnMap != null) {
 			if (authinfoBtnMap.get(String.valueOf(authinfoBtn.getBtnId())) != null) {
-				// 默认权限树�?�中功能
+				// 默认权限树选中功能
 				node.setChecked(true);
 			} else {
 				node.setChecked(false);
@@ -303,12 +405,12 @@ public class AdminRoleinfoController extends BaseController{
 
 	/**
 	 * 修改角色信息 - JSON Body 格式
-	 *
-	 * @throws ParseException
+	 * @param map 请求参数，包含role（角色信息）和authStr（权限字符串）
+	 * @return 操作结果
 	 */
 	@LoginRequired(remark="角色-修改权限")
-	@PostMapping(value = "/updateroleinfo", consumes = "application/json")
-	public ResultModel updateroleinfo(@RequestBody Map<String, Object> map) {
+	@PostMapping(value = "/updateRole", consumes = "application/json")
+	public ResultModel updateRole(@RequestBody Map<String, Object> map) {
 		String authStr = (String) map.get("authStr");
 
 		AdminRoleinfo role = new AdminRoleinfo();
@@ -355,13 +457,22 @@ public class AdminRoleinfoController extends BaseController{
 
 	/**
 	 * 修改角色信息 - 表单格式兼容
+	 * @param map 请求参数，包含roleName、remark、roleInfoId和authStr
+	 * @return 操作结果
 	 */
 	@LoginRequired(remark="角色-修改权限")
-	@RequestMapping(value = "/updateroleinfo", method = {RequestMethod.POST, RequestMethod.GET})
-	public ResultModel updateroleinfoForm(@RequestParam Map<String, Object> map) {
-		return updateroleinfo(new java.util.HashMap<>(map));
+	@RequestMapping(value = "/updateRole", method = {RequestMethod.POST, RequestMethod.GET})
+	public ResultModel updateRoleForm(@RequestParam Map<String, Object> map) {
+		return updateRole(new java.util.HashMap<>(map));
 	}
 
+	/**
+	 * 解析权限字符串，构建权限对象列表
+	 * @param roleauthrels 角色菜单权限列表
+	 * @param RroleBtns 角色按钮权限列表
+	 * @param authStr 权限字符串，格式为逗号分隔的权限ID或换行分隔的权限ID
+	 * @param roleInfoId 角色ID
+	 */
 	private void getAuthinfo(List<AdminRolemenu> roleauthrels, List<AdminRolebtn> RroleBtns, String authStr, String roleInfoId) {
 		if (authStr == null || authStr.isEmpty()) {
 			return;
@@ -388,7 +499,8 @@ public class AdminRoleinfoController extends BaseController{
 					authid = item;
 				}
 
-				if (authid != null && !"".equals(authid) && !"0".equals(authid)) {
+				if (authid != null && !""
+						.equals(authid) && !"0".equals(authid)) {
 					int authi = Integer.parseInt(authid);
 					if (authi > 5000) {
 						AdminRolebtn roleBtn = new AdminRolebtn();

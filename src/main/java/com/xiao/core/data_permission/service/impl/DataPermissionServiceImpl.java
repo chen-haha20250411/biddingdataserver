@@ -34,8 +34,22 @@ public class DataPermissionServiceImpl extends BaseServiceImpl<DataPermission> i
     }
 
     @Override
+    public DataPermission getPermissionByRoleIdAndType(Integer roleId, String permissionType) {
+        return dataPermissionMapper.queryByRoleIdAndType(roleId, permissionType);
+    }
+
+    @Override
     public boolean assignPermission(DataPermission permission) {
-        return dataPermissionMapper.insert(permission) > 0;
+        // 检查是否已存在同角色同类型的权限
+        DataPermission existingPermission = dataPermissionMapper.queryByRoleIdAndType(permission.getRoleId(), permission.getPermissionType());
+        if (existingPermission != null) {
+            // 存在则更新
+            existingPermission.setPermissionValue(permission.getPermissionValue());
+            return dataPermissionMapper.update(existingPermission) > 0;
+        } else {
+            // 不存在则新增
+            return dataPermissionMapper.insert(permission) > 0;
+        }
     }
 
     @Override

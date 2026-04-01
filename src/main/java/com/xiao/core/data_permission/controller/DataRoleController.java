@@ -18,7 +18,7 @@ public class DataRoleController {
     @Autowired
     private DataRoleService dataRoleService;
 
-    @LoginRequired(remark="查询数据角色列表操作")
+    @LoginRequired(remark="查询所有数据角色操作")
     @GetMapping("/list")
     public ResultModel getAllRoles(@CurrentUser Operator currentUser) {
         try {
@@ -29,7 +29,7 @@ public class DataRoleController {
         }
     }
 
-    @LoginRequired(remark="查询数据角色详情操作")
+    @LoginRequired(remark="查询指定数据角色详情操作")
     @GetMapping("/get/{id}")
     public ResultModel getRoleById(@CurrentUser Operator currentUser, @PathVariable Integer id) {
         try {
@@ -43,7 +43,7 @@ public class DataRoleController {
         }
     }
 
-    @LoginRequired(remark="创建数据角色操作")
+    @LoginRequired(remark="创建新数据角色操作")
     @PostMapping("/create")
     public ResultModel createRole(@CurrentUser Operator currentUser, @RequestBody DataRole role) {
         try {
@@ -73,7 +73,7 @@ public class DataRoleController {
         }
     }
 
-    @LoginRequired(remark="更新数据角色操作")
+    @LoginRequired(remark="更新指定数据角色基本信息操作不含具体权限配置")
     @PutMapping("/update")
     public ResultModel updateRole(@CurrentUser Operator currentUser, @RequestBody DataRole role) {
         try {
@@ -100,7 +100,7 @@ public class DataRoleController {
         }
     }
 
-    @LoginRequired(remark="删除数据角色操作")
+    @LoginRequired(remark="删除指定数据角色操作")
     @DeleteMapping("/delete/{id}")
     public ResultModel deleteRole(@CurrentUser Operator currentUser, @PathVariable Integer id) {
         try {

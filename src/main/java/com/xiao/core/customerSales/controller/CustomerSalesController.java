@@ -24,13 +24,16 @@ public class CustomerSalesController {
     @LoginRequired(remark="查询客户销售数据")
     @GetMapping("/salesData")
     public ResultModel getCustomerSalesData(HttpServletRequest request, @CurrentUser Operator oper) {
-        String reportType = request.getParameter("reportType");
+        String reportType = request.getParameter("customerType");
+        if (StringUtil.isEmpty(reportType)) {
+            reportType = request.getParameter("reportType");
+        }
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String customerName = request.getParameter("customerName");
         String orgName = request.getParameter("orgName");
         String salesPerson = request.getParameter("salesPerson");
-        
+
         if (StringUtil.isEmpty(reportType)) {
             reportType = "customer";
         }
@@ -40,32 +43,35 @@ public class CustomerSalesController {
         if (StringUtil.isEmpty(endDate)) {
             return ResultModel.error("结束日期不能为空");
         }
-        
+
         try {
             List<Map<String, Object>> result = customerSalesService.getCustomerSalesData(
                 reportType, startDate, endDate, customerName, orgName, salesPerson);
-            
+
             Map<String, Object> data = new HashMap<>();
             data.put("list", result);
             data.put("total", result != null ? result.size() : 0);
-            
+
             return ResultModel.success(data);
         } catch (Exception e) {
             e.printStackTrace();
             return ResultModel.error("查询失败: " + e.getMessage());
         }
     }
-    
+
     @LoginRequired(remark="查询客户销售数据")
     @PostMapping("/salesData")
     public ResultModel getCustomerSalesDataPost(HttpServletRequest request, @CurrentUser Operator oper) {
-        String reportType = request.getParameter("reportType");
+        String reportType = request.getParameter("customerType");
+        if (StringUtil.isEmpty(reportType)) {
+            reportType = request.getParameter("reportType");
+        }
         String startDate = request.getParameter("startDate");
         String endDate = request.getParameter("endDate");
         String customerName = request.getParameter("customerName");
         String orgName = request.getParameter("orgName");
         String salesPerson = request.getParameter("salesPerson");
-        
+
         if (StringUtil.isEmpty(reportType)) {
             reportType = "customer";
         }
@@ -75,15 +81,15 @@ public class CustomerSalesController {
         if (StringUtil.isEmpty(endDate)) {
             return ResultModel.error("结束日期不能为空");
         }
-        
+
         try {
             List<Map<String, Object>> result = customerSalesService.getCustomerSalesData(
                 reportType, startDate, endDate, customerName, orgName, salesPerson);
-            
+
             Map<String, Object> data = new HashMap<>();
             data.put("list", result);
             data.put("total", result != null ? result.size() : 0);
-            
+
             return ResultModel.success(data);
         } catch (Exception e) {
             e.printStackTrace();
