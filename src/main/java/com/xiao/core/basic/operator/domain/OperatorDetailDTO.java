@@ -31,6 +31,7 @@ public class OperatorDetailDTO {
     private DepartmentInfo department;
     private BranchInfo branch;
     private AdminRoleInfoVO functionRole;
+    private Boolean isAssessmentTarget;
     private List<DataRoleInfoVO> dataRoles;
 
     public static class AdminRoleInfoVO {
@@ -324,5 +325,13 @@ public class OperatorDetailDTO {
 
     public void setDataRoles(List<DataRoleInfoVO> dataRoles) {
         this.dataRoles = dataRoles;
+    }
+
+    public Boolean getIsAssessmentTarget() {
+        return isAssessmentTarget;
+    }
+
+    public void setIsAssessmentTarget(Boolean isAssessmentTarget) {
+        this.isAssessmentTarget = isAssessmentTarget;
     }
 }

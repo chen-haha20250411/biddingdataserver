@@ -74,6 +74,8 @@ public class Operator extends BaseDomain {
     private Boolean clearDept;
     //清除分支机构标记
     private Boolean clearBranch;
+    //是否考核对象
+    private Boolean isAssessmentTarget;
     
 	public Integer getOperatorId() {
 		return operatorId;
@@ -255,6 +257,14 @@ public class Operator extends BaseDomain {
 
 	public void setClearBranch(Boolean clearBranch) {
 		this.clearBranch = clearBranch;
+	}
+
+	public Boolean getIsAssessmentTarget() {
+		return isAssessmentTarget;
+	}
+
+	public void setIsAssessmentTarget(Boolean isAssessmentTarget) {
+		this.isAssessmentTarget = isAssessmentTarget;
 	}
 	
 }

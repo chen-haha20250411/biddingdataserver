@@ -25,6 +25,7 @@ public class OperatorListDTO {
 
     private String deptName;
     private String branchName;
+    private Boolean isAssessmentTarget;
     private List<DataRoleSimpleVO> dataRoles;
 
     public static class DataRoleSimpleVO {
@@ -223,5 +224,13 @@ public class OperatorListDTO {
 
     public void setDataRoles(List<DataRoleSimpleVO> dataRoles) {
         this.dataRoles = dataRoles;
+    }
+
+    public Boolean getIsAssessmentTarget() {
+        return isAssessmentTarget;
+    }
+
+    public void setIsAssessmentTarget(Boolean isAssessmentTarget) {
+        this.isAssessmentTarget = isAssessmentTarget;
     }
 }

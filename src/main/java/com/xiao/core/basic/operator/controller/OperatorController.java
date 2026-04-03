@@ -167,6 +167,24 @@ public class OperatorController extends BaseController{
 		return new ResultModel(true,"返回role数据").setData(operatorall);
 	}
 
+	/**
+	 * 获取考核对象数据
+	 * GET /admin/oper/getAssessmentTargets
+	 */
+	@LoginRequired(remark="获取考核对象数据操作")
+	@RequestMapping(value = "/getAssessmentTargets",method={RequestMethod.GET})
+	public ResultModel getAssessmentTargets() {
+		Map<String,Object> map=new HashMap<>();
+		map.put("isAssessmentTarget", true);
+		// 查询所有考核对象
+		List<Operator> operList = operService.queryByMap(map);
+		for(Operator oper : operList){
+			oper.setLoginPwd(null);
+		}
+		//返回考核对象列表
+		return new ResultModel(true,"返回考核对象数据").setData(operList);
+	}
+
 	/** 去添加页 */
 	@RequestMapping(value = "/toAddOper")
 	public ModelAndView toAddOper(HttpServletRequest req,HttpServletResponse resp, HttpSession session) {
@@ -363,6 +381,35 @@ public class OperatorController extends BaseController{
 		} catch (Exception e) {
 			log.error("修改异常:" + e.getMessage(), e);
 			return ResultModel.failure("修改失败");
+		}
+	}
+
+	/**
+	 * 修改密码
+	 * POST /admin/chpwd
+	 */
+	@LoginRequired(remark="修改密码操作")
+	@RequestMapping(value = "/chpwd",method={RequestMethod.POST})
+	public ResultModel chpwd(@CurrentUser Operator operter, @RequestBody Map<String, String> params) {
+		try {
+			String oldPassword = params.get("oldPassword");
+			String newPassword = params.get("newPassword");
+			if(StringUtil.isEmpty(oldPassword) || StringUtil.isEmpty(newPassword)) {
+				return new ResultModel(false, "密码不能为空");
+			}
+			Operator dbOper = operService.queryById(String.valueOf(operter.getOperatorId()));
+			if(dbOper == null) {
+				return new ResultModel(false, "用户不存在");
+			}
+			if(!dbOper.getLoginPwd().equals(MethodUtil.MD5(oldPassword))){
+				return new ResultModel(false, "原密码错误");
+			}
+			dbOper.setLoginPwd(MethodUtil.MD5(newPassword));
+			operService.update(dbOper);
+			return new ResultModel(true, "修改成功");
+		} catch (Exception e) {
+			log.error("修改密码异常:" + e.getMessage(), e);
+			return new ResultModel(false, "网络异常，修改失败");
 		}
 	}
 

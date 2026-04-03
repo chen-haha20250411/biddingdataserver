@@ -22,9 +22,10 @@
 		<result column="corporate" property="corporate"/>
 		<result column="phoneNo" property="phoneNo"/>
 		<result column="jbrxm" property="jbrxm"/>
-	 	<result column="jbrphone" property="jbrphone"/>
+		 <result column="jbrphone" property="jbrphone"/>
 		<result column="dept_id" property="deptId"/>
 		<result column="sug_org_id" property="sugOrgId"/>
+		<result column="is_assessment_target" property="isAssessmentTarget"/>
 	</resultMap>
 
 	<!-- Result Map -->
@@ -47,17 +48,17 @@
 	    	SELECT @@IDENTITY
 	  	</selectKey>
 	  INSERT INTO operator(
-	  	real_Name,login_name,login_pwd,phone_tel,email,roleinfoId,add_time,edit_time,oper_code,lastTime,failTimes,companyName,unifiedCode,corporate,phoneNo,jbrxm,jbrphone,dept_id,sug_org_id
+	   real_Name,login_name,login_pwd,phone_tel,email,roleinfoId,add_time,edit_time,oper_code,lastTime,failTimes,companyName,unifiedCode,corporate,phoneNo,jbrxm,jbrphone,dept_id,sug_org_id,is_assessment_target
 	  ) VALUES(
 		  #{realName},#{loginName},#{loginPwd},#{phoneTel},#{email},#{roleinfoId},now(),#{editTime},#{oper_code},#{lastTime},#{failTimes},
-		  #{companyName},#{unifiedCode},#{corporate},#{phoneNo},#{jbrxm},#{jbrphone},#{deptId},#{sugOrgId}
+		  #{companyName},#{unifiedCode},#{corporate},#{phoneNo},#{jbrxm},#{jbrphone},#{deptId},#{sugOrgId},#{isAssessmentTarget}
 	  )
 	</insert>
 
 	<!-- 得到指定的操作员 -->
 	<select id="queryById" resultMap="operator" >
 	  SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes,
-	  o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone,o.dept_id,o.sug_org_id
+	  o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone,o.dept_id,o.sug_org_id,o.is_assessment_target
 	  FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id
 	  WHERE o.operator_id = #{value}
 	</select>
@@ -65,7 +66,7 @@
 	<!-- 获取操作员-->
 	<select id="queryByMap" resultMap="operator" >
 		SELECT o.operator_id,o.real_Name,o.login_name,o.login_pwd,o.phone_tel,o.email,o.roleinfoId,o.add_time,o.edit_time,r.role_Name,o.oper_code,o.lastTime,o.failTimes,
-		o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone,o.dept_id,o.sug_org_id
+		o.companyName,o.unifiedCode,o.corporate,o.phoneNo,o.jbrxm,o.jbrphone,o.dept_id,o.sug_org_id,o.is_assessment_target
 		FROM operator o LEFT JOIN admin_roleinfo r ON o.roleinfoId = r.roleInfo_Id
 		<where>
 			<if test="loginName != null and loginName != '' ">
@@ -83,9 +84,12 @@
 				and o.operator_id = #{operator_id}
 			</if>
 			<if test="getTokenName != null and getTokenName != ''">
-				and login_name = #{getTokenName} 
-				and oper_code = 2
-			</if>
+			and login_name = #{getTokenName} 
+			and oper_code = 2
+		</if>
+		<if test="isAssessmentTarget != null">
+			and o.is_assessment_target = #{isAssessmentTarget}
+		</if>
 		</where>
 		ORDER BY o.operator_id
 		<if test="rowIndex != null and rowNum != null">
@@ -172,14 +176,17 @@
 		  	  	</when>
 		  	  </choose>
 		  	  <choose>
-		  	  	<when test="sugOrgId != null">
-		  		 sug_org_id=#{sugOrgId},
-		  	  	</when>
-		  	  	<when test="clearBranch != null and clearBranch == true">
-		  		 sug_org_id=null,
-		  	  	</when>
-		  	  </choose>
-		  	  edit_time	= now()
+		   	<when test="sugOrgId != null">
+			 sug_org_id=#{sugOrgId},
+		   	</when>
+		   	<when test="clearBranch != null and clearBranch == true">
+			 sug_org_id=null,
+		   	</when>
+		  </choose>
+		  <if test="isAssessmentTarget != null">
+			 is_assessment_target=#{isAssessmentTarget},
+		  </if>
+		  edit_time	= now()
 		  WHERE operator_id = #{operatorId}
 	</update>
 

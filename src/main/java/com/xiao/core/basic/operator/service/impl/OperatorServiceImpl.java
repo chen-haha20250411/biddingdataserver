@@ -144,6 +144,7 @@ public class OperatorServiceImpl extends BaseServiceImpl<Operator> implements Op
 		dto.setJbrphone(operator.getJbrphone());
 		dto.setDeptId(operator.getDeptId());
 		dto.setSugOrgId(operator.getSugOrgId());
+		dto.setIsAssessmentTarget(operator.getIsAssessmentTarget());
 
 		if (operator.getDeptId() != null) {
 			DepartmentInfo department = departmentInfoService.getDepartmentById(operator.getDeptId());
@@ -262,6 +263,7 @@ public class OperatorServiceImpl extends BaseServiceImpl<Operator> implements Op
 			dto.setJbrphone(operator.getJbrphone());
 			dto.setDeptId(operator.getDeptId());
 			dto.setSugOrgId(operator.getSugOrgId());
+			dto.setIsAssessmentTarget(operator.getIsAssessmentTarget());
 
 			if (operator.getDeptId() != null) {
 				String deptName = deptNameMap.get(operator.getDeptId());
