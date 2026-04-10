@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiao.core.productReport.mapper.ProductReportMapper">
+
+    <select id="callProductPurchaseReport" statementType="CALLABLE" resultType="map">
+        {call saturn_P_Purchase_Report_YearTarget(
+            #{startDate, jdbcType=VARCHAR, mode=IN},
+            #{endDate, jdbcType=VARCHAR, mode=IN},
+            #{personName, jdbcType=VARCHAR, mode=IN}
+        )}
+    </select>
+
+</mapper>
