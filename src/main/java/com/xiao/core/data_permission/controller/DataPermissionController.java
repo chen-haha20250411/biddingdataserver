@@ -9,6 +9,8 @@ import com.xiao.core.data_permission.service.DataPermissionService;
 import com.xiao.core.data_permission.service.UserDataRoleService;
 import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/dataPermission")
 public class DataPermissionController {
+    private static final Logger log = LoggerFactory.getLogger(DataPermissionController.class);
 
     @Autowired
     private DataPermissionService dataPermissionService;
@@ -40,7 +43,8 @@ public class DataPermissionController {
             List<DataPermission> permissions = dataPermissionService.getPermissionsByRoleId(roleId);
             return ResultModel.success("查询成功", permissions);
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("查询角色权限失败, roleId: {}", roleId, e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 
@@ -69,7 +73,8 @@ public class DataPermissionController {
                 return ResultModel.error("分配失败");
             }
         } catch (Exception e) {
-            return ResultModel.error("分配失败: " + e.getMessage());
+            log.error("分配数据权限失败", e);
+            return ResultModel.error("分配失败，请稍后重试");
         }
     }
 
@@ -91,7 +96,8 @@ public class DataPermissionController {
                 return ResultModel.error("更新失败");
             }
         } catch (Exception e) {
-            return ResultModel.error("更新失败: " + e.getMessage());
+            log.error("更新数据权限失败", e);
+            return ResultModel.error("更新失败，请稍后重试");
         }
     }
 
@@ -109,7 +115,36 @@ public class DataPermissionController {
                 return ResultModel.error("删除失败");
             }
         } catch (Exception e) {
-            return ResultModel.error("删除失败: " + e.getMessage());
+            log.error("删除数据权限失败, id: {}", id, e);
+            return ResultModel.error("删除失败，请稍后重试");
+        }
+    }
+
+    @LoginRequired(remark="批量保存角色数据权限操作")
+    @PostMapping("/save")
+    public ResultModel savePermissions(@CurrentUser Operator currentUser, @RequestBody Map<String, Object> request) {
+        try {
+            Integer roleId = (Integer) request.get("roleId");
+            if (!isAdmin(currentUser)) {
+                return ResultModel.error("无权限操作");
+            }
+            @SuppressWarnings("unchecked")
+            List<Map<String, Object>> permissions = (List<Map<String, Object>>) request.get("permissions");
+            if (roleId == null) {
+                return ResultModel.error("角色ID不能为空");
+            }
+            if (permissions == null || permissions.isEmpty()) {
+                return ResultModel.error("权限数据不能为空");
+            }
+            dataPermissionService.savePermissions(roleId, permissions);
+            clearRoleUsersCache(roleId);
+            return ResultModel.success("保存成功");
+        } catch (ClassCastException e) {
+            log.error("请求参数类型错误", e);
+            return ResultModel.error("请求参数错误");
+        } catch (Exception e) {
+            log.error("保存角色权限失败", e);
+            return ResultModel.error("保存失败，请稍后重试");
         }
     }
 
@@ -128,7 +163,8 @@ public class DataPermissionController {
             boolean hasPermission = dataPermissionCheckService.checkPermission(userId, permissionType, permissionValue);
             return ResultModel.success("查询成功", hasPermission);
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("检查用户权限失败, userId: {}", request.get("userId"), e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 
@@ -142,7 +178,8 @@ public class DataPermissionController {
             List<String> permissionValues = dataPermissionCheckService.getUserPermissionValues(userId, permissionType);
             return ResultModel.success("查询成功", permissionValues);
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("获取用户权限值失败, userId: {}, permissionType: {}", userId, permissionType, e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 
@@ -156,7 +193,8 @@ public class DataPermissionController {
             dataPermissionCheckService.clearUserPermissionCache(userId);
             return ResultModel.success("缓存清除成功");
         } catch (Exception e) {
-            return ResultModel.error("缓存清除失败: " + e.getMessage());
+            log.error("清除用户权限缓存失败, userId: {}", userId, e);
+            return ResultModel.error("操作失败，请稍后重试");
         }
     }
 
@@ -169,7 +207,7 @@ public class DataPermissionController {
                 }
             }
         } catch (Exception e) {
-            System.err.println("清除角色用户缓存失败: " + e.getMessage());
+            log.error("清除角色用户缓存失败", e);
         }
     }
 
@@ -214,7 +252,8 @@ public class DataPermissionController {
             }
             return ResultModel.success("查询成功", new ArrayList<>());
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("获取全部用户信息失败", e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 
@@ -231,7 +270,8 @@ public class DataPermissionController {
             permissionTypes.add("status");
             return ResultModel.success("查询成功", permissionTypes);
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("获取权限类型失败", e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 
@@ -269,7 +309,8 @@ public class DataPermissionController {
                 return ResultModel.error("部分权限分配失败");
             }
         } catch (Exception e) {
-            return ResultModel.error("批量分配失败: " + e.getMessage());
+            log.error("批量分配权限失败, roleId: {}", request.get("roleId"), e);
+            return ResultModel.error("操作失败，请稍后重试");
         }
     }
 
@@ -298,7 +339,8 @@ public class DataPermissionController {
                 return ResultModel.error("部分权限删除失败");
             }
         } catch (Exception e) {
-            return ResultModel.error("批量删除失败: " + e.getMessage());
+            log.error("批量删除权限失败, ids: {}", ids, e);
+            return ResultModel.error("操作失败，请稍后重试");
         }
     }
 
@@ -313,7 +355,8 @@ public class DataPermissionController {
                 return ResultModel.error("权限不存在");
             }
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("获取权限详情失败, id: {}", id, e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 
@@ -341,7 +384,8 @@ public class DataPermissionController {
             
             return ResultModel.success("查询成功", hasPermission);
         } catch (Exception e) {
-            return ResultModel.error("查询失败: " + e.getMessage());
+            log.error("检查角色权限失败, roleId: {}", request.get("roleId"), e);
+            return ResultModel.error("查询失败，请稍后重试");
         }
     }
 }

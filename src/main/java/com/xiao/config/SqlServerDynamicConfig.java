@@ -2,12 +2,15 @@ package com.xiao.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.xiao.core.basic.sys_dict.service.SysConfigService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 import java.util.Map;
 
 /**
@@ -17,6 +20,7 @@ import java.util.Map;
 @Configuration
 @DependsOn({"primaryDataSource", "sysConfigService"})
 public class SqlServerDynamicConfig {
+    private static final Logger log = LoggerFactory.getLogger(SqlServerDynamicConfig.class);
 
     @Autowired
     private SysConfigService sysConfigService;
@@ -29,11 +33,8 @@ public class SqlServerDynamicConfig {
     public DataSource sqlServerDataSource() {
         // 检查SQL Server配置是否完整
         if (!sysConfigService.isSqlServerConfigured()) {
-            System.out.println("⚠️  SQL Server配置不完整，跳过数据源创建");
-            System.out.println("   请在sys_dict表中添加以下配置项:");
-            System.out.println("   - sqlserver.url: SQL Server连接URL");
-            System.out.println("   - sqlserver.username: 用户名");
-            System.out.println("   - sqlserver.password: 密码");
+            log.warn("SQL Server配置不完整，跳过数据源创建");
+            log.warn("请在sys_dict表中添加以下配置项: sqlserver.url, sqlserver.username, sqlserver.password");
             return null;
         }
 
@@ -43,12 +44,7 @@ public class SqlServerDynamicConfig {
         String username = config.get("username");
         String password = config.get("password");
 
-        System.out.println("\n==========================================");
-        System.out.println("  从数据库加载SQL Server配置");
-        System.out.println("==========================================");
-        System.out.println("🔗 URL: " + maskUrl(url));
-        System.out.println("👤 用户名: " + username);
-        System.out.println("==========================================\n");
+        log.info("从数据库加载SQL Server配置, URL: {}, 用户名: {}", maskUrl(url), username);
 
         // 创建Druid数据源
         DruidDataSource dataSource = new DruidDataSource();
@@ -68,6 +64,13 @@ public class SqlServerDynamicConfig {
         dataSource.setTestWhileIdle(true);
         dataSource.setTestOnBorrow(false);
         dataSource.setTestOnReturn(false);
+
+        // 启用 Druid StatFilter 进行 SQL 监控
+        try {
+            dataSource.setFilters("stat");
+        } catch (SQLException e) {
+            log.error("Failed to set Druid filters", e);
+        }
 
         // 添加TLS 1.0相关连接属性
         dataSource.setConnectionProperties("encrypt=false;sslProtocol=TLSv1;loginTimeout=30;socketTimeout=60000");

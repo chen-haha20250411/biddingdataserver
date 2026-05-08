@@ -1,15 +1,19 @@
 package com.xiao.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @Configuration
 public class PrimaryDataSourceConfig {
+    private static final Logger log = LoggerFactory.getLogger(PrimaryDataSourceConfig.class);
 
     @Value("${spring.datasource.url}")
     private String url;
@@ -41,6 +45,12 @@ public class PrimaryDataSourceConfig {
         dataSource.setTestWhileIdle(true);
         dataSource.setTestOnBorrow(false);
         dataSource.setTestOnReturn(false);
+        // 启用 Druid StatFilter 进行 SQL 监控
+        try {
+            dataSource.setFilters("stat");
+        } catch (SQLException e) {
+            log.error("Failed to set Druid filters", e);
+        }
         return dataSource;
     }
 }

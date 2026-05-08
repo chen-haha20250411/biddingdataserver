@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -40,14 +42,11 @@ public class DataPermissionServiceImpl extends BaseServiceImpl<DataPermission> i
 
     @Override
     public boolean assignPermission(DataPermission permission) {
-        // 检查是否已存在同角色同类型的权限
         DataPermission existingPermission = dataPermissionMapper.queryByRoleIdAndType(permission.getRoleId(), permission.getPermissionType());
         if (existingPermission != null) {
-            // 存在则更新
             existingPermission.setPermissionValue(permission.getPermissionValue());
             return dataPermissionMapper.update(existingPermission) > 0;
         } else {
-            // 不存在则新增
             return dataPermissionMapper.insert(permission) > 0;
         }
     }
@@ -65,5 +64,36 @@ public class DataPermissionServiceImpl extends BaseServiceImpl<DataPermission> i
     @Override
     public boolean deletePermissionsByRoleId(Integer roleId) {
         return dataPermissionMapper.deleteByRoleId(roleId) > 0;
+    }
+
+    @Override
+    public void savePermissions(Integer roleId, List<Map<String, Object>> permissions) {
+        dataPermissionMapper.deleteByRoleId(roleId);
+        if (permissions == null || permissions.isEmpty()) {
+            return;
+        }
+        for (Map<String, Object> p : permissions) {
+            if (p == null) {
+                continue;
+            }
+            DataPermission perm = new DataPermission();
+            perm.setRoleId(roleId);
+            String scopeType = p.get("scopeType") != null ? p.get("scopeType").toString() : "";
+            perm.setPermissionType(scopeType);
+            Boolean isAll = Boolean.TRUE.equals(p.get("isAll"));
+            if (isAll) {
+                perm.setPermissionValue("ALL");
+            } else {
+                @SuppressWarnings("unchecked")
+                List<Object> selectedIds = (List<Object>) p.get("selectedIds");
+                if (selectedIds != null && !selectedIds.isEmpty()) {
+                    String idsStr = String.join(",", selectedIds.stream().map(Object::toString).collect(Collectors.toList()));
+                    perm.setPermissionValue(idsStr);
+                } else {
+                    perm.setPermissionValue("");
+                }
+            }
+            dataPermissionMapper.insert(perm);
+        }
     }
 }

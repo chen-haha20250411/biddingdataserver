@@ -14,6 +14,8 @@ import com.xiao.logannotation.CurrentUser;
 import com.xiao.logannotation.LoginRequired;
 import com.xiao.tokenmagnager.TokenManager;
 import com.xiao.util.MethodUtil;
+import com.xiao.util.PasswordEncoder;
+import com.xiao.util.RateLimiter;
 import com.xiao.util.RedisUtils;
 import com.xiao.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,8 @@ public class LoginController extends BaseController {
     Producer captchaProducer;
 	@Autowired
 	RedisUtils redisUtils;
+	@Autowired
+	RateLimiter rateLimiter;
 
 	@RequestMapping(value = "/toLogin")
 	public ModelAndView toLogin(HttpServletRequest req, HttpServletResponse resp) {
@@ -341,7 +345,7 @@ public class LoginController extends BaseController {
 		}
 		showAllMenu(list,menuMap);
 		boolean flag = false;
-		if("e10adc3949ba59abbe56e057f20f883e".equals(oper.getLoginPwd())){
+		if(PasswordEncoder.isDefaultPassword(oper.getLoginPwd())){
 			flag = true;
 		}
 		//将权限放入redis中
@@ -494,11 +498,11 @@ public class LoginController extends BaseController {
 			oper.getOperatorId(), oper.getLoginName(), 
 			oldPassword != null ? oldPassword.length() : 0, 
 			newPassword != null ? newPassword.length() : 0);
-		if(!oper.getLoginPwd().equals(MethodUtil.MD5(oldPassword))){
+		if(!PasswordEncoder.matches(oldPassword, oper.getLoginPwd())){
 			return sendFailureMessage("原密码不匹配");
 		}
 		if(newPassword!=null && !"".equals(newPassword)){
-			oper.setLoginPwd(MethodUtil.MD5(newPassword));
+			oper.setLoginPwd(PasswordEncoder.encodeMD5(newPassword));
 		}
 		tokenManager.deleteToken(oper.getOperatorId()+"");
 		redisUtils.del("permissions_"+oper.getOperatorId());
@@ -558,7 +562,12 @@ public class LoginController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "/captcha", method = RequestMethod.POST)
-	public ResultModel captcha(HttpServletResponse response) throws ServletException, IOException {
+	public ResultModel captcha(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// IP 限流检查（60秒内最多10次）
+		if (rateLimiter.isLimited(request, "captcha")) {
+			return sendFailureMessage("请求过于频繁，请稍后再试");
+		}
+
 		// 生成文字验证码
 		String text = captchaProducer.createText();
 		log.info("Captcha generated - text: {}, length: {}", text, text.length());

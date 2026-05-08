@@ -32,6 +32,16 @@
         role_id = #{roleId}
     </select>
 
+    <select id="queryByRoleIdAndType" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+        data_permission
+        WHERE
+        role_id = #{roleId}
+        AND permission_type = #{permissionType}
+    </select>
+
     <select id="queryByPermissionType" resultMap="BaseResultMap">
         SELECT
         <include refid="Base_Column_List" />

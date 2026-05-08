@@ -4,6 +4,7 @@ import com.xiao.base.BaseService;
 import com.xiao.core.data_permission.domain.DataPermission;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DataPermissionService extends BaseService<DataPermission> {
 
@@ -20,4 +21,6 @@ public interface DataPermissionService extends BaseService<DataPermission> {
     boolean deletePermission(Integer id);
 
     boolean deletePermissionsByRoleId(Integer roleId);
+
+    void savePermissions(Integer roleId, List<Map<String, Object>> permissions);
 }

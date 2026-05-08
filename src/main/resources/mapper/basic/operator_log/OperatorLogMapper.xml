@@ -35,6 +35,9 @@
 			<if test="loginName != null and loginName != '' ">
 				and loginName like CONCAT(CONCAT('%',#{loginName}),'%')
 			</if>
+			<if test="remark != null and remark != '' ">
+				and remark like CONCAT(CONCAT('%',#{remark}),'%')
+			</if>
 			<if test="startTime != null and startTime != '' ">
 				and date_format(createTime,'%Y-%m-%d') &gt;=
 				#{startTime,jdbcType=VARCHAR}
@@ -55,6 +58,9 @@
 		<where>
 			<if test="loginName != null and loginName != '' ">
 				and loginName like CONCAT(CONCAT('%',#{loginName}),'%')
+			</if>
+			<if test="remark != null and remark != '' ">
+				and remark like CONCAT(CONCAT('%',#{remark}),'%')
 			</if>
 			<if test="startTime != null and startTime != '' ">
 				and date_format(createTime,'%Y-%m-%d') &gt;=
